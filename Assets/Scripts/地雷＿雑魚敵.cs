@@ -2,17 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class 雑魚敵１＿地雷 : MonoBehaviour
+public class 地雷＿雑魚敵 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    
+
+
+public enum State Type
+    {
+        UNDEFIND,
+        IDLE,
+        MOVE,
+        ATTACK,
+        DEFENCE,
+        DEAD,
+    }
+
+
+void Start()  // Start is called before the first frame update
     {
         
     }
 
+
+
+　 void OnTriggerEnter (Collider ぶつかったもの)
+     {
+        if(ぶつかったもの.gameObject.tag == "Player")
+        {
+
+            Destroy (this.gameObject) ;
+
+        }
+    
+     }
+
+    
     // Update is called once per frame
     void Update()
     {
         
     }
+
+
 }
