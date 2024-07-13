@@ -13,16 +13,23 @@ public class zirai : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+         float posX, posY;
+        posX = transform.position.x;
+        posY = transform.position.y;
+
+         transform.position = new Vector2(posX, posY) ;
     }
      void OnTriggerEnter (Collider butukattamono)
      {
         if(butukattamono.gameObject.tag == "Player")
         {
-
-            Destroy (this.gameObject) ;
-
+            Destroy (this.gameObject) ;//こいつは消える//
+            //プレイヤーにダメージ//
         }
-    
+
+         if(butukattamono.gameObject.tag == "PlayerAttack")
+        {
+            Destroy (this.gameObject) ;//こいつは消える//
+        }
      }
 }
