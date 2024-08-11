@@ -214,6 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onGround: 0
   Player: {fileID: 225011269}
+  PlayerScript: {fileID: 225011272}
 --- !u!1 &225011269
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,6 +320,7 @@ MonoBehaviour:
   jpNumMax: 2
   jpSpeed: 12
   groundJudge: {fileID: 224983142}
+  jpNum: 0
 --- !u!50 &225011274
 Rigidbody2D:
   serializedVersion: 4

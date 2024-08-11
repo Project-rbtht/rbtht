@@ -11,7 +11,7 @@ public class PlayerScript : MonoBehaviour {
     public ground_judge groundJudge;
 
     Rigidbody2D rb;
-    int jpNum;
+    public int jpNum;
     Animator anim = null;
 
     void Start () {
@@ -35,9 +35,6 @@ public class PlayerScript : MonoBehaviour {
         }
 
         if (Input.GetButtonDown("Jump") == true) {
-            if (groundJudge.onGround == true) {
-                jpNum = jpNumMax;
-            }
             if (jpNum > 0) {
                 speedY = jpSpeed;
                 if (groundJudge.onGround == true) {
