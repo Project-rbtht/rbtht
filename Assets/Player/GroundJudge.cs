@@ -15,20 +15,26 @@ public class ground_judge : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-        onGround = true;
-        PlayerScript.jpNum = PlayerScript.jpNumMax;
-        anim.SetInteger("Jump", 0);
-        anim.SetTrigger("Ground");
+        if (collision.gameObject.tag == "Floor") {
+            onGround = true;
+            PlayerScript.jpNum = PlayerScript.jpNumMax;
+            anim.SetInteger("Jump", 0);
+            anim.SetTrigger("Ground");
+        }
     }
 
     void OnTriggerStay2D(Collider2D collision) {
-        onGround = true;
-        PlayerScript.jpNum = PlayerScript.jpNumMax;
+        if (collision.gameObject.tag == "Floor") {
+            onGround = true;
+            PlayerScript.jpNum = PlayerScript.jpNumMax;
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision) {
-        onGround = false;
-        PlayerScript.jpNum = PlayerScript.jpNumMax - 1;
-        anim.SetInteger("Jump", 1);
+        if (collision.gameObject.tag == "Floor") {
+            onGround = false;
+            PlayerScript.jpNum = PlayerScript.jpNumMax - 1;
+            anim.SetInteger("Jump", 1);
+        }
     }
 }
