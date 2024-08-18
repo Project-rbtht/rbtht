@@ -624,6 +624,7 @@ MonoBehaviour:
   groundJudge: {fileID: 224983142}
   attack:
   - {fileID: 1653797803}
+<<<<<<< HEAD
   maxHP: 5
   remainInvincibleTime: 1
   justGuardTiming: 0.1
@@ -638,6 +639,12 @@ MonoBehaviour:
   damagedTriangle: {fileID: 2146116607}
   currentEnergyBar: {fileID: 204514771}
   currentEnergyTriangle: {fileID: 141022307}
+=======
+  hp: 1
+  remainInvincibleTime: 1
+  justGardTime: 0.1
+  justTimeStop: 0.2
+>>>>>>> 0303008 (invincibility time after damaged)
   jpNum: 0
   counter: []
 --- !u!50 &225011274
@@ -988,6 +995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundJudge: {fileID: 224983142}
   smoothness: 10
+<<<<<<< HEAD
 --- !u!1 &536877615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,6 +1256,8 @@ RectTransform:
   m_AnchoredPosition: {x: -180, y: 220}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+=======
+>>>>>>> 0303008 (invincibility time after damaged)
 --- !u!1 &961773318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,6 +1378,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+<<<<<<< HEAD
 --- !u!1 &977573122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,6 +1482,8 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+=======
+>>>>>>> 0303008 (invincibility time after damaged)
 --- !u!1 &1055998670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,6 +1976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   recastTime: 0.4
+<<<<<<< HEAD
 --- !u!1 &1765216014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2038,6 +2052,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765216014}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> 0303008 (invincibility time after damaged)
 --- !u!1 &1895166486
 GameObject:
   m_ObjectHideFlags: 0
