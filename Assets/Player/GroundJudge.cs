@@ -8,25 +8,25 @@ public class ground_judge : MonoBehaviour
     public GameObject Player;
     public PlayerScript PlayerScript;
 
-    private Animator anim = null;
+    Animator anim = null;
 
-    private void Start() {
+    void Start() {
         anim = Player.GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    void OnTriggerEnter2D(Collider2D collision) {
         onGround = true;
         PlayerScript.jpNum = PlayerScript.jpNumMax;
         anim.SetInteger("Jump", 0);
         anim.SetTrigger("Ground");
     }
 
-    private void OnTriggerStay2D(Collider2D collision) {
+    void OnTriggerStay2D(Collider2D collision) {
         onGround = true;
         PlayerScript.jpNum = PlayerScript.jpNumMax;
     }
 
-    private void OnTriggerExit2D(Collider2D collision) {
+    void OnTriggerExit2D(Collider2D collision) {
         onGround = false;
         PlayerScript.jpNum = PlayerScript.jpNumMax - 1;
         anim.SetInteger("Jump", 1);

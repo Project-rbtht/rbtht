@@ -1,23 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour {
+public class PlayerScript : MonoBehaviour, Idamagable {
 
     public float speed = 0.1f;
     public int jpNumMax = 1;
     public float jpSpeed = 9.8f;
     public ground_judge groundJudge;
+    public GameObject[] attack = new GameObject[1];
+    public int hp = 1;
+
+    public int jpNum;
+    public float[] counter;
 
     Rigidbody2D rb;
-    public int jpNum;
     Animator anim = null;
 
     void Start () {
         rb = this.GetComponent<Rigidbody2D>();
         jpNum = jpNumMax;
         anim = GetComponent<Animator>();
+        counter = new float[attack.Length];
+        Array.Fill<float>(counter, 0);
     }
 
     // Update is called once per frame
@@ -53,12 +60,21 @@ public class PlayerScript : MonoBehaviour {
             transform.localScale = new Vector3(x/Mathf.Abs(x), 1, 1);
         }
 
-        Attacking("Attack", 1);
-
-        void Attacking(string attackName, int damage) {
-            if (Input.GetButtonDown(attackName)  == true) {
-                anim.SetTrigger(attackName);
+        for (int i = 0; i < attack.Length; i++) {
+            if (Input.GetButtonDown("Attack" + i) == true && counter[i] == 0) {
+                anim.SetTrigger("Attack" + i);
+                counter[i] = attack[i].GetComponent<Attack>().recastTime;
+            } else {
+                counter[i] -= Time.deltaTime;
+                if (counter[i] < 0) { counter[i] = 0; }
             }
+        }
+    }
+
+    public void Damage(int damage) {
+        hp -= damage;
+        if (hp <= 0) {
+            Debug.Log("GameOver");
         }
     }
 }
