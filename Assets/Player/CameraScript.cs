@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     GameObject playerObj;
-    public GroundJudge groundJudge;
+    public ground_judge groundJudge;
     public float smoothness = 1;
 
     float y;
