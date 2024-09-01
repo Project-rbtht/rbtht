@@ -625,6 +625,7 @@ MonoBehaviour:
   attack:
   - {fileID: 1653797803}
 <<<<<<< HEAD
+<<<<<<< HEAD
   maxHP: 5
   remainInvincibleTime: 1
   justGuardTiming: 0.1
@@ -641,10 +642,26 @@ MonoBehaviour:
   currentEnergyTriangle: {fileID: 141022307}
 =======
   hp: 1
+=======
+  maxHP: 5
+>>>>>>> abe3006 (guard anim)
   remainInvincibleTime: 1
-  justGardTime: 0.1
+  justGuardTiming: 0.1
   justTimeStop: 0.2
+<<<<<<< HEAD
 >>>>>>> 0303008 (invincibility time after damaged)
+=======
+  shieldScript: {fileID: 2047580246}
+  shieldHP: 4
+  shieldDecTime: 5
+  shieldRechargeTime: 3
+  healthBar: {fileID: 549782103}
+  healthTriangle: {fileID: 1166205725}
+  damagedBar: {fileID: 48068500}
+  damagedTriangle: {fileID: 2146116607}
+  currentEnergyBar: {fileID: 204514771}
+  currentEnergyTriangle: {fileID: 141022307}
+>>>>>>> abe3006 (guard anim)
   jpNum: 0
   counter: []
 --- !u!50 &225011274
@@ -996,6 +1013,9 @@ MonoBehaviour:
   groundJudge: {fileID: 224983142}
   smoothness: 10
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> abe3006 (guard anim)
 --- !u!1 &536877615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,8 +1276,11 @@ RectTransform:
   m_AnchoredPosition: {x: -180, y: 220}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
 =======
 >>>>>>> 0303008 (invincibility time after damaged)
+=======
+>>>>>>> abe3006 (guard anim)
 --- !u!1 &961773318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,6 +1402,9 @@ CircleCollider2D:
   serializedVersion: 2
   m_Radius: 0.5
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> abe3006 (guard anim)
 --- !u!1 &977573122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,8 +1508,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+<<<<<<< HEAD
 =======
 >>>>>>> 0303008 (invincibility time after damaged)
+=======
+>>>>>>> abe3006 (guard anim)
 --- !u!1 &1055998670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,6 +2006,9 @@ MonoBehaviour:
   damage: 1
   recastTime: 0.4
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> abe3006 (guard anim)
 --- !u!1 &1765216014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2052,8 +2084,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765216014}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 =======
 >>>>>>> 0303008 (invincibility time after damaged)
+=======
+>>>>>>> abe3006 (guard anim)
 --- !u!1 &1895166486
 GameObject:
   m_ObjectHideFlags: 0
