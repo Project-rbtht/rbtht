@@ -1,21 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerScript : MonoBehaviour {
+public class PlayerScript : MonoBehaviour, Idamagable {
 
     public float speed = 0.1f;
     public int jpNumMax = 1;
     public float jpSpeed = 9.8f;
-<<<<<<< HEAD
-    public ground_judge groundJudge;
-<<<<<<< HEAD
-=======
-=======
     public GroundJudge groundJudge;
->>>>>>> abe3006 (guard anim)
     public GameObject[] attack = new GameObject[1];
     public int maxHP = 1;
     public float remainInvincibleTime = 1;
@@ -34,10 +29,8 @@ public class PlayerScript : MonoBehaviour {
 
     public int jpNum;
     public float[] counter;
->>>>>>> 0303008 (invincibility time after damaged)
 
     Rigidbody2D rb;
-    int jpNum;
     Animator anim = null;
     float remainInvincible = 0;
     bool guard = false;
@@ -51,13 +44,10 @@ public class PlayerScript : MonoBehaviour {
         rb = this.GetComponent<Rigidbody2D>();
         jpNum = jpNumMax;
         anim = GetComponent<Animator>();
-<<<<<<< HEAD
-=======
         counter = new float[attack.Length];
         Array.Fill<float>(counter, 0);
         shieldHPCur = shieldHP;
         hp = maxHP;
->>>>>>> abe3006 (guard anim)
     }
 
     // Update is called once per frame
@@ -75,9 +65,6 @@ public class PlayerScript : MonoBehaviour {
         }
 
         if (Input.GetButtonDown("Jump") == true) {
-            if (groundJudge.onGround == true) {
-                jpNum = jpNumMax;
-            }
             if (jpNum > 0) {
                 speedY = jpSpeed;
                 if (groundJudge.onGround == true) {
@@ -98,13 +85,6 @@ public class PlayerScript : MonoBehaviour {
             transform.localScale = new Vector3(x/Mathf.Abs(x), 1, 1);
         }
 
-<<<<<<< HEAD
-        Attacking("Attack", 1);
-
-        void Attacking(string attackName, int damage) {
-            if (Input.GetButtonDown(attackName)  == true) {
-                anim.SetTrigger(attackName);
-=======
         //UŒ‚
         for (int i = 0; i < attack.Length; i++) {
             if (Input.GetButtonDown("Attack" + i) == true && counter[i] == 0) {
@@ -113,7 +93,6 @@ public class PlayerScript : MonoBehaviour {
             } else {
                 counter[i] -= Time.deltaTime;
                 if (counter[i] < 0) { counter[i] = 0; }
->>>>>>> 0303008 (invincibility time after damaged)
             }
         }
 
@@ -170,8 +149,6 @@ public class PlayerScript : MonoBehaviour {
         Vector3 eneTriPos = currentEnergyTriangle.transform.localPosition;
         currentEnergyTriangle.transform.localPosition = new Vector3((shieldHPCur / shieldHP - 0.5f) * currentEnergyBar.GetComponent<RectTransform>().sizeDelta.x - currentEnergyTriangle.GetComponent<RectTransform>().sizeDelta.x / 2, eneTriPos.y, 0);
     }
-<<<<<<< HEAD
-=======
 
     IEnumerator TimeStop(float time) {
         Time.timeScale = 0;
@@ -205,5 +182,4 @@ public class PlayerScript : MonoBehaviour {
             remainInvincible = remainInvincibleTime / 2;
         }
     }
->>>>>>> 0303008 (invincibility time after damaged)
 }

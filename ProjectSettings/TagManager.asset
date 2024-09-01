@@ -3,18 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
   tags: []
-=======
-  tags:
-  - Floor
-  - Enemy
-  - PlayerAttack
-<<<<<<< HEAD
->>>>>>> e8b6878 (animation fils move from Picture to Player/Picture)
-=======
-  - Shield
->>>>>>> abe3006 (guard anim)
   layers:
   - Default
   - TransparentFX

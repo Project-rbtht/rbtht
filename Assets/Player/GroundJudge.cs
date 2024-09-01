@@ -6,27 +6,14 @@ public class GroundJudge : MonoBehaviour
 {
     public bool onGround;
     public GameObject Player;
-    private Animator anim = null;
+    public PlayerScript PlayerScript;
 
-    private void Start() {
+    Animator anim = null;
+
+    void Start() {
         anim = Player.GetComponent<Animator>();
     }
 
-<<<<<<< HEAD
-    private void OnTriggerEnter2D(Collider2D collision) {
-        onGround = true;
-        anim.SetInteger("Jump", 0);
-        anim.SetTrigger("Ground");
-    }
-
-    private void OnTriggerStay2D(Collider2D collision) {
-        onGround = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision) {
-        onGround = false;
-        anim.SetInteger("Jump", 1);
-=======
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "Floor") {
             onGround = true;
@@ -49,6 +36,5 @@ public class GroundJudge : MonoBehaviour
             PlayerScript.jpNum = PlayerScript.jpNumMax - 1;
             anim.SetInteger("Jump", 1);
         }
->>>>>>> 0303008 (invincibility time after damaged)
     }
 }
