@@ -3,13 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-<<<<<<< HEAD
-  - Wall
-=======
-  - Floor
-  - Enemy
->>>>>>> 44c8048 (Player Animations)
+  tags: []
   layers:
   - Default
   - TransparentFX
