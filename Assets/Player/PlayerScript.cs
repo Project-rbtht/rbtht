@@ -12,18 +12,24 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public ground_judge groundJudge;
     public GameObject[] attack = new GameObject[1];
     public int hp = 1;
+<<<<<<< HEAD
     public float remainInvincibleTime = 1;
     public float justGardTime = 0.2f;
     public float justTimeStop = 0.2f;
+=======
+>>>>>>> origin/develop
 
     public int jpNum;
     public float[] counter;
 
     Rigidbody2D rb;
     Animator anim = null;
+<<<<<<< HEAD
     float remainInvincible = 0;
     float guardTime = 0;
     bool guard = false;
+=======
+>>>>>>> origin/develop
 
     void Start () {
         rb = this.GetComponent<Rigidbody2D>();
@@ -35,7 +41,11 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
     // Update is called once per frame
     void Update() {
+<<<<<<< HEAD
         //ˆÚ“®
+=======
+
+>>>>>>> origin/develop
         float x = Input.GetAxisRaw("Horizontal");
         float speedY = rb.velocity.y;
 
@@ -61,14 +71,21 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
         rb.velocity = new Vector2(x * speed, speedY);
 
+<<<<<<< HEAD
         //ƒLƒƒƒ‰ƒNƒ^[‚ÌŒü‚«
         anim.SetInteger("Speed", (int)Mathf.Abs(x * 2));
 
+=======
+        anim.SetInteger("Speed", (int)Mathf.Abs(x * 2));
+>>>>>>> origin/develop
         if (x != 0) {
             transform.localScale = new Vector3(x/Mathf.Abs(x), 1, 1);
         }
 
+<<<<<<< HEAD
         //UŒ‚
+=======
+>>>>>>> origin/develop
         for (int i = 0; i < attack.Length; i++) {
             if (Input.GetButtonDown("Attack" + i) == true && counter[i] == 0) {
                 anim.SetTrigger("Attack" + i);
@@ -78,6 +95,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                 if (counter[i] < 0) { counter[i] = 0; }
             }
         }
+<<<<<<< HEAD
 
         //–³“GŽžŠÔ
         if (remainInvincible > 0) {
@@ -122,6 +140,14 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         if (guard && guardTime <= justGardTime) {
             Debug.Log("Just!");
             StartCoroutine(TimeStop(justTimeStop));
+=======
+    }
+
+    public void Damage(int damage) {
+        hp -= damage;
+        if (hp <= 0) {
+            Debug.Log("GameOver");
+>>>>>>> origin/develop
         }
     }
 }
