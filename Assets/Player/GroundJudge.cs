@@ -2,11 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-<<<<<<< HEAD
 public class ground_judge : MonoBehaviour
-=======
-public class GroundJudge : MonoBehaviour
->>>>>>> origin/player
 {
     public bool onGround;
     public GameObject Player;
