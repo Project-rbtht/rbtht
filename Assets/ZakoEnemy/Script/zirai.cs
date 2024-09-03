@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+<<<<<<< HEAD
 public class zirai : MonoBehaviour
+=======
+public class 雑魚敵１＿地雷 : MonoBehaviour
+>>>>>>> origin/player
 {
     // Start is called before the first frame update
     void Start()
@@ -13,6 +17,7 @@ public class zirai : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
          float posX, posY;
         posX = transform.position.x;
         posY = transform.position.y;
@@ -32,4 +37,8 @@ public class zirai : MonoBehaviour
             Destroy (this.gameObject) ;//こいつは消える//
         }
      }
+=======
+        
+    }
+>>>>>>> origin/player
 }

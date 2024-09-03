@@ -5,7 +5,11 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     GameObject playerObj;
+<<<<<<< HEAD
     public ground_judge groundJudge;
+=======
+    public GroundJudge groundJudge;
+>>>>>>> origin/player
     public float smoothness = 1;
 
     float y;
