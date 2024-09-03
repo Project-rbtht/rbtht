@@ -12,7 +12,9 @@ public class AreaExit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*コンパイルエラーのままプッシュしないでください
         theEntrance.transitionName = areaTransitionName;
+        */
     }
     // Update is called once per frame
     void Update()
@@ -31,11 +33,13 @@ public class AreaExit : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            /*コンパイルエラーのままプッシュしないでください
             // SceneManager.LoadScene(areaToLoad);
             shouldLoadAfterFade = true;
             GameManager.instance.fadingBetweenAreas = true;
             UIFade.instance.FadeToBlack();
             PlayerController.instance.areaTransitionName = areaTransitionName;
+            */
         }
     }
 }
