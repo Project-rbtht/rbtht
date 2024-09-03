@@ -39,7 +39,7 @@ public float transport = 0.1f;
         
         if(Input.GetKeyDown(KeyCode.UpArrow)){
 
-Instantiate(bullet, transform.position, transform.rotation) ;
+
 
 }
 
