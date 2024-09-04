@@ -124,7 +124,6 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             if (Input.GetButton("Guard") == true && justGuardTime == 0 && shieldRecharge == 0) {
                 guard = true;
                 shieldScript.gameObject.SetActive(true);
-                shieldHPCur = shieldHP;
             }
             if (shieldRecharge > 0) {
                 shieldRecharge -= Time.deltaTime;

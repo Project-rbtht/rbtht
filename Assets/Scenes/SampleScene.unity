@@ -631,7 +631,7 @@ MonoBehaviour:
   shieldScript: {fileID: 2047580246}
   shieldHP: 5
   shieldDecTime: 5
-  shieldRechargeTime: 1
+  shieldRechargeTime: 5
   healthBar: {fileID: 549782103}
   healthTriangle: {fileID: 1166205725}
   damagedBar: {fileID: 48068500}
