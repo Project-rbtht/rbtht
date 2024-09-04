@@ -626,12 +626,12 @@ MonoBehaviour:
   - {fileID: 1653797803}
   maxHP: 5
   remainInvincibleTime: 1
-  justGuardTiming: 0.1
+  justGuardTiming: 0.2
   justTimeStop: 0.2
   shieldScript: {fileID: 2047580246}
-  shieldHP: 4
+  shieldHP: 5
   shieldDecTime: 5
-  shieldRechargeTime: 3
+  shieldRechargeTime: 1
   healthBar: {fileID: 549782103}
   healthTriangle: {fileID: 1166205725}
   damagedBar: {fileID: 48068500}
