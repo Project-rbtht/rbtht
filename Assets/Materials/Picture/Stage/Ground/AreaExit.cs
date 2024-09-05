@@ -43,7 +43,7 @@ public class AreaExit : MonoBehaviour
             UIFade.instance.FadeToBlack();
             PlayerController.instance.areaTransitionName = areaTransitionName;
             */
->>>>>>> origin/main
+
         }
     }
 }

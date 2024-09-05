@@ -5,7 +5,6 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     GameObject playerObj;
-<<<<<<< HEAD
     public ground_judge groundJudge;
     public float smoothness = 1;
 
@@ -13,7 +12,8 @@ public class CameraScript : MonoBehaviour
 
     //PlayerController player;
     Transform playerTrans;
-    void Start() {
+    void Start()
+    {
         playerObj = GameObject.FindGameObjectWithTag("Player");
         //player = playerObj.GetComponent<PlayerController>();
         playerTrans = playerObj.transform;
@@ -21,7 +21,8 @@ public class CameraScript : MonoBehaviour
         smoothness = smoothness / 1000;
     }
 
-    void LateUpdate() {
+    void LateUpdate()
+    {
         y = transform.position.y;
         /*
         if (groundJudge.onGround == true) {
@@ -33,17 +34,19 @@ public class CameraScript : MonoBehaviour
         }
         */
         transform.position = new Vector3(playerTrans.position.x, y, transform.position.z);
-=======
-    //PlayerController player;
-    Transform playerTransform;
-    void Start() {
-        playerObj = GameObject.FindGameObjectWithTag("Player");
-        //player = playerObj.GetComponent<PlayerController>();
-        playerTransform = playerObj.transform;
-    }
+        //PlayerController player;
+        Transform playerTransform;
+        void Start()
+        {
+            playerObj = GameObject.FindGameObjectWithTag("Player");
+            //player = playerObj.GetComponent<PlayerController>();
+            playerTransform = playerObj.transform;
+        }
 
-    void LateUpdate() {
-        transform.position = new Vector3(playerTransform.position.x, transform.position.y, transform.position.z);
->>>>>>> origin/develop
+        void LateUpdate()
+        {
+            transform.position = new Vector3(playerTransform.position.x, transform.position.y, transform.position.z);
+
+        }
     }
 }

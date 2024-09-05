@@ -21,4 +21,4 @@ public class AreaEntrance : MonoBehaviour
     }
     */
 }
->>>>>>> origin/main
+

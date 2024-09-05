@@ -39,12 +39,6 @@ public float transport = 0.1f;
         
         if(Input.GetKeyDown(KeyCode.UpArrow)){
 
-<<<<<<< HEAD
-
-=======
-//Instantiate(bullet, transform.position, transform.rotation) ;
->>>>>>> origin/main
-
 }
 
     }

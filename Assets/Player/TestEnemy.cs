@@ -5,10 +5,7 @@ using UnityEngine;
 public class TestEnemy : MonoBehaviour, Idamagable
 {
     public int hp = 1;
-<<<<<<< HEAD
     public int attackDamage = 2;
-=======
->>>>>>> origin/develop
     public void Damage(int damage) {
         hp -= damage;
         if (hp <= 0) {
@@ -18,11 +15,8 @@ public class TestEnemy : MonoBehaviour, Idamagable
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "Player") {
-<<<<<<< HEAD
             collision.gameObject.GetComponent<Idamagable>().Damage(attackDamage);
-=======
             collision.gameObject.GetComponent<Idamagable>().Damage(1);
->>>>>>> origin/develop
         }
     }
 }

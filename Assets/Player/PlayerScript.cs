@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour, Idamagable {
+public class PlayerScript : MonoBehaviour, Idamagable
+{
 
     public float speed = 0.1f;
     public int jpNumMax = 1;
@@ -12,26 +13,24 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public ground_judge groundJudge;
     public GameObject[] attack = new GameObject[1];
     public int hp = 1;
-<<<<<<< HEAD
+
     public float remainInvincibleTime = 1;
     public float justGardTime = 0.2f;
     public float justTimeStop = 0.2f;
-=======
->>>>>>> origin/develop
-
     public int jpNum;
     public float[] counter;
 
     Rigidbody2D rb;
     Animator anim = null;
-<<<<<<< HEAD
+
     float remainInvincible = 0;
     float guardTime = 0;
     bool guard = false;
-=======
->>>>>>> origin/develop
 
-    void Start () {
+
+
+    void Start()
+    {
         rb = this.GetComponent<Rigidbody2D>();
         jpNum = jpNumMax;
         anim = GetComponent<Animator>();
@@ -40,29 +39,32 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     }
 
     // Update is called once per frame
-    void Update() {
-<<<<<<< HEAD
-        //ˆÚ“®
-=======
-
->>>>>>> origin/develop
+    void Update()
+    {
         float x = Input.GetAxisRaw("Horizontal");
         float speedY = rb.velocity.y;
 
-        if (Input.GetButton("Walk") == true) {
+        if (Input.GetButton("Walk") == true)
+        {
             x = x / 2;
         }
 
-        if (speedY < 0 && anim.GetInteger("Jump") > 0) {
+        if (speedY < 0 && anim.GetInteger("Jump") > 0)
+        {
             anim.SetInteger("Jump", -1);
         }
 
-        if (Input.GetButtonDown("Jump") == true) {
-            if (jpNum > 0) {
+        if (Input.GetButtonDown("Jump") == true)
+        {
+            if (jpNum > 0)
+            {
                 speedY = jpSpeed;
-                if (groundJudge.onGround == true) {
+                if (groundJudge.onGround == true)
+                {
                     anim.SetInteger("Jump", 1);
-                }else{
+                }
+                else
+                {
                     anim.SetInteger("Jump", 2);
                 }
                 jpNum--;
@@ -71,83 +73,83 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
         rb.velocity = new Vector2(x * speed, speedY);
 
-<<<<<<< HEAD
         //ƒLƒƒƒ‰ƒNƒ^[‚ÌŒü‚«
         anim.SetInteger("Speed", (int)Mathf.Abs(x * 2));
 
-=======
         anim.SetInteger("Speed", (int)Mathf.Abs(x * 2));
->>>>>>> origin/develop
-        if (x != 0) {
-            transform.localScale = new Vector3(x/Mathf.Abs(x), 1, 1);
+        if (x != 0)
+        {
+            transform.localScale = new Vector3(x / Mathf.Abs(x), 1, 1);
         }
 
-<<<<<<< HEAD
-        //UŒ‚
-=======
->>>>>>> origin/develop
-        for (int i = 0; i < attack.Length; i++) {
-            if (Input.GetButtonDown("Attack" + i) == true && counter[i] == 0) {
+        for (int i = 0; i < attack.Length; i++)
+        {
+            if (Input.GetButtonDown("Attack" + i) == true && counter[i] == 0)
+            {
                 anim.SetTrigger("Attack" + i);
                 counter[i] = attack[i].GetComponent<Attack>().recastTime;
-            } else {
+            }
+            else
+            {
                 counter[i] -= Time.deltaTime;
                 if (counter[i] < 0) { counter[i] = 0; }
             }
         }
-<<<<<<< HEAD
-
         //–³“GŽžŠÔ
-        if (remainInvincible > 0) {
+        if (remainInvincible > 0)
+        {
             remainInvincible -= Time.deltaTime;
-            if (remainInvincible <= 0) {
+            if (remainInvincible <= 0)
+            {
                 anim.SetBool("Damaged", false);
                 remainInvincible = 0;
             }
         }
 
         //ƒK[ƒh
-        if (Input.GetButtonDown("Guard") == true) {
+        if (Input.GetButtonDown("Guard") == true)
+        {
             guard = true;
-        } else if (Input.GetButtonUp("Guard") == true) {
+        }
+        else if (Input.GetButtonUp("Guard") == true)
+        {
             guard = false;
             guardTime = 0;
         }
 
-        if (guard) {
+        if (guard)
+        {
             guardTime += Time.deltaTime;
         }
     }
 
-    IEnumerator TimeStop(float time) {
+    IEnumerator TimeStop(float time)
+    {
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(justTimeStop);
         Time.timeScale = 1;
     }
 
-        public void Damage(int damage) {
-        if (guardTime > justGardTime) {
+    public void Damage(int damage)
+    {
+        if (guardTime > justGardTime)
+        {
             damage = (int)Math.Ceiling((float)damage / 2);
         }
-        if (remainInvincible == 0 && (!guard || guardTime > justGardTime)) {
+        if (remainInvincible == 0 && (!guard || guardTime > justGardTime))
+        {
             hp -= damage;
             remainInvincible += remainInvincibleTime;
             anim.SetBool("Damaged", true);
-            if (hp <= 0) {
+            if (hp <= 0)
+            {
                 Debug.Log("GameOver");
             }
         }
-        if (guard && guardTime <= justGardTime) {
+        if (guard && guardTime <= justGardTime)
+        {
             Debug.Log("Just!");
             StartCoroutine(TimeStop(justTimeStop));
-=======
-    }
-
-    public void Damage(int damage) {
-        hp -= damage;
-        if (hp <= 0) {
-            Debug.Log("GameOver");
->>>>>>> origin/develop
         }
     }
 }
