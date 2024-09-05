@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class bulletreizaa : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -9,10 +10,24 @@ public class bulletreizaa : MonoBehaviour
     {
         
     }
-public float speed = 0.1f;
+
+  public float MoveSpeed = 0.5f;   
+    
     // Update is called once per frame
+
     void Update()
     {
-          transform.position = transform.position + new Vector3 (1, 0, 0) * speed ;
+          transform.Translate(MoveSpeed * Time.deltaTime, 0, 0);
+
+       Destroy(this.gameObject);
+       int frameCount = 0;             // フレームカウント
+const int deleteFrame = 180;    // 削除フレーム
+// 一定フレームで消す
+if (++frameCount > deleteFrame)
+{
+    Destroy(this.gameObject);
+}
+
+
     }
 }

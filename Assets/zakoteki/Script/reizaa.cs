@@ -1,15 +1,17 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class reizaa : MonoBehaviour
 {
+     Vector3 bulletPoint;   
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
+public GameObject BulletObj;
 public float transport = 0.1f;
     // Update is called once per frame
     void Update()
@@ -20,12 +22,9 @@ public float transport = 0.1f;
 
         if(Input.GetKey (KeyCode.UpArrow))/**/
         {
-            posY = posY + transport;
+          Instantiate(BulletObj);
         }
-        if(Input.GetKey (KeyCode.DownArrow))/**/
-        {
-            posY = posY - transport;
-        }
+        
         if(Input.GetKey (KeyCode.LeftArrow))/**/
         {
             posX = posX - transport;
@@ -37,11 +36,15 @@ public float transport = 0.1f;
 
     transform.position = new Vector3(posX, posY, 0) ;
         
+<<<<<<< HEAD
         if(Input.GetKeyDown(KeyCode.UpArrow)){
 
 //Instantiate(bullet, transform.position, transform.rotation) ;
 
 }
+=======
+      
+>>>>>>> 97c48c9 (zako reizaa)
 
     }
 
