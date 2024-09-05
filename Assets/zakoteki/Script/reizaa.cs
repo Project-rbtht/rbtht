@@ -36,15 +36,11 @@ public float transport = 0.1f;
 
     transform.position = new Vector3(posX, posY, 0) ;
         
-<<<<<<< HEAD
         if(Input.GetKeyDown(KeyCode.UpArrow)){
 
 //Instantiate(bullet, transform.position, transform.rotation) ;
 
 }
-=======
-      
->>>>>>> 97c48c9 (zako reizaa)
 
     }
 
