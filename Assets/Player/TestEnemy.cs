@@ -6,6 +6,7 @@ public class TestEnemy : MonoBehaviour, Idamagable
 {
     public int hp = 1;
     public int attackDamage = 2;
+
     public void Damage(int damage) {
         hp -= damage;
         if (hp <= 0) {

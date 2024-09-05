@@ -604,6 +604,7 @@ Transform:
   - {fileID: 2047580242}
   - {fileID: 224983140}
   - {fileID: 1653797804}
+  - {fileID: 1379682534}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &225011272
@@ -629,15 +630,19 @@ MonoBehaviour:
   justGuardTiming: 0.1
   justTimeStop: 0.2
   shieldScript: {fileID: 2047580246}
-  shieldHP: 4
+  energyHP: 5
   shieldDecTime: 5
-  shieldRechargeTime: 3
+  energyRechargeTime: 5
   healthBar: {fileID: 549782103}
   healthTriangle: {fileID: 1166205725}
   damagedBar: {fileID: 48068500}
   damagedTriangle: {fileID: 2146116607}
   currentEnergyBar: {fileID: 204514771}
   currentEnergyTriangle: {fileID: 141022307}
+  energyHealing: 0.5
+  energyMaxHealing: 2
+  deathTimeStop: 0.5
+  gameOver: {fileID: 1379682533}
   jpNum: 0
   counter: []
 --- !u!50 &225011274
@@ -1794,6 +1799,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195445719}
   m_CullTransparentMesh: 1
+--- !u!1 &1379682532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1379682534}
+  - component: {fileID: 1379682533}
+  m_Layer: 0
+  m_Name: GameOver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1379682533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379682532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042d5dac83e507d43847b65a1d4537eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1379682534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379682532}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 225011271}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1606749273
 GameObject:
   m_ObjectHideFlags: 0

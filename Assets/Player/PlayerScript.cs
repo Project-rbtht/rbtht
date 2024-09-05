@@ -17,15 +17,19 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public float justGuardTiming = 0.2f;
     public float justTimeStop = 0.2f;
     public ShieldScript shieldScript;
-    public float shieldHP = 1;
+    public float energyHP = 1;
     public float shieldDecTime = 5;
-    public float shieldRechargeTime = 1;
+    public float energyRechargeTime = 1;
     public GameObject healthBar;
     public GameObject healthTriangle;
     public GameObject damagedBar;
     public GameObject damagedTriangle;
     public GameObject currentEnergyBar;
     public GameObject currentEnergyTriangle;
+    public float energyHealing = 0.5f; // energyHP / damage
+    public float energyMaxHealing = 2f;
+    public float deathTimeStop = 0.5f;
+    public GameOver gameOver;
 
     public int jpNum;
     public float[] counter;
@@ -35,9 +39,9 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     float remainInvincible = 0;
     bool guard = false;
     GameObject shield = null;
-    float shieldHPCur = 0;
+    float energyHPCur = 0;
     float justGuardTime = 0;
-    float shieldRecharge = 0;
+    bool shieldRecharge = false;
     int hp;
 
     void Start () {
@@ -46,7 +50,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         anim = GetComponent<Animator>();
         counter = new float[attack.Length];
         Array.Fill<float>(counter, 0);
-        shieldHPCur = shieldHP;
+        energyHPCur = energyHP;
         hp = maxHP;
     }
 
@@ -112,30 +116,26 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                 shieldScript.gameObject.SetActive(false);
                 justGuardTime = justGuardTiming;
             }
-            shieldHPCur -= Time.deltaTime / shieldDecTime * shieldHP;
-            if (shieldHPCur <= 0) {
-                shieldHPCur = 0;
+            energyHPCur -= Time.deltaTime / shieldDecTime * energyHP;
+            if (energyHPCur <= 0) {
+                energyHPCur = 0;
                 guard = false;
                 shieldScript.gameObject.SetActive(false);
-                shieldRecharge = shieldRechargeTime;
+                shieldRecharge = true;
                 remainInvincible = remainInvincibleTime / 10;
             }
         } else {
-            if (Input.GetButton("Guard") == true && justGuardTime == 0 && shieldRecharge == 0) {
+            if (Input.GetButton("Guard") == true && justGuardTime == 0 && !shieldRecharge) {
                 guard = true;
                 shieldScript.gameObject.SetActive(true);
-                shieldHPCur = shieldHP;
             }
-            if (shieldRecharge > 0) {
-                shieldRecharge -= Time.deltaTime;
-                if (shieldRecharge < 0) {
-                    shieldRecharge = 0;
-                }
-            }
-            if (shieldHPCur != shieldHP) {
-                shieldHPCur += Time.deltaTime / shieldRechargeTime * shieldHP;
-                if (shieldHPCur > shieldHP) {
-                    shieldHPCur = shieldHP;
+            if (energyHPCur != energyHP) {
+                energyHPCur += Time.deltaTime / energyRechargeTime * energyHP;
+                if (energyHPCur >= energyHP) {
+                    energyHPCur = energyHP;
+                    if (shieldRecharge) {
+                        shieldRecharge = false;
+                    }
                 }
             }
             if (justGuardTime != 0) {
@@ -145,22 +145,23 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                 }
             }
         }
-        currentEnergyBar.GetComponent<Image>().fillAmount = shieldHPCur / shieldHP;
+        currentEnergyBar.GetComponent<Image>().fillAmount = energyHPCur / energyHP;
         Vector3 eneTriPos = currentEnergyTriangle.transform.localPosition;
-        currentEnergyTriangle.transform.localPosition = new Vector3((shieldHPCur / shieldHP - 0.5f) * currentEnergyBar.GetComponent<RectTransform>().sizeDelta.x - currentEnergyTriangle.GetComponent<RectTransform>().sizeDelta.x / 2, eneTriPos.y, 0);
+        currentEnergyTriangle.transform.localPosition = new Vector3((energyHPCur / energyHP - 0.5f) * currentEnergyBar.GetComponent<RectTransform>().sizeDelta.x - currentEnergyTriangle.GetComponent<RectTransform>().sizeDelta.x / 2, eneTriPos.y, 0);
     }
 
     IEnumerator TimeStop(float time) {
         Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(justTimeStop);
+        yield return new WaitForSecondsRealtime(time);
         Time.timeScale = 1;
     }
 
     public void Damage(int damage) {
         if (guard) {
-            shieldHPCur -= damage;
-            if (shieldHPCur <= 0) {
-                shieldRecharge = shieldRechargeTime;
+            energyHPCur -= damage;
+            if (energyHPCur <= 0) {
+                energyHPCur = 0;
+                shieldRecharge = true;
                 guard = false;
                 shieldScript.gameObject.SetActive(false);
                 remainInvincible = remainInvincibleTime / 10;
@@ -172,6 +173,9 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             anim.SetBool("Damaged", true);
             if (hp <= 0) {
                 Debug.Log("GameOver");
+                gameOver.Death(this, deathTimeStop);
+            } else {
+                StartCoroutine(TimeStop(justTimeStop / 2));
             }
             healthBar.GetComponent<Image>().fillAmount = (float)hp / (float)maxHP;
             Vector3 triPos = healthTriangle.transform.localPosition;
@@ -180,6 +184,14 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         if (justGuardTime > 0) {
             StartCoroutine(TimeStop(justTimeStop));
             remainInvincible = remainInvincibleTime / 2;
+            if (damage * energyHealing <= energyMaxHealing) {
+                energyHPCur += damage * energyHealing;
+            } else {
+                energyHPCur += energyMaxHealing;
+            }
+            if (energyHPCur > energyHP) {
+                energyHPCur = energyHP;
+            }
         }
     }
 }
