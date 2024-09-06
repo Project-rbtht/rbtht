@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public float speed = 0.1f;
     public int jpNumMax = 1;
     public float jpSpeed = 9.8f;
+    public float gravityScale = 1;
     public GroundJudge groundJudge;
     public GameObject[] attack = new GameObject[1];
     public int maxHP = 1;
@@ -82,8 +83,13 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
         rb.velocity = new Vector2(x * speed, speedY);
 
-        //キャラクターの向き
-        anim.SetInteger("Speed", (int)Mathf.Abs(x * 2));
+        //重力
+        if (!groundJudge.onGround) {
+            rb.AddForce(new Vector2(0, -5f * gravityScale));
+        }
+
+            //キャラクターの向き
+            anim.SetInteger("Speed", (int)Mathf.Abs(x * 2));
 
         if (x != 0) {
             transform.localScale = new Vector3(x/Mathf.Abs(x), 1, 1);
@@ -148,6 +154,12 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         currentEnergyBar.GetComponent<Image>().fillAmount = energyHPCur / energyHP;
         Vector3 eneTriPos = currentEnergyTriangle.transform.localPosition;
         currentEnergyTriangle.transform.localPosition = new Vector3((energyHPCur / energyHP - 0.5f) * currentEnergyBar.GetComponent<RectTransform>().sizeDelta.x - currentEnergyTriangle.GetComponent<RectTransform>().sizeDelta.x / 2, eneTriPos.y, 0);
+    }
+
+    void LateUpdate() {
+        if (groundJudge.onGround && jpNum == jpNumMax) {
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+        }
     }
 
     IEnumerator TimeStop(float time) {
