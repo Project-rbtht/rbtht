@@ -622,7 +622,6 @@ MonoBehaviour:
   speed: 8
   jpNumMax: 2
   jpSpeed: 12
-  gravityScale: 1
   groundJudge: {fileID: 224983142}
   attack:
   - {fileID: 1653797803}
@@ -661,7 +660,7 @@ Rigidbody2D:
   m_Mass: 2.4
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 0
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
