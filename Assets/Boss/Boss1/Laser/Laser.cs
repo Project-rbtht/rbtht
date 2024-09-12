@@ -22,7 +22,7 @@ public class Laser : MonoBehaviour
         on = true;
         yield return new WaitForSeconds(2);
         on = false;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.4f);
         Destroy(this.gameObject);
     }
     // Update is called once per frame
