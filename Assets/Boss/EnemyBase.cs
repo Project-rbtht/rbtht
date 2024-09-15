@@ -2,22 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossBase : MonoBehaviour, Idamagable
+public class EnemyBase : MonoBehaviour, Idamagable
 {
     // Start is called before the first frame update
     public int healthPoint = 2;
     public int attack = 1;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
 
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            var damageTarget = collision.gameObject.GetComponent<Idamagable>();
+            if (damageTarget != null)
+            {
+                damageTarget.Damage(attack);
+            }
+        }
+    }
     public void Damage(int value)//É_ÉÅÅ[ÉWèàóù
     {
         UnityEngine.Debug.Log("on Damage");

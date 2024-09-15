@@ -6,7 +6,7 @@ public class Laser : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public int damage = 1;
+    public int attack = 1;
     private bool on = false;
     private Animator anim;
     void Start()
@@ -38,7 +38,7 @@ public class Laser : MonoBehaviour
             var damageTarget = collision.gameObject.GetComponent<Idamagable>();
             if (damageTarget != null)
             {
-                damageTarget.Damage(damage);
+                damageTarget.Damage(attack);
             }
         }
     }
