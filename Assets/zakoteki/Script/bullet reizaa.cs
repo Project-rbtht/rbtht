@@ -10,24 +10,25 @@ public class bulletreizaa : MonoBehaviour
     {
         
     }
-
+ 
   public float MoveSpeed = 0.5f;   
     
     // Update is called once per frame
 
     void Update()
     {
-          transform.Translate(MoveSpeed * Time.deltaTime, 0, 0);
-
-       Destroy(this.gameObject);
-       int frameCount = 0;             // フレームカウント
-const int deleteFrame = 180;    // 削除フレーム
-// 一定フレームで消す
-if (++frameCount > deleteFrame)
-{
-    Destroy(this.gameObject);
-}
-
-
+        
+        float posX, posY;
+posX = transform.position.x;
+posY = transform.position.y;
+       posX = posX - MoveSpeed;
+       transform.position = new Vector3(posX, posY, 0) ;
     }
+
+ void OnBecameInvisible()
+    {
+        GameObject.Destroy(this.gameObject);
+    }
+
+    
 }

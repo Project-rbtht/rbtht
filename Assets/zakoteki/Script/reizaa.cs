@@ -5,47 +5,52 @@ using UnityEngine;
 
 public class reizaa : MonoBehaviour
 {
-     Vector3 bulletPoint;   
+     //bulletプレハブ
+    public GameObject bullet;
+   
+    //弾丸のスピード
+    public float speed = 5.0f;
+    //敵生成時間間隔
+    public float interval;
+    //経過時間
+    private float time = 0f;
     // Start is called before the first frame update
+    
     void Start()
     {
-        
+           //時間間隔を決定する
+        interval = interval;
     }
-public GameObject BulletObj;
-public float transport = 0.1f;
+
+public float MoveSpeed = 0.01f;
     // Update is called once per frame
     void Update()
     {
-          float posX, posY;
+          time += Time.deltaTime;
+        //スペースが押されたとき
+        if (time >interval)
+        {
+           Instantiate(bullet, transform.position, transform.rotation);
+           
+            //時間リセット
+            time = 0;
+        }
+         float posX, posY;
         posX = transform.position.x;
         posY = transform.position.y;
 
-        if(Input.GetKey (KeyCode.UpArrow))/**/
-        {
-          Instantiate(BulletObj);
-        }
+       
         
         if(Input.GetKey (KeyCode.LeftArrow))/**/
         {
-            posX = posX - transport;
+            posX = posX - MoveSpeed;
         }
         if(Input.GetKey (KeyCode.RightArrow))/**/
         {
-            posX = posX + transport;
+            posX = posX + MoveSpeed;
         }
 
     transform.position = new Vector3(posX, posY, 0) ;
-        
-<<<<<<< HEAD
-        if(Input.GetKeyDown(KeyCode.UpArrow)){
-
-//Instantiate(bullet, transform.position, transform.rotation) ;
-
-}
-=======
-      
->>>>>>> 97c48c9 (zako reizaa)
-
     }
 
      void OnTriggerEnter (Collider butukattamono)
@@ -61,4 +66,5 @@ public float transport = 0.1f;
             Destroy (this.gameObject) ;//こいつは消える//
         }
      }
+
 }
