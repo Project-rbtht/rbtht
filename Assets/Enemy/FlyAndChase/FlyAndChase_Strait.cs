@@ -8,8 +8,7 @@ public class FlyAndChase_Strait : EnemyBase
     
     public float moveTime = 2.0f;
     public float waitTime = 2.0f;
-    private float speed;
-    /*[SerializeField]*/ private Vector3 playerPos;
+    private Vector3 playerPos;
     // Start is called before the first frame update
     void Start()
     {

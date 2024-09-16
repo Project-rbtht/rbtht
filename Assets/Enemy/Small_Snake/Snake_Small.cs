@@ -16,6 +16,14 @@ public class Snake_Small : EnemyBase //’ˆÓ‚PEnemyBase‚ÌŒp³‚ÆMonobehaviour‚ğÁ‚
     void Update()
     {
         base.Update();//’ˆÓ‚R‚±‚Ìs‚à‘«‚·
+        FlipToPlayer();
         Debug.Log("Snake_Small Update keisyouTest");
+
+        rigidbody2d.AddForce(transform.right * speed);
+    }
+    
+    void Forward()//‘Oi‚·‚é
+    {
+
     }
 }

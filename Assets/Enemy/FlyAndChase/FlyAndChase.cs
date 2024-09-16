@@ -5,8 +5,6 @@ using static UnityEngine.GraphicsBuffer;
 
 public class FlyAndChase : EnemyBase
 {
-    
-    public float speed = 2.0f;
     private Transform playerPos;
     // Start is called before the first frame update
     void Start()
@@ -24,6 +22,9 @@ public class FlyAndChase : EnemyBase
     void Update()
     {
         base.Update();
-        transform.position = Vector3.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
+        float dist = Vector3.Distance(transform.position, player.transform.position);
+        Vector3 chaseVector = (player.transform.position - transform.position) / dist;
+        rigidbody2d.AddForce(chaseVector * speed);
+        //transform.position = Vector3.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
     }
 }
