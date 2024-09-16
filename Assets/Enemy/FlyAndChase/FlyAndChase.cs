@@ -8,10 +8,11 @@ public class FlyAndChase : EnemyBase
     
     public float speed = 2.0f;
     private GameObject player;
-    /*[SerializeField]*/ private Transform playerPos;
+    private Transform playerPos;
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
         player = GameObject.Find("PlayerObject");
         if (player == null)
         {
@@ -24,6 +25,7 @@ public class FlyAndChase : EnemyBase
     // Update is called once per frame
     void Update()
     {
+        base.Update();
         transform.position = Vector3.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
     }
 

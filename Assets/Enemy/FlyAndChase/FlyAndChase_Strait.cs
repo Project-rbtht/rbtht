@@ -14,6 +14,7 @@ public class FlyAndChase_Strait : EnemyBase
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
         player = GameObject.Find("PlayerObject");
         if (player == null)
         {
@@ -26,6 +27,7 @@ public class FlyAndChase_Strait : EnemyBase
     // Update is called once per frame
     void Update()
     {
+        base.Update();
         transform.position = Vector3.MoveTowards(transform.position, playerPos, speed * Time.deltaTime);
     }
 
