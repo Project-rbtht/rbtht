@@ -9,7 +9,6 @@ public class FlyAndChase_Strait : EnemyBase
     public float moveTime = 2.0f;
     public float waitTime = 2.0f;
     private float speed;
-    private GameObject player;
     /*[SerializeField]*/ private Vector3 playerPos;
     // Start is called before the first frame update
     void Start()
@@ -33,7 +32,7 @@ public class FlyAndChase_Strait : EnemyBase
 
     private IEnumerator ChasePlayer()
     {
-        playerPos = player.transform.position;
+        playerPos = player.transform.position;//この時点のプレイヤーの位置に移動する
         speed = Vector3.Distance(transform.position, playerPos) / moveTime;
         yield return new WaitForSeconds(moveTime + waitTime);
         StartCoroutine(ChasePlayer());

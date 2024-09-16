@@ -7,12 +7,9 @@ public class EnemyBase : MonoBehaviour, Idamagable
     // Start is called before the first frame update
     public int healthPoint = 2;//体力
     public int attack = 1;//攻撃力
-    public float nockBackDist = 1;//ノックバックの距離
     public float nockBackForce = 10;
     private Rigidbody2D rigidbody2d;
-    private GameObject player;//プレイヤーの情報を使えるようにしておく
-    public float nockBackTime = 0.1f;
-    private bool nockBackBool = false;
+    protected GameObject player;//プレイヤーの情報を使えるようにしておく
     protected void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();//自身のRigidbodyを変数に入れる
@@ -23,10 +20,6 @@ public class EnemyBase : MonoBehaviour, Idamagable
     // Update is called once per frame
     protected void Update()
     {
-        if (nockBackBool)
-        {
-            rigidbody2d.velocity = new Vector2(nockBackDist / nockBackTime, 0);
-        }
         Debug.Log("EnemyBase Update keisyouTest");
     }
     void OnTriggerStay2D(Collider2D collision)
@@ -51,24 +44,11 @@ public class EnemyBase : MonoBehaviour, Idamagable
         }
         else//ノックバック
         {
-            //StartCoroutine(NockBack());
-            //Vector3 nockBackvect = player.transform.right;
             float dist = Vector3.Distance(transform.position, player.transform.position);
             Vector3 nockBackVector = (transform.position - player.transform.position) / dist ;
             rigidbody2d.AddForce(nockBackVector * nockBackForce, ForceMode2D.Impulse);
-            //rigidbody2d.velocity = nockBackDistance * player.transform.right;
-            //transform.position = transform.position + nockBackDist * new Vector3(1f,0f, 0f);//player.transform.right;
         }
     }
-
-    private IEnumerator NockBack()//ノックバックの処理(ノックバック中である事を示すBool変数を一定時間Trueにする)
-    {
-        UnityEngine.Debug.Log("NockBack");
-        nockBackBool = true;
-        yield return new WaitForSeconds(nockBackTime);
-        nockBackBool = false;
-    }
-
     public void Death()
     {
         Destroy(this.gameObject);
