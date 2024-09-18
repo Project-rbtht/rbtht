@@ -5,7 +5,7 @@ using UnityEngine;
 public class SnakeHead_right : BossBase
 {
     public GameObject bullet;
-    private float mouthPos = 1;
+    private float mouthPos = 2;
     private bool open = false;
     private Animator anim;//アニメーター
     private bool moveBool = false;//これがtrueのときだけ移動
