@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SnakeHead : BossBase
+public class SnakeHead_right : BossBase
 {
     public GameObject bullet;
-    private float laserLength = 20;
+    private float mouthPos = 1;
     private bool open = false;
     private Animator anim;//アニメーター
     private bool moveBool = false;//これがtrueのときだけ移動
@@ -40,7 +40,7 @@ public class SnakeHead : BossBase
     {
         open = true;
         yield return new WaitForSeconds(0.5f);
-        Instantiate(bullet, transform.position + laserLength * transform.right, transform.rotation);
+        Instantiate(bullet, transform.position + mouthPos * transform.right, transform.rotation);
         yield return new WaitForSeconds(4.5f);
         open = false;
         yield return new WaitForSeconds(1);
@@ -51,7 +51,7 @@ public class SnakeHead : BossBase
     {
         movePoint = new Vector3(transform.position.x, playerPos.position.y, transform.position.z);//y座標だけplayerの位置に移動
         moveBool = true;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         moveBool = false;
         StartCoroutine(LaserSpawn());
     }
