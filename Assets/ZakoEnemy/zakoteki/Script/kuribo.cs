@@ -9,7 +9,7 @@ public class kuribo : MonoBehaviour
   public Rigidbody2D rid2d;
  public float hanntenn;
 public float moveX;
-     　　 private SpriteRenderer sr = null; 
+      private SpriteRenderer sr = null; 
      void Start()
      {
         

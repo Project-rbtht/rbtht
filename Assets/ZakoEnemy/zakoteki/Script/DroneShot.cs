@@ -5,7 +5,6 @@ using UnityEngine;
 public class DroneShot : MonoBehaviour
 {
     public GameObject shellPrefab;
-    public AudioClip sound;
     private int count;
  
     void Update()
@@ -13,8 +12,8 @@ public class DroneShot : MonoBehaviour
         count += 1;
  
         // （ポイント）
-        // ６０フレームごとに砲弾を発射する
-        if(count % 60 == 0)
+        // 250フレームごとに砲弾を発射する
+        if(count % 250 == 0)
         {
             GameObject shell = Instantiate(shellPrefab, transform.position, Quaternion.identity);
             Rigidbody2D shellRb = shell.GetComponent<Rigidbody2D>();
