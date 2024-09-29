@@ -2,47 +2,56 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour, Idamagable {
 
-    public float speed = 0.1f;
-    public int jpNumMax = 1;
-    public float jpSpeed = 9.8f;
+    //dont change in gaming
     public GroundJudge groundJudge;
     public GameObject[] attack = new GameObject[1];
-    public int maxHP = 1;
-    public float remainInvincibleTime = 1;
-    public float justGuardTiming = 0.2f;
-    public float justTimeStop = 0.2f;
     public ShieldScript shieldScript;
-    public float energyHP = 1;
-    public float shieldDecTime = 5;
-    public float energyRechargeTime = 1;
     public GameObject healthBar;
     public GameObject healthTriangle;
     public GameObject damagedBar;
     public GameObject damagedTriangle;
     public GameObject currentEnergyBar;
     public GameObject currentEnergyTriangle;
+    public GameOver gameOverScript;
+    public float jpSpeed = 9.8f;
+    public float remainInvincibleTime = 1;
+    public float justTimeStop = 0.2f;
     public float energyHealing = 0.5f; // energyHP / damage
     public float energyMaxHealing = 2f;
     public float deathTimeStop = 0.5f;
-    public GameOver gameOver;
 
+    //can temp buff
+    public float speed = 0.1f;
+
+    //can enhance
+    public int maxHP = 1;
+    public int jpNumMax = 1;
+    public float justGuardTiming = 0.2f;
+    public float shieldDecTime = 5;
+    public float energyHP = 1;
+    public float energyRechargeTime = 1;
+
+    //can only see from other scripts
     public int jpNum;
     public float[] counter;
+    public bool gameOver = false;
+    public int hp = 0;
 
     Rigidbody2D rb;
     Animator anim = null;
+    GameObject shield = null;
     float remainInvincible = 0;
     bool guard = false;
-    GameObject shield = null;
     float energyHPCur = 0;
     float justGuardTime = 0;
     bool shieldRecharge = false;
-    int hp;
 
     void Start () {
         rb = this.GetComponent<Rigidbody2D>();
@@ -51,7 +60,15 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         counter = new float[attack.Length];
         Array.Fill<float>(counter, 0);
         energyHPCur = energyHP;
-        hp = maxHP;
+        if (hp == 0) {
+            hp = maxHP;
+        } else {
+            healthBar.GetComponent<Image>().fillAmount = (float)hp / (float)maxHP;
+            Vector3 triPos = healthTriangle.transform.localPosition;
+            healthTriangle.transform.localPosition = new Vector3(triPos.x - (maxHP - hp) / (float)maxHP * healthBar.GetComponent<RectTransform>().sizeDelta.x, triPos.y, 0);
+        }
+        this.gameObject.GetComponent<Renderer>().sortingOrder = 1;
+        SceneManager.sceneLoaded += GameSceneLoaded;
     }
 
     // Update is called once per frame
@@ -148,6 +165,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         currentEnergyBar.GetComponent<Image>().fillAmount = energyHPCur / energyHP;
         Vector3 eneTriPos = currentEnergyTriangle.transform.localPosition;
         currentEnergyTriangle.transform.localPosition = new Vector3((energyHPCur / energyHP - 0.5f) * currentEnergyBar.GetComponent<RectTransform>().sizeDelta.x - currentEnergyTriangle.GetComponent<RectTransform>().sizeDelta.x / 2, eneTriPos.y, 0);
+
     }
 
     IEnumerator TimeStop(float time) {
@@ -173,7 +191,10 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             anim.SetBool("Damaged", true);
             if (hp <= 0) {
                 Debug.Log("GameOver");
-                gameOver.Death(this, deathTimeStop);
+                gameOver = true;
+                this.gameObject.layer = 1;
+                SceneManager.sceneLoaded -= GameSceneLoaded;
+                gameOverScript.Death(this, deathTimeStop);
             } else {
                 StartCoroutine(TimeStop(justTimeStop / 2));
             }
@@ -193,5 +214,21 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                 energyHPCur = energyHP;
             }
         }
+    }
+
+    void GameSceneLoaded(Scene next, LoadSceneMode mode) {
+        var nextPlayerScript = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
+        
+        nextPlayerScript.maxHP = maxHP;
+        nextPlayerScript.jpNumMax = jpNumMax;
+        nextPlayerScript.justGuardTiming = justGuardTiming;
+        nextPlayerScript.shieldDecTime = shieldDecTime;
+        nextPlayerScript.energyHP = energyHP;
+        nextPlayerScript.energyRechargeTime = energyRechargeTime;
+
+        nextPlayerScript.hp = hp;
+
+        SceneManager.sceneLoaded -= GameSceneLoaded;
+
     }
 }
