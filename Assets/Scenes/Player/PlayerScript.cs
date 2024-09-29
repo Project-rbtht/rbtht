@@ -13,12 +13,6 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public GroundJudge groundJudge;
     public GameObject[] attack = new GameObject[1];
     public ShieldScript shieldScript;
-    public GameObject healthBar;
-    public GameObject healthTriangle;
-    public GameObject damagedBar;
-    public GameObject damagedTriangle;
-    public GameObject currentEnergyBar;
-    public GameObject currentEnergyTriangle;
     public GameOver gameOverScript;
     public float jpSpeed = 9.8f;
     public float remainInvincibleTime = 1;
@@ -46,14 +40,27 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
     Rigidbody2D rb;
     Animator anim = null;
-    GameObject shield = null;
     float remainInvincible = 0;
     bool guard = false;
     float energyHPCur = 0;
     float justGuardTime = 0;
     bool shieldRecharge = false;
 
+    GameObject healthBar;
+    GameObject healthTriangle;
+    GameObject damagedBar;
+    GameObject damagedTriangle;
+    GameObject currentEnergyBar;
+    GameObject currentEnergyTriangle;
+
+
     void Start () {
+        healthBar = GameObject.Find("Canvas/HPBar/HPBackground/HealthBar");
+        healthTriangle = GameObject.Find("Canvas/HPBar/HPBackground/HealthTriangle").gameObject;
+        damagedBar = GameObject.Find("Canvas/HPBar/HPBackground/DamagedBar").gameObject;
+        damagedTriangle = GameObject.Find("Canvas/HPBar/HPBackground/DamagedTriangle").gameObject;
+        currentEnergyBar = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyBar").gameObject;
+        currentEnergyTriangle = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyTriangle").gameObject;
         rb = this.GetComponent<Rigidbody2D>();
         jpNum = jpNumMax;
         anim = GetComponent<Animator>();
@@ -62,11 +69,11 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         energyHPCur = energyHP;
         if (hp == 0) {
             hp = maxHP;
-        } else {
-            healthBar.GetComponent<Image>().fillAmount = (float)hp / (float)maxHP;
-            Vector3 triPos = healthTriangle.transform.localPosition;
-            healthTriangle.transform.localPosition = new Vector3(triPos.x - (maxHP - hp) / (float)maxHP * healthBar.GetComponent<RectTransform>().sizeDelta.x, triPos.y, 0);
         }
+        Debug.Log(hp);
+        healthBar.GetComponent<Image>().fillAmount = (float)hp / (float)maxHP;
+        Vector3 triPos = healthTriangle.transform.localPosition;
+        healthTriangle.transform.localPosition = new Vector3(triPos.x - (maxHP - hp) / (float)maxHP * healthBar.GetComponent<RectTransform>().sizeDelta.x, triPos.y, 0);
         this.gameObject.GetComponent<Renderer>().sortingOrder = 1;
         SceneManager.sceneLoaded += GameSceneLoaded;
     }

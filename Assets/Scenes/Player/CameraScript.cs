@@ -5,8 +5,6 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     GameObject playerObj;
-    public GroundJudge groundJudge;
-    public float smoothness = 1;
 
     float y;
 
@@ -14,23 +12,12 @@ public class CameraScript : MonoBehaviour
     Transform playerTrans;
     void Start() {
         playerObj = GameObject.FindGameObjectWithTag("Player");
-        //player = playerObj.GetComponent<PlayerController>();
         playerTrans = playerObj.transform;
         y = playerTrans.position.y;
-        smoothness = smoothness / 1000;
     }
 
     void LateUpdate() {
         y = transform.position.y;
-        /*
-        if (groundJudge.onGround == true) {
-            if (Mathf.Abs(y - playerTrans.position.y) < smoothness) {
-                y = playerTrans.position.y;
-            } else {
-                y += smoothness * Mathf.Sign(playerTrans.position.y - y);
-            }
-        }
-        */
         if (playerObj.GetComponent<PlayerScript>().gameOver) {
             transform.position = new Vector3(playerTrans.position.x, transform.position.y, transform.position.z);
         } else {
