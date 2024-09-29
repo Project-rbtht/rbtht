@@ -196,32 +196,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ef1b82e02119c4d89f1bd971bb4d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  jpNumMax: 2
-  jpSpeed: 12
   groundJudge: {fileID: 8835931583514056943}
   attack:
   - {fileID: 296954737700347162}
-  maxHP: 5
-  remainInvincibleTime: 1
-  justGuardTiming: 0.1
-  justTimeStop: 0.2
   shieldScript: {fileID: 5299412237030131047}
-  energyHP: 5
-  shieldDecTime: 5
-  energyRechargeTime: 5
-  healthBar: {fileID: 0}
-  healthTriangle: {fileID: 0}
-  damagedBar: {fileID: 0}
-  damagedTriangle: {fileID: 0}
-  currentEnergyBar: {fileID: 0}
-  currentEnergyTriangle: {fileID: 0}
+  canvas: {fileID: 2951682853582951921, guid: c436580f748706a4bb4a3f8e2c68bad6, type: 3}
+  gameOverScript: {fileID: 8408306932956630439}
+  jpSpeed: 12
+  remainInvincibleTime: 1
+  justTimeStop: 0.2
   energyHealing: 0.5
   energyMaxHealing: 2
   deathTimeStop: 0.5
-  gameOver: {fileID: 8408306932956630439}
+  speed: 8
+  maxHP: 5
+  jpNumMax: 2
+  justGuardTiming: 0.1
+  shieldDecTime: 5
+  energyHP: 5
+  energyRechargeTime: 5
   jpNum: 0
   counter: []
+  gameOver: 0
+  hp: 0
 --- !u!50 &2168602800949544816
 Rigidbody2D:
   serializedVersion: 4
