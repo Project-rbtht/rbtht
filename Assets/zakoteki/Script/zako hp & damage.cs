@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class zakohpdamageable: MonoBehaviour, Idamagable
 {
-    public int hp = 1;
-    public int damage = 0;
+    public int hp = 2;
+    public int damage = 1;
     public float recastTime = 1;
 
     void OnTriggerEnter2D(Collider2D collision) {
