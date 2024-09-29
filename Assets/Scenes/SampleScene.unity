@@ -499,6 +499,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &1029176566 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8408306932956630439, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
+  m_PrefabInstance: {fileID: 6006186296339538612}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042d5dac83e507d43847b65a1d4537eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1055998670
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,6 +923,10 @@ PrefabInstance:
       value: PlayerObject
       objectReference: {fileID: 0}
     - target: {fileID: 3929425184539262341, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3929425184539262341, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.99
       objectReference: {fileID: 0}
@@ -959,6 +974,10 @@ PrefabInstance:
       propertyPath: damagedBar
       value: 
       objectReference: {fileID: 48068500}
+    - target: {fileID: 9140224016454320283, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
+      propertyPath: gameOverScript
+      value: 
+      objectReference: {fileID: 1029176566}
     - target: {fileID: 9140224016454320283, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
       propertyPath: healthTriangle
       value: 
@@ -1045,10 +1064,10 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 6006186296339538612}
   - {fileID: 961773320}
   - {fileID: 1055998674}
   - {fileID: 8999662682049052111}
-  - {fileID: 6006186296339538612}
   - {fileID: 1895166490}
   - {fileID: 393652355}
   - {fileID: 3172101241646903902}

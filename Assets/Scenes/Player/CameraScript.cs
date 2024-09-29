@@ -31,6 +31,10 @@ public class CameraScript : MonoBehaviour
             }
         }
         */
-        transform.position = new Vector3(playerTrans.position.x, playerTrans.position.y, transform.position.z);
+        if (playerObj.GetComponent<PlayerScript>().gameOver) {
+            transform.position = new Vector3(playerTrans.position.x, transform.position.y, transform.position.z);
+        } else {
+            transform.position = new Vector3(playerTrans.position.x, playerTrans.position.y, transform.position.z);
+        }
     }
 }
