@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 530360260030531656}
   - component: {fileID: 6793411055934207349}
   - component: {fileID: 5497887873179071494}
-  - component: {fileID: 6143296106509470063}
   - component: {fileID: 4628158368185763307}
   m_Layer: 0
   m_Name: reizaa(kari)
@@ -120,21 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752b75bbc609b014991ae4415ae84001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletObj: {fileID: 0}
-  transport: 0.1
---- !u!114 &6143296106509470063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5486227865741655739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 752b75bbc609b014991ae4415ae84001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BulletObj: {fileID: 0}
+  BulletObj: {fileID: 3674643564359006771, guid: 8d91b344588de874486cd2bae78ed21a, type: 3}
   transport: 0.1
 --- !u!114 &4628158368185763307
 MonoBehaviour:

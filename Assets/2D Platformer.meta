@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/2D Platformer.meta
 guid: b849b7a96f2cc8c4983c74b9b58858cb
+========
+guid: 058d047258da02f4ab077413370a3632
+>>>>>>>> origin/main:Assets/Prefabs.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
