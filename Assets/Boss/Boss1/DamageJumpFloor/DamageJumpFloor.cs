@@ -51,27 +51,4 @@ public class DamageJumpFloor : MonoBehaviour
             }
         }
     }
-
-    private void OnTrigerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("player!");
-            var damageTarget = collision.gameObject.GetComponent<Idamagable>();
-            if (damageTarget != null)
-            {
-                damageTarget.Damage(attack);
-                Rigidbody2D playerRigidbody = collision.gameObject.GetComponent<Rigidbody2D>();
-                if (playerRigidbody != null)
-                {
-                    // è„ï˚å¸Ç…óÕÇâ¡Ç¶ÇÈ
-                    playerRigidbody.AddForce(playerRigidbody.transform.up * bounceForce, ForceMode2D.Impulse);
-                }
-                else
-                {
-                    Debug.Log("rigidbodyÇ»Çµ");
-                }
-            }
-        }
-    }
 }
