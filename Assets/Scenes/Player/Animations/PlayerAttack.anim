@@ -31,7 +31,11 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.36666667
+=======
+        time: 0.31666666
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -70,16 +74,27 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.18333334
         value: 1.6268208
         inSlope: -6.556521
         outSlope: -6.556521
+=======
+        time: 0.16666667
+        value: 1.6268208
+        inSlope: -7.867825
+        outSlope: -7.867825
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.28333333
+=======
+        time: 0.25
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: 1.1924009
         inSlope: 0
         outSlope: 0
@@ -118,16 +133,27 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.18333334
         value: 1.0863926
         inSlope: -2.2525456
         outSlope: -2.2525456
+=======
+        time: 0.16666667
+        value: 1.0863926
+        inSlope: -2.7030544
+        outSlope: -2.7030544
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.28333333
+=======
+        time: 0.25
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: 0.66806245
         inSlope: 0
         outSlope: 0
@@ -159,14 +185,23 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.083333336
         value: 1.3975613
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         inSlope: 5.880023
         outSlope: 5.880023
+=======
+        inSlope: 6.468025
+        outSlope: 6.468025
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.18333334
+=======
+        time: 0.16666667
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: 1.6670624
         inSlope: 0
         outSlope: 0
@@ -175,7 +210,11 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.28333333
+=======
+        time: 0.25
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: 0.48447537
         inSlope: 0
         outSlope: 0
@@ -207,14 +246,23 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.083333336
         value: -0.099509954
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         inSlope: 2.5670261
         outSlope: 2.5670261
+=======
+        inSlope: 2.8237288
+        outSlope: 2.8237288
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.18333334
+=======
+        time: 0.16666667
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: 0.069431186
         inSlope: 0
         outSlope: 0
@@ -223,7 +271,11 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.28333333
+=======
+        time: 0.25
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: -0.40521276
         inSlope: 0
         outSlope: 0
@@ -246,11 +298,19 @@ AnimationClip:
       value: {fileID: 21300000, guid: 3b4f870e9ee47c241be54b714ddf08c6, type: 3}
     - time: 0.083333336
       value: {fileID: 21300000, guid: cb7d9adec1b3d9545a57b53cb5f85bb8, type: 3}
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
     - time: 0.18333334
       value: {fileID: 21300000, guid: 00e6d55da3d4fbd41ac8b6e37c011853, type: 3}
     - time: 0.28333333
       value: {fileID: 21300000, guid: 3b4f870e9ee47c241be54b714ddf08c6, type: 3}
     - time: 0.36666667
+=======
+    - time: 0.16666667
+      value: {fileID: 21300000, guid: 00e6d55da3d4fbd41ac8b6e37c011853, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: 3b4f870e9ee47c241be54b714ddf08c6, type: 3}
+    - time: 0.31666666
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
       value: {fileID: 21300000, guid: 3b4f870e9ee47c241be54b714ddf08c6, type: 3}
     attribute: m_Sprite
     path: 
@@ -329,7 +389,11 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
     m_StopTime: 0.38333336
+=======
+    m_StopTime: 0.33333334
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -359,7 +423,11 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.36666667
+=======
+        time: 0.31666666
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -398,16 +466,27 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.18333334
         value: 1.6268208
         inSlope: -6.556521
         outSlope: -6.556521
+=======
+        time: 0.16666667
+        value: 1.6268208
+        inSlope: -7.867825
+        outSlope: -7.867825
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.28333333
+=======
+        time: 0.25
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: 1.1924009
         inSlope: 0
         outSlope: 0
@@ -446,16 +525,27 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.18333334
         value: 1.0863926
         inSlope: -2.2525456
         outSlope: -2.2525456
+=======
+        time: 0.16666667
+        value: 1.0863926
+        inSlope: -2.7030544
+        outSlope: -2.7030544
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.28333333
+=======
+        time: 0.25
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: 0.66806245
         inSlope: 0
         outSlope: 0
@@ -487,14 +577,23 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.083333336
         value: 1.3975613
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         inSlope: 5.880023
         outSlope: 5.880023
+=======
+        inSlope: 6.468025
+        outSlope: 6.468025
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.18333334
+=======
+        time: 0.16666667
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: 1.6670624
         inSlope: 0
         outSlope: 0
@@ -503,7 +602,11 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.28333333
+=======
+        time: 0.25
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: 0.48447537
         inSlope: 0
         outSlope: 0
@@ -535,14 +638,23 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.083333336
         value: -0.099509954
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         inSlope: 2.5670261
         outSlope: 2.5670261
+=======
+        inSlope: 2.8237288
+        outSlope: 2.8237288
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.18333334
+=======
+        time: 0.16666667
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: 0.069431186
         inSlope: 0
         outSlope: 0
@@ -551,7 +663,11 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+<<<<<<< HEAD:Assets/Materials/Player/PlayerAttack.anim
         time: 0.28333333
+=======
+        time: 0.25
+>>>>>>> origin/develop:Assets/Picture/Player/PlayerAttack.anim
         value: -0.40521276
         inSlope: 0
         outSlope: 0

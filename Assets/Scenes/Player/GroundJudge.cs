@@ -36,5 +36,11 @@ public class GroundJudge : MonoBehaviour
             PlayerScript.jpNum = PlayerScript.jpNumMax - 1;
             anim.SetInteger("Jump", 1);
         }
+        onGround = true;
+        PlayerScript.jpNum = PlayerScript.jpNumMax;
+        anim.SetInteger("Jump", 0);
+        anim.SetTrigger("Ground");
     }
+
+
 }

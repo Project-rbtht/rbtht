@@ -16,6 +16,7 @@ public class TestEnemy : MonoBehaviour, Idamagable
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "Player") {
             collision.gameObject.GetComponent<Idamagable>().Damage(attackDamage);
+            collision.gameObject.GetComponent<Idamagable>().Damage(1);
         }
     }
 }
