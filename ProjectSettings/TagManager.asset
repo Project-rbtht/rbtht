@@ -8,6 +8,7 @@ TagManager:
   - Shield
   - Floor
   - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
