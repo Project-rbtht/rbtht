@@ -4,11 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PlayerAttack
-  - Shield
-  - Floor
-  - Bullet
-  - Enemy
+  - floor
+  - Wall
   layers:
   - Default
   - TransparentFX
