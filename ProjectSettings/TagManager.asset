@@ -4,10 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Floor
   - Enemy
   - PlayerAttack
   - Shield
+=======
+  - PlayerAttack
+  - Shield
+  - Floor
+  - Bullet
+>>>>>>> 33de642 (ステージ2、３)
   layers:
   - Default
   - TransparentFX

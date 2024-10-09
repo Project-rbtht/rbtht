@@ -11,7 +11,7 @@ public class SceneChange : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             // ターゲットシーンに移動する
-            SceneManager.LoadScene(targetScene);
+            FadeManager.Instance.LoadScene(targetScene, 1.0f);
         }
     }
 }
