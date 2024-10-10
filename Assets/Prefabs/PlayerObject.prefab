@@ -200,16 +200,17 @@ MonoBehaviour:
   attack:
   - {fileID: 296954737700347162}
   shieldScript: {fileID: 5299412237030131047}
-  canvas: {fileID: 2951682853582951921, guid: c436580f748706a4bb4a3f8e2c68bad6, type: 3}
   gameOverScript: {fileID: 8408306932956630439}
   jpSpeed: 12
-  remainInvincibleTime: 1
+  invincibleTime: 2.5
   justTimeStop: 0.2
   energyHealing: 0.5
   energyMaxHealing: 2
   deathTimeStop: 0.5
+  deathBeforeCircleTime: 2.5
+  deathCircleTime: 0.7
   speed: 8
-  maxHP: 5
+  maxHP: 1
   jpNumMax: 2
   justGuardTiming: 0.1
   shieldDecTime: 5

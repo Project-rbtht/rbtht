@@ -20,6 +20,8 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public float energyHealing = 0.5f; // energyHP / damage
     public float energyMaxHealing = 2f;
     public float deathTimeStop = 0.5f;
+    public float deathBeforeCircleTime = 2f;
+    public float deathCircleTime = 2f;
 
     //can temp buff
     public float speed = 0.1f;
@@ -81,7 +83,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
     // Update is called once per frame
     void Update() {
-        //移動
+        //????
         float x = Input.GetAxisRaw("Horizontal");
         float speedY = rb.velocity.y;
 
@@ -103,14 +105,14 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
         rb.velocity = new Vector2(x * speed, speedY);
 
-        //キャラクターの向き
+        //?L?????N?^?[??????
         anim.SetInteger("Speed", (int)Mathf.Abs(x * 2));
 
         if (x != 0) {
             transform.localScale = new Vector3(x/Mathf.Abs(x), 1, 1);
         }
 
-        //攻撃
+        //?U??
         for (int i = 0; i < attack.Length; i++) {
             if (Input.GetButtonDown("Attack" + i) == true && counter[i] == 0) {
                 anim.SetTrigger("Attack" + i);
@@ -121,7 +123,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             }
         }
 
-        //無敵時間
+        //???G????
         if (remainInvincible > 0) {
             remainInvincible -= Time.deltaTime;
             if (remainInvincible <= 0) {
@@ -141,7 +143,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             }
         }
 
-        //ガード
+        //?K?[?h
         if (guard) {
             if (Input.GetButtonUp("Guard") == true) {
                 guard = false;
@@ -227,7 +229,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                     gameOver = true;
                     this.gameObject.layer = 1;
                     SceneManager.sceneLoaded -= GameSceneLoaded;
-                    gameOverScript.Death(this, deathTimeStop);
+                    gameOverScript.Death(this, deathTimeStop, deathBeforeCircleTime, deathCircleTime);
                 } else {
                     afterDamaged = true;
                     StartCoroutine(TimeStop(justTimeStop));
