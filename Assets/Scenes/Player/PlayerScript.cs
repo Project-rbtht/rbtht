@@ -52,8 +52,8 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
     GameObject healthBar;
     GameObject healthTriangle;
-    GameObject damagedBar;
-    GameObject damagedTriangle;
+    //GameObject damagedBar;
+    //GameObject damagedTriangle;
     GameObject currentEnergyBar;
     GameObject currentEnergyTriangle;
 
@@ -61,8 +61,8 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     void Start () {
         healthBar = GameObject.Find("Canvas/HPBar/HPBackground/HealthBar");
         healthTriangle = GameObject.Find("Canvas/HPBar/HPBackground/HealthTriangle").gameObject;
-        damagedBar = GameObject.Find("Canvas/HPBar/HPBackground/DamagedBar").gameObject;
-        damagedTriangle = GameObject.Find("Canvas/HPBar/HPBackground/DamagedTriangle").gameObject;
+        //damagedBar = GameObject.Find("Canvas/HPBar/HPBackground/DamagedBar").gameObject;
+        //damagedTriangle = GameObject.Find("Canvas/HPBar/HPBackground/DamagedTriangle").gameObject;
         currentEnergyBar = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyBar").gameObject;
         currentEnergyTriangle = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyTriangle").gameObject;
         rb = this.GetComponent<Rigidbody2D>();

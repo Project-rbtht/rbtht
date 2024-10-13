@@ -7,18 +7,26 @@ public class GameOver : MonoBehaviour
 {
 
     GameObject circle;
+    GameObject HPBar;
+    GameObject EnergyBar;
     
     public void Death(PlayerScript player, float timeStop, float beforeCircle, float changeTime) {
         player.enabled = false;
         circle = GameObject.Find("Canvas/Circle");
-        StartCoroutine(TimeStop(timeStop));
+        HPBar = GameObject.Find("Canvas/HPBar");
+        EnergyBar = GameObject.Find("Canvas/EnergyBar");
+        StartCoroutine(TimeStop(timeStop, beforeCircle / 2));
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, player.jpSpeed);
         StartCoroutine(Sleep(beforeCircle, changeTime));
     }
 
-    IEnumerator TimeStop(float time) {
+    IEnumerator TimeStop(float time, float beforeCircle) {
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(time);
+        HPBar.GetComponent<BarScript>().enabled = true;
+        HPBar.GetComponent<BarScript>().time = beforeCircle;
+        EnergyBar.GetComponent<BarScript>().enabled = true;
+        EnergyBar.GetComponent<BarScript>().time = beforeCircle;
         Time.timeScale = 1;
     }
 
