@@ -1009,28 +1009,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ef1b82e02119c4d89f1bd971bb4d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  jpNumMax: 2
-  jpSpeed: 12
   groundJudge: {fileID: 452097167}
   attack:
   - {fileID: 1783075880}
-  maxHP: 5
-  remainInvincibleTime: 1
-  justGuardTiming: 0.2
-  justTimeStop: 0.2
   shieldScript: {fileID: 1572096005}
-  shieldHP: 5
+  gameOverScript: {fileID: 0}
+  jpSpeed: 12
+  invincibleTime: 2.5
+  justTimeStop: 0.2
+  energyHealing: 0.5
+  energyMaxHealing: 2
+  deathTimeStop: 0.5
+  speed: 8
+  maxHP: 5
+  jpNumMax: 2
+  justGuardTiming: 0.2
   shieldDecTime: 5
-  shieldRechargeTime: 5
-  healthBar: {fileID: 277934718}
-  healthTriangle: {fileID: 1208420438}
-  damagedBar: {fileID: 1905839001}
-  damagedTriangle: {fileID: 1226873145}
-  currentEnergyBar: {fileID: 69962884}
-  currentEnergyTriangle: {fileID: 1697633142}
+  energyHP: 1
+  energyRechargeTime: 1
   jpNum: 0
   counter: []
+  gameOver: 0
+  hp: 0
 --- !u!4 &618518479
 Transform:
   m_ObjectHideFlags: 0
@@ -1040,7 +1040,7 @@ Transform:
   m_GameObject: {fileID: 618518477}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.71, y: -2.32, z: 0}
+  m_LocalPosition: {x: 2.59, y: -1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1621,8 +1621,8 @@ Transform:
   m_GameObject: {fileID: 1648265170}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2133, y: -0.0588, z: 111}
-  m_LocalScale: {x: 3.2833095, y: 3.687282, z: 1}
+  m_LocalPosition: {x: 1.7151, y: -0.0588, z: 111}
+  m_LocalScale: {x: 5.7862663, y: 3.687282, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1929612116}
@@ -8495,8 +8495,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14ac44a27d67c8641b172d4ba54ac6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundJudge: {fileID: 452097167}
-  smoothness: 10
 --- !u!81 &1929612114
 AudioListener:
   m_ObjectHideFlags: 0
