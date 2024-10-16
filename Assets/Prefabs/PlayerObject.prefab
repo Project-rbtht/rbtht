@@ -208,7 +208,7 @@ MonoBehaviour:
   energyMaxHealing: 2
   deathTimeStop: 0.5
   deathBeforeCircleTime: 2.5
-  deathCircleTime: 0.7
+  deathCircleTime: 0.5
   speed: 8
   maxHP: 1
   jpNumMax: 2
