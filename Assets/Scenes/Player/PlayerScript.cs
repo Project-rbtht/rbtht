@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour, Idamagable {
 
+    public string restartStage;
+
     //dont change in gaming
     public GroundJudge groundJudge;
     public GameObject[] attack = new GameObject[1];
@@ -250,6 +252,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         nextPlayerScript.shieldDecTime = shieldDecTime;
         nextPlayerScript.energyHP = energyHP;
         nextPlayerScript.energyRechargeTime = energyRechargeTime;
+        nextPlayerScript.restartStage = restartStage;
 
         nextPlayerScript.hp = hp;
 

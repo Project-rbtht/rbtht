@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,9 +10,12 @@ public class GameOver : MonoBehaviour
     GameObject circle;
     GameObject HPBar;
     GameObject EnergyBar;
+    string preStage;
     
     public void Death(PlayerScript player, float timeStop, float beforeCircle, float changeTime) {
+        preStage = player.restartStage;
         player.enabled = false;
+        SceneManager.sceneLoaded += GameOverSceneLoad;
         circle = GameObject.Find("Canvas/Circle");
         HPBar = GameObject.Find("Canvas/HPBar");
         EnergyBar = GameObject.Find("Canvas/EnergyBar");
@@ -42,5 +46,12 @@ public class GameOver : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(time);
         SceneManager.LoadScene("GameOver");
+    }
+
+    void GameOverSceneLoad(Scene next, LoadSceneMode mode) {
+        Debug.Log(preStage);
+        var nextButtonScript = GameObject.FindWithTag("Respawn").GetComponent<ButtonScript>();
+        nextButtonScript.preStage = preStage;
+        SceneManager.sceneLoaded -= GameOverSceneLoad;
     }
 }
