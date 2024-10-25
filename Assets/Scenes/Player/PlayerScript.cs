@@ -118,8 +118,8 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         for (int i = 0; i < attack.Length; i++) {
             if (Input.GetButtonDown("Attack" + i) == true && counter[i] == 0) {
                 anim.SetTrigger("Attack" + i);
-                counter[i] = attack[i].GetComponent<Attack>().recastTime;
-            } else {
+                counter[i] = attack[i].GetComponent<Attack>().RecastTime();
+            } else if(counter[i] != 0) {
                 counter[i] -= Time.deltaTime;
                 if (counter[i] < 0) { counter[i] = 0; }
             }

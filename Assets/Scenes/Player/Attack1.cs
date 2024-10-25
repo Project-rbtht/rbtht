@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack0 : MonoBehaviour, Attack
+public class Attack1 : MonoBehaviour
 {
-    public int damage = 1;
-    public float recastTime = 1;
+    public int damage = 5;
+    public float recastTime = 15;
 
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "Enemy") {
@@ -14,13 +14,5 @@ public class Attack0 : MonoBehaviour, Attack
                 damageTarget.Damage(damage);
             }
         }
-    }
-
-    public int Damage() {
-        return damage;
-    }
-
-    public float RecastTime() {
-        return recastTime;
     }
 }
