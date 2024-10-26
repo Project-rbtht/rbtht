@@ -31,10 +31,13 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     //can enhance
     public int maxHP = 1;
     public int jpNumMax = 1;
-    public float justGuardTiming = 0.2f;
-    public float shieldDecTime = 5;
+    public float justGuardGrace = 0.2f;
+    public float shieldDecSpeed = 5;
     public float energyHP = 1;
     public float energyRechargeTime = 1;
+    public List<bool> attackActivated = new List<bool>();
+
+    public bool canMove = true;
 
     //can only see from other scripts
     public int jpNum;
@@ -81,51 +84,65 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         healthTriangle.transform.localPosition = new Vector3(triPos.x - (maxHP - hp) / (float)maxHP * healthBar.GetComponent<RectTransform>().sizeDelta.x, triPos.y, 0);
         this.gameObject.GetComponent<Renderer>().sortingOrder = 1;
         SceneManager.sceneLoaded += GameSceneLoaded;
+        if (attackActivated.Count == 0) {
+            attackActivated.Add(true);
+            for(int i = 1; i < attack.Length; i++) {
+                attackActivated.Add(false);
+            }
+        }
+        if (restartStage == "") {
+            restartStage = SceneManager.GetActiveScene().name;
+        }
     }
 
     // Update is called once per frame
     void Update() {
-        //????
-        float x = Input.GetAxisRaw("Horizontal");
-        float speedY = rb.velocity.y;
+        // Move
+        if (canMove) {
+            float x = Input.GetAxisRaw("Horizontal");
+            float speedY = rb.velocity.y;
 
-        if (speedY < 0 && anim.GetInteger("Jump") > 0) {
-            anim.SetInteger("Jump", -1);
-        }
+            if (speedY < 0 && anim.GetInteger("Jump") > 0) {
+                anim.SetInteger("Jump", -1);
+            }
 
-        if (Input.GetButtonDown("Jump") == true) {
-            if (jpNum > 0) {
-                speedY = jpSpeed;
-                if (groundJudge.onGround == true) {
-                    anim.SetInteger("Jump", 1);
-                }else{
-                    anim.SetInteger("Jump", 2);
+            if (Input.GetButtonDown("Jump") == true) {
+                if (jpNum > 0) {
+                    speedY = jpSpeed;
+                    if (groundJudge.onGround == true) {
+                        anim.SetInteger("Jump", 1);
+                    } else {
+                        anim.SetInteger("Jump", 2);
+                    }
+                    jpNum--;
                 }
-                jpNum--;
+            }
+
+            rb.velocity = new Vector2(x * speed, speedY);
+
+            // Direction
+            anim.SetInteger("Speed", (int)Mathf.Abs(x * 2));
+
+            if (x != 0) {
+                transform.localScale = new Vector3(x / Mathf.Abs(x), 1, 1);
+            }
+
+            // Attack
+            for (int i = 0; i < attack.Length; i++) {
+                if (attackActivated[i]) {
+                    if (Input.GetButtonDown("Attack" + i) == true && counter[i] == 0) {
+                        anim.SetTrigger("Attack" + i);
+                        attack[i].gameObject.SetActive(true);
+                        counter[i] = attack[i].GetComponent<Attack>().RecastTime();
+                    } else if (counter[i] != 0) {
+                        counter[i] -= Time.deltaTime;
+                        if (counter[i] < 0) { counter[i] = 0; }
+                    }
+                }
             }
         }
 
-        rb.velocity = new Vector2(x * speed, speedY);
-
-        //?L?????N?^?[??????
-        anim.SetInteger("Speed", (int)Mathf.Abs(x * 2));
-
-        if (x != 0) {
-            transform.localScale = new Vector3(x/Mathf.Abs(x), 1, 1);
-        }
-
-        //?U??
-        for (int i = 0; i < attack.Length; i++) {
-            if (Input.GetButtonDown("Attack" + i) == true && counter[i] == 0) {
-                anim.SetTrigger("Attack" + i);
-                counter[i] = attack[i].GetComponent<Attack>().RecastTime();
-            } else if(counter[i] != 0) {
-                counter[i] -= Time.deltaTime;
-                if (counter[i] < 0) { counter[i] = 0; }
-            }
-        }
-
-        //???G????
+        // Invincible
         if (remainInvincible > 0) {
             remainInvincible -= Time.deltaTime;
             if (remainInvincible <= 0) {
@@ -145,14 +162,14 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             }
         }
 
-        //?K?[?h
+        // Guard
         if (guard) {
             if (Input.GetButtonUp("Guard") == true) {
                 guard = false;
                 shieldScript.gameObject.SetActive(false);
-                //justGuardTime = justGuardTiming;
+                //justGuardTime = justGuardGrace;
             }
-            energyHPCur -= Time.deltaTime / shieldDecTime * energyHP;
+            energyHPCur -= Time.deltaTime / shieldDecSpeed * energyHP;
             if (energyHPCur <= 0) {
                 energyHPCur = 0;
                 guard = false;
@@ -161,10 +178,10 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                 remainInvincible = invincibleTime / 10;
             }
         } else {
-            if (Input.GetButton("Guard") == true && !shieldRecharge) {
+            if (Input.GetButton("Guard") == true && !shieldRecharge && canMove) {
                 guard = true;
                 shieldScript.gameObject.SetActive(true);
-                justGuardTime = justGuardTiming;
+                justGuardTime = justGuardGrace;
             }
             //if (Input.GetButton("Guard") == true && justGuardTime == 0 && !shieldRecharge) {
             //    guard = true;
@@ -231,6 +248,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                     gameOver = true;
                     this.gameObject.layer = 1;
                     SceneManager.sceneLoaded -= GameSceneLoaded;
+                    SceneManager.sceneLoaded += GameOverSceneLoaded;
                     gameOverScript.Death(this, deathTimeStop, deathBeforeCircleTime, deathCircleTime);
                 } else {
                     afterDamaged = true;
@@ -248,15 +266,31 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         
         nextPlayerScript.maxHP = maxHP;
         nextPlayerScript.jpNumMax = jpNumMax;
-        nextPlayerScript.justGuardTiming = justGuardTiming;
-        nextPlayerScript.shieldDecTime = shieldDecTime;
+        nextPlayerScript.justGuardGrace = justGuardGrace;
+        nextPlayerScript.shieldDecSpeed = shieldDecSpeed;
         nextPlayerScript.energyHP = energyHP;
         nextPlayerScript.energyRechargeTime = energyRechargeTime;
         nextPlayerScript.restartStage = restartStage;
+        nextPlayerScript.attackActivated = attackActivated;
 
         nextPlayerScript.hp = hp;
 
         SceneManager.sceneLoaded -= GameSceneLoaded;
+
+    }
+    void GameOverSceneLoaded(Scene next, LoadSceneMode mode) {
+        var nextPlayerScript = GameObject.FindWithTag("Respawn").GetComponent<ButtonScript>();
+
+        nextPlayerScript.maxHP = maxHP;
+        nextPlayerScript.jpNumMax = jpNumMax;
+        nextPlayerScript.justGuardGrace = justGuardGrace;
+        nextPlayerScript.shieldDecSpeed = shieldDecSpeed;
+        nextPlayerScript.energyHP = energyHP;
+        nextPlayerScript.energyRechargeTime = energyRechargeTime;
+        nextPlayerScript.restartStage = restartStage;
+        nextPlayerScript.attackActivated = attackActivated;
+
+        SceneManager.sceneLoaded -= GameOverSceneLoaded;
 
     }
 
