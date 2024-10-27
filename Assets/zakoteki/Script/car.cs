@@ -31,7 +31,6 @@ public class car : MonoBehaviour
     {
     StartCoroutine(Find);
     }
-  
   }
 
    IEnumerator Find()
@@ -55,7 +54,7 @@ public class car : MonoBehaviour
     yield return null;
     rb.velocity = new Vector3(-kasoku,rb.velocity.y,0);
 
-     
+      
        
     if(onexplosion == true)
     {
@@ -69,7 +68,7 @@ public class car : MonoBehaviour
     Destroy (this.gameObject) ;
    }
 
-     void OnTriggerEnter2D (Collider2D collision)
+void OnTriggerEnter2D (Collider2D collision)
      {
         if(collision.gameObject.tag == "Floor")
         {
