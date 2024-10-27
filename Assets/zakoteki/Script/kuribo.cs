@@ -6,26 +6,48 @@ using UnityEngine;
  
 public class kuribo : MonoBehaviour
 {
-     　　 private SpriteRenderer sr = null; 
+  public float _moveSpeed;
+  private Rigidbody2D _rigid;
+  private bool _hanten;
+  private Vector2 _moveDirection;
      void Start()
      {
-
+        _rigid = GetComponent<Rigidbody2D>();
+        _moveDirection = Vector2.left;
      }
- public float hanntenn;
-public float moveX;
      void Update()
      {
       
-        transform.position = transform.position + new Vector3(moveX, 0, 0 ) ;
-      
+       _Move();
+       _LookMoveDirection();
      }
-       void OnTriggerEnter (Collider butukattamono)
-       {  
+      
+       private void _Move()
+     {
+       _rigid.velocity = new Vector2(_moveDirection.x * _moveSpeed, _rigid.velocity.y);
+     }
+       void OnTriggerEnter2D(Collider2D collision)
+     {
         
-         if(butukattamono.gameObject.tag == "Wall")
-        {
-        moveX = moveX * hanntenn;
-        }
-       }
+         if (collision.CompareTag("Floor"))
+         {
+          _moveDirection = -_moveDirection;
+         }
+     }   
+         private void _LookMoveDirection()
+{
+    if (_moveDirection.x < 0.0f)
+    {
+        transform.localScale = new Vector3(-1, 1, 1);
+    }
+    else if (_moveDirection.x > 0.0f)
+    {
+        transform.localScale = new Vector3(1, 1, 1);
+    }
+}
+
+
+     
+
 }
  
