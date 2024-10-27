@@ -5,56 +5,49 @@ using UnityEngine;
 
 public class reizaa : MonoBehaviour
 {
-     Vector3 bulletPoint;   
+     private SpriteRenderer sr = null;
+    protected Rigidbody2D rb; 
     // Start is called before the first frame update
     void Start()
     {
-        
+        sr = GetComponent<SpriteRenderer>();
+    Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
+     
     }
 public GameObject BulletObj;
 public float transport = 0.1f;
+
     // Update is called once per frame
     void Update()
     {
+        
           float posX, posY;
         posX = transform.position.x;
         posY = transform.position.y;
+        transform.position = transform.position + new Vector3(transport, 0, 0 );
+    
 
-        if(Input.GetKey (KeyCode.UpArrow))/**/
+        float currentTime = 0f;
+        const float recastTime = 0.1f;
+        if(++currentTime > recastTime)
         {
-          Instantiate(BulletObj);
+            Instantiate(BulletObj,transform.position,transform.rotation);
+            currentTime = 0f;
         }
         
-        if(Input.GetKey (KeyCode.LeftArrow))/**/
-        {
-            posX = posX - transport;
-        }
-        if(Input.GetKey (KeyCode.RightArrow))/**/
-        {
-            posX = posX + transport;
-        }
-
-    transform.position = new Vector3(posX, posY, 0) ;
-        
-        if(Input.GetKeyDown(KeyCode.UpArrow)){
-
-//Instantiate(bullet, transform.position, transform.rotation) ;
-
-}
-
+   
     }
 
-     void OnTriggerEnter (Collider butukattamono)
-     {
-        if(butukattamono.gameObject.tag == "Player")
+    void Stop()
         {
-            Destroy (this.gameObject) ;//こいつは消える//
-            //プレイヤーにダメージ//
+            rb.velocity = new Vector3(0,rb.velocity.y,0);
         }
 
-         if(butukattamono.gameObject.tag == "PlayerAttack")
+    void OnTriggerEnter2D (Collider2D collision)
+       {  
+         if(collision.gameObject.tag == "Floor")
         {
-            Destroy (this.gameObject) ;//こいつは消える//
+            Stop();
         }
-     }
+       }
 }
