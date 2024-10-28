@@ -6,6 +6,7 @@ public class Dossun : MonoBehaviour
 {
     public float _fallSpeed = 10f;  // 落下速度
     public float _riseSpeed = 5f;    // 上昇速度
+    public float _upTime = 3f;  //上昇時間
     private Rigidbody2D _rigid;
     private Animator _anim;
 
@@ -24,8 +25,9 @@ public class Dossun : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !_detect)
         {
+            _rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
             _rigid.velocity = new Vector2(0, -_fallSpeed); // 落下開始
             Debug.Log("detect");
             _detect = true;
@@ -36,7 +38,7 @@ public class Dossun : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Floor") && _detect)
+        if (collision.gameObject.CompareTag("Floor") && _detect && !_falled)
         {
             StartCoroutine(HandleFalling());
         }
@@ -54,7 +56,7 @@ public class Dossun : MonoBehaviour
 
         // 3秒間上昇させる
         float elapsedTime = 0f;
-        while (elapsedTime < 3.0f)
+        while (elapsedTime < _upTime)
         {
             _rigid.velocity = new Vector2(0, _riseSpeed); // 上に移動
             elapsedTime += Time.deltaTime; // 経過時間を加算
@@ -63,6 +65,7 @@ public class Dossun : MonoBehaviour
 
         // 上昇が終了したら停止
         _rigid.velocity = Vector2.zero;
+        _rigid.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
         _detect = false;
         _falled = false;
         _anim.SetBool("detect", _detect);
