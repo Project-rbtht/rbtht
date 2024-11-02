@@ -61,6 +61,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     //GameObject damagedTriangle;
     GameObject currentEnergyBar;
     GameObject currentEnergyTriangle;
+    Color energyBarColor;
 
 
     void Start () {
@@ -68,8 +69,8 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         healthTriangle = GameObject.Find("Canvas/HPBar/HPBackground/HealthTriangle").gameObject;
         //damagedBar = GameObject.Find("Canvas/HPBar/HPBackground/DamagedBar").gameObject;
         //damagedTriangle = GameObject.Find("Canvas/HPBar/HPBackground/DamagedTriangle").gameObject;
-        currentEnergyBar = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyBar").gameObject;
-        currentEnergyTriangle = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyTriangle").gameObject;
+        currentEnergyBar = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyBar");
+        currentEnergyTriangle = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyTriangle");
         rb = this.GetComponent<Rigidbody2D>();
         jpNum = jpNumMax;
         anim = GetComponent<Animator>();
@@ -93,6 +94,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         if (restartStage == "") {
             restartStage = SceneManager.GetActiveScene().name;
         }
+        energyBarColor = currentEnergyBar.GetComponent<Image>().color;
     }
 
     // Update is called once per frame
@@ -169,14 +171,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                 shieldScript.gameObject.SetActive(false);
                 //justGuardTime = justGuardGrace;
             }
-            energyHPCur -= Time.deltaTime / shieldDecSpeed * energyHP;
-            if (energyHPCur <= 0) {
-                energyHPCur = 0;
-                guard = false;
-                shieldScript.gameObject.SetActive(false);
-                shieldRecharge = true;
-                remainInvincible = invincibleTime / 10;
-            }
+            EnergyBarDec(Time.deltaTime / shieldDecSpeed * energyHP);
         } else {
             if (Input.GetButton("Guard") == true && !shieldRecharge && canMove) {
                 guard = true;
@@ -193,6 +188,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                     energyHPCur = energyHP;
                     if (shieldRecharge) {
                         shieldRecharge = false;
+                        currentEnergyBar.GetComponent<Image>().color = energyBarColor;
                     }
                 }
             }
@@ -207,6 +203,18 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         Vector3 eneTriPos = currentEnergyTriangle.transform.localPosition;
         currentEnergyTriangle.transform.localPosition = new Vector3((energyHPCur / energyHP - 0.5f) * currentEnergyBar.GetComponent<RectTransform>().sizeDelta.x - currentEnergyTriangle.GetComponent<RectTransform>().sizeDelta.x / 2, eneTriPos.y, 0);
 
+    }
+
+    public void EnergyBarDec(float diff) {
+        energyHPCur -= diff;
+        if (energyHPCur <= 0) {
+            energyHPCur = 0;
+            shieldRecharge = true;
+            guard = false;
+            shieldScript.gameObject.SetActive(false);
+            remainInvincible = invincibleTime / 10;
+            currentEnergyBar.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.4f);
+        }
     }
 
     IEnumerator TimeStop(float time) {
@@ -232,14 +240,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                     energyHPCur = energyHP;
                 }
             }else if (guard) {
-                energyHPCur -= damage;
-                if (energyHPCur <= 0) {
-                    energyHPCur = 0;
-                    shieldRecharge = true;
-                    guard = false;
-                    shieldScript.gameObject.SetActive(false);
-                    remainInvincible = invincibleTime / 10;
-                }
+                EnergyBarDec(damage);
             }else {
                 hp -= damage;
                 remainInvincible += invincibleTime;
@@ -267,21 +268,22 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
     void GameSceneLoaded(Scene next, LoadSceneMode mode) {
         var nextPlayerScript = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
-        
-        nextPlayerScript.maxHP = maxHP;
-        nextPlayerScript.jpNumMax = jpNumMax;
-        nextPlayerScript.justGuardGrace = justGuardGrace;
-        nextPlayerScript.shieldDecSpeed = shieldDecSpeed;
-        nextPlayerScript.energyHP = energyHP;
-        nextPlayerScript.energyRechargeTime = energyRechargeTime;
-        nextPlayerScript.restartStage = restartStage;
-        nextPlayerScript.attackActivated = attackActivated;
+        if (nextPlayerScript != null) {
+            nextPlayerScript.maxHP = maxHP;
+            nextPlayerScript.jpNumMax = jpNumMax;
+            nextPlayerScript.justGuardGrace = justGuardGrace;
+            nextPlayerScript.shieldDecSpeed = shieldDecSpeed;
+            nextPlayerScript.energyHP = energyHP;
+            nextPlayerScript.energyRechargeTime = energyRechargeTime;
+            nextPlayerScript.restartStage = restartStage;
+            nextPlayerScript.attackActivated = attackActivated;
 
-        nextPlayerScript.hp = hp;
+            nextPlayerScript.hp = hp;
 
-        SceneManager.sceneLoaded -= GameSceneLoaded;
-
+            SceneManager.sceneLoaded -= GameSceneLoaded;
+        }
     }
+
     void GameOverSceneLoaded(Scene next, LoadSceneMode mode) {
         var nextPlayerScript = GameObject.FindWithTag("Respawn").GetComponent<ButtonScript>();
 
