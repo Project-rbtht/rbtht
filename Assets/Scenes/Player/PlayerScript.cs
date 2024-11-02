@@ -245,11 +245,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                 remainInvincible += invincibleTime;
                 anim.SetBool("Damaged", true);
                 if (hp <= 0) {
-                    gameOver = true;
-                    this.gameObject.layer = 1;
-                    SceneManager.sceneLoaded -= GameSceneLoaded;
-                    SceneManager.sceneLoaded += GameOverSceneLoaded;
-                    gameOverScript.Death(this, deathTimeStop, deathBeforeCircleTime, deathCircleTime);
+                    Death();
                 } else {
                     afterDamaged = true;
                     StartCoroutine(TimeStop(justTimeStop));
@@ -259,6 +255,14 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                 healthTriangle.transform.localPosition = new Vector3(triPos.x - damage / (float)maxHP * healthBar.GetComponent<RectTransform>().sizeDelta.x , triPos.y, 0);
             }
         }
+    }
+
+    public void Death() {
+        gameOver = true;
+        this.gameObject.layer = 1;
+        SceneManager.sceneLoaded -= GameSceneLoaded;
+        SceneManager.sceneLoaded += GameOverSceneLoaded;
+        gameOverScript.Death(this, deathTimeStop, deathBeforeCircleTime, deathCircleTime);
     }
 
     void GameSceneLoaded(Scene next, LoadSceneMode mode) {
