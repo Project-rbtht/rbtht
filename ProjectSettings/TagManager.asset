@@ -9,6 +9,7 @@ TagManager:
   - PlayerAttack
   - Shield
   - Menu
+  - PlayerFoot
   layers:
   - Default
   - TransparentFX
