@@ -36,10 +36,14 @@ public class AreaExit : MonoBehaviour
             /*コンパイルエラーのままプッシュしないでください
             // SceneManager.LoadScene(areaToLoad);
             shouldLoadAfterFade = true;
+<<<<<<< HEAD
+           
+=======
             GameManager.instance.fadingBetweenAreas = true;
             UIFade.instance.FadeToBlack();
             PlayerController.instance.areaTransitionName = areaTransitionName;
             */
+
         }
     }
 }

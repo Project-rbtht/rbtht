@@ -20,13 +20,13 @@ public class bulletreizaa : MonoBehaviour
           transform.Translate(MoveSpeed * Time.deltaTime, 0, 0);
 
        Destroy(this.gameObject);
-       int frameCount = 0;             // フレームカウント
-const int deleteFrame = 180;    // 削除フレーム
-// 一定フレームで消す
-if (++frameCount > deleteFrame)
-{
-    Destroy(this.gameObject);
-}
+       int frameCount = 0;             
+       const int deleteFrame = 180;    
+
+        if (++frameCount > deleteFrame)
+        {
+            Destroy(this.gameObject);
+        }
 
 
     }
