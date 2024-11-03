@@ -259,6 +259,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     }
 
     public void Death() {
+        anim.SetBool("Damaged", true);
         gameOver = true;
         this.gameObject.layer = 1;
         SceneManager.sceneLoaded -= GameSceneLoaded;
