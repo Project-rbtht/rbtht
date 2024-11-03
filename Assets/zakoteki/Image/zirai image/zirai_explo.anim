@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: car run
+  m_Name: zirai_explo
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,9 +21,13 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 2f99a2f366cb7e24ba84d0d1be18174a, type: 3}
+      value: {fileID: 21300000, guid: d4790ef730bde6d47a3db2902fb1835b, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 62feb09f456920d4eaf0c414a498f30d, type: 3}
+      value: {fileID: 21300000, guid: ce1b01825ead67f46b07d86cf0a7fcc9, type: 3}
+    - time: 0.16666667
+      value: {fileID: 21300000, guid: 5b7ace94fd5a28f42995cc1f6bac63bb, type: 3}
+    - time: 0.25
+      value: {fileID: 21300000, guid: 75e4ca9e44ab1bd4f8c429a53dcace63, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,14 +50,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 2f99a2f366cb7e24ba84d0d1be18174a, type: 3}
-    - {fileID: 21300000, guid: 62feb09f456920d4eaf0c414a498f30d, type: 3}
+    - {fileID: 21300000, guid: d4790ef730bde6d47a3db2902fb1835b, type: 3}
+    - {fileID: 21300000, guid: ce1b01825ead67f46b07d86cf0a7fcc9, type: 3}
+    - {fileID: 21300000, guid: 5b7ace94fd5a28f42995cc1f6bac63bb, type: 3}
+    - {fileID: 21300000, guid: 75e4ca9e44ab1bd4f8c429a53dcace63, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.16666667
+    m_StopTime: 0.33333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
