@@ -62,6 +62,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     GameObject currentEnergyBar;
     GameObject currentEnergyTriangle;
     Color energyBarColor;
+    GameObject Menu;
 
 
     void Start () {
@@ -95,6 +96,8 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             restartStage = SceneManager.GetActiveScene().name;
         }
         energyBarColor = currentEnergyBar.GetComponent<Image>().color;
+        Menu = GameObject.FindWithTag("Menu");
+        Menu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -203,6 +206,14 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         Vector3 eneTriPos = currentEnergyTriangle.transform.localPosition;
         currentEnergyTriangle.transform.localPosition = new Vector3((energyHPCur / energyHP - 0.5f) * currentEnergyBar.GetComponent<RectTransform>().sizeDelta.x - currentEnergyTriangle.GetComponent<RectTransform>().sizeDelta.x / 2, eneTriPos.y, 0);
 
+        //Menu
+        if (Input.GetButtonDown("Menu")) {
+            if (Menu.activeSelf) {
+                Menu.SetActive(false);
+            }else{
+                Menu.SetActive(true);
+            }
+        }
     }
 
     public void EnergyBarDec(float diff) {
