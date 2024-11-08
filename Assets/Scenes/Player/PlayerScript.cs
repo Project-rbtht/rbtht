@@ -136,9 +136,9 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             for (int i = 0; i < attack.Length; i++) {
                 if (attackActivated[i]) {
                     if (Input.GetButtonDown("Attack" + i) == true && counter[i] == 0) {
-                        anim.SetTrigger("Attack" + i);
                         attack[i].gameObject.SetActive(true);
                         counter[i] = attack[i].GetComponent<Attack>().RecastTime();
+                        anim.SetTrigger("Attack" + i);
                     } else if (counter[i] != 0) {
                         counter[i] -= Time.deltaTime;
                         if (counter[i] < 0) { counter[i] = 0; }

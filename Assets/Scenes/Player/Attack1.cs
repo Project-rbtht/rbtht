@@ -11,10 +11,11 @@ public class Attack1 : MonoBehaviour, Attack
 
     GameObject player;
     Animator playerAnim;
-
     void OnEnable() {
-        player = GameObject.FindWithTag("Player");
-        playerAnim = player.GetComponent<Animator>();
+        if (player == null) {
+            player = GameObject.FindWithTag("Player");
+            playerAnim = player.GetComponent<Animator>();
+        }
         player.GetComponent<PlayerScript>().canMove = false;
     }
 

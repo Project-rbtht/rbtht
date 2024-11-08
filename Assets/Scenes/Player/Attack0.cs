@@ -21,6 +21,7 @@ public class Attack0 : MonoBehaviour, Attack
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Enemy") {
             var damageTarget = collision.gameObject.GetComponent<Idamagable>();
             if (damageTarget != null) {

@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 2168602800949544816}
   - component: {fileID: 4840194263092446767}
   - component: {fileID: 8259963980278048793}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerObject
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -131,6 +131,7 @@ Transform:
   - {fileID: 3504208501850198027}
   - {fileID: 497196223438093985}
   - {fileID: 9163669460236438212}
+  - {fileID: 5213027922697760488}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &71876730957984822
@@ -202,6 +203,7 @@ MonoBehaviour:
   attack:
   - {fileID: 296954737700347162}
   - {fileID: 6147833165066844191}
+  - {fileID: 3793686855376396654}
   shieldScript: {fileID: 5299412237030131047}
   gameOverScript: {fileID: 8408306932956630439}
   jpSpeed: 12
@@ -556,6 +558,54 @@ MonoBehaviour:
   onGround: 0
   Player: {fileID: 440276840742387133}
   PlayerScript: {fileID: 9140224016454320283}
+--- !u!1 &3793686855376396654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5213027922697760488}
+  - component: {fileID: 4000582778211728103}
+  m_Layer: 0
+  m_Name: Attack2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5213027922697760488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793686855376396654}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3929425184539262341}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4000582778211728103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793686855376396654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4654a3316949434d84a34d68b5795bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  ironBall: {fileID: 720031418749936247, guid: 90f565253eb0c444f98384498661e4a1, type: 3}
+  recastTime: 1
+  player: {fileID: 440276840742387133}
 --- !u!1 &5913718962149013963
 GameObject:
   m_ObjectHideFlags: 0
