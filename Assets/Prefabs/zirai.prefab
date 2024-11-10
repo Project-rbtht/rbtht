@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8145051974371369201}
   - component: {fileID: 6147379160550270852}
   - component: {fileID: 2291466865022592183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: zirai
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -244,7 +244,6 @@ MonoBehaviour:
   waitTime: 0.5
   hp: 2
   recastTime: 1
-  zirai_head: {fileID: 6981260724117548182}
 --- !u!1001 &4349586313052557686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -297,6 +296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Instantiate_Pos
       objectReference: {fileID: 0}
+    - target: {fileID: 6682987903260278240, guid: f86260028d809214da10ca5c8b9befb6, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -305,10 +308,5 @@ PrefabInstance:
 --- !u!4 &1401681302320632592 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3399953849636012646, guid: f86260028d809214da10ca5c8b9befb6, type: 3}
-  m_PrefabInstance: {fileID: 4349586313052557686}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6981260724117548182 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6682987903260278240, guid: f86260028d809214da10ca5c8b9befb6, type: 3}
   m_PrefabInstance: {fileID: 4349586313052557686}
   m_PrefabAsset: {fileID: 0}
