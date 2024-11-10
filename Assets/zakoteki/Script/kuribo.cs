@@ -4,7 +4,7 @@ using UnityEngine;
 
 
  
-public class kuribo : MonoBehaviour
+public class Kuribo : MonoBehaviour
 {
   public float _moveSpeed;
   private Rigidbody2D _rigid;

@@ -29,7 +29,7 @@ public class Dossun : MonoBehaviour
         {
             _rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
             _rigid.velocity = new Vector2(0, -_fallSpeed); // 落下開始
-            Debug.Log("detect");
+           // Debug.Log("detect");
             _detect = true;
             _anim.SetBool("detect", _detect);
             // コルーチンを呼び出さないようにする

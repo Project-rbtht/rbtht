@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 4153186255111666758}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.022, y: -1.0359, z: 0}
-  m_LocalScale: {x: 2.2785635, y: -0.078830294, z: 1}
+  m_LocalPosition: {x: 0.0099, y: -0.1815, z: 0}
+  m_LocalScale: {x: 2.0031, y: 1.3912387, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2990447110529828598}
@@ -156,12 +156,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2990447110529828598}
   - component: {fileID: 6180269069329339899}
-  - component: {fileID: 8431824663994809723}
   - component: {fileID: 4734076824644591178}
   - component: {fileID: 6588562403476183786}
   - component: {fileID: 8131991673586436296}
   - component: {fileID: 3276100785275807040}
-  - component: {fileID: 2872151265309272544}
   m_Layer: 7
   m_Name: dossun
   m_TagString: Enemy
@@ -238,51 +236,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8431824663994809723
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5612268607460767717}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.00513947, y: 0.12471318}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.6136992, y: 2.4834328}
-  m_EdgeRadius: 0
 --- !u!50 &4734076824644591178
 Rigidbody2D:
   serializedVersion: 4
@@ -391,51 +344,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &2872151265309272544
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5612268607460767717}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.9}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &5796933629344310023
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6612682937184417577}
   - component: {fileID: 5575156828156407919}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: dossunatama
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -514,7 +422,17 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -3.433905, y: 8.463978}
       - {x: -8.529077, y: 8.465562}
-      - {x: -9.458709, y: 7.7042093}
+      - {x: -9.467885, y: 7.6496673}
+      - {x: -9.442189, y: 6.955041}
+      - {x: -9.429999, y: 2.72656}
+      - {x: -9.316263, y: 6.223125}
+      - {x: -2.8642685, y: 6.2570224}
+      - {x: -2.7202992, y: 2.6646552}
+      - {x: -2.7460682, y: 7.64203}
+      - {x: -8.76213, y: 6.9844365}
+      - {x: -9.40391, y: 7.634815}
+      - {x: -3.4242444, y: 8.409046}
+      - {x: -4.4994173, y: 7.637848}
       - {x: -2.8461204, y: 7.656516}
-      - {x: -2.7690077, y: 7.6537614}
+      - {x: -2.702801, y: 7.6724305}
   m_UseDelaunayMesh: 0
