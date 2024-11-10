@@ -24,7 +24,7 @@ public class reizaa : MonoBehaviour
     bool onbeam;
     bool onmove;
     private Transform childTransform;
-    private float laserLength = 20.5f;
+    private float laserLength = 19.5f;
     GameObject spawnedObject;
 
     void Start()
@@ -110,12 +110,12 @@ IEnumerator Escape()
     yield return new WaitForSeconds(0.1f);
     spawnedObject=Instantiate(BeamObj,childTransform.transform.position + laserLength * -transform.right,childTransform.transform.rotation);
     spawnedObject.transform.SetParent(transform);
-    yield return new WaitForSeconds(2.0f);
     onbeam=true;
     anim.SetBool("onbeam",onbeam);
-    yield return new WaitForSeconds(2.3f);
+    yield return new WaitForSeconds(2.0f);
     onbeam=false;
     anim.SetBool("onbeam",onbeam);
+    yield return new WaitForSeconds(2.3f);
   }
 
   if(onescape==false)
