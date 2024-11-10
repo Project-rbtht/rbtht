@@ -156,9 +156,9 @@ GameObject:
   - component: {fileID: 93292279634866295}
   - component: {fileID: 2894079777277991701}
   - component: {fileID: 1034918143263322789}
-  - component: {fileID: 7540834406492487515}
   - component: {fileID: 8833723370795325555}
   - component: {fileID: -2604827459252241427}
+  - component: {fileID: 301943181543810022}
   m_Layer: 7
   m_Name: kuribo
   m_TagString: Enemy
@@ -327,19 +327,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.16969, y: 1.1362362}
   m_EdgeRadius: 0
---- !u!114 &7540834406492487515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6443456094628289275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 542b221369620c248b1928ac8913120d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: -5
 --- !u!61 &8833723370795325555
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -400,3 +387,16 @@ MonoBehaviour:
   hp: 1
   damage: 1
   recastTime: 1
+--- !u!114 &301943181543810022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6443456094628289275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb0d4980a98bd44981a25bbe8ee342e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: -2
