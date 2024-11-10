@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Unity.VisualScripting.Member;
 
 public class PlayerScript : MonoBehaviour, Idamagable {
 
@@ -13,12 +14,18 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
     //dont change in gaming
     public GroundJudge groundJudge;
-    public GameObject[] attack = new GameObject[1];
+    //public GameObject[] attack = new GameObject[1];
+    //public AudioClip sound;
+    public AttackClass[] attackList = new AttackClass[1];
+    public bool[] attackActivated = null;
+    public AudioClip[] sounds;
+    public AudioClip[] walkSounds;
     public ShieldScript shieldScript;
     public GameOver gameOverScript;
     public float jpSpeed = 9.8f;
     public float invincibleTime = 2.5f;
-    public float justTimeStop = 0.2f;
+    public float damagedTimeStop = 0.2f;
+    public float justGuardTimeStop = 0.2f;
     public float energyHealing = 0.5f; // energyHP / damage
     public float energyMaxHealing = 2f;
     public float deathTimeStop = 0.5f;
@@ -35,7 +42,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public float shieldDecSpeed = 5;
     public float energyHP = 1;
     public float energyRechargeTime = 1;
-    public List<bool> attackActivated = new List<bool>();
+    //public List<bool> attackActivated = new List<bool>();
 
     public bool canMove = true;
 
@@ -63,6 +70,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     GameObject currentEnergyTriangle;
     Color energyBarColor;
     GameObject Menu;
+    AudioSource audioSource;
 
 
     void Start () {
@@ -75,8 +83,15 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         rb = this.GetComponent<Rigidbody2D>();
         jpNum = jpNumMax;
         anim = GetComponent<Animator>();
-        counter = new float[attack.Length];
+        counter = new float[attackList.Length];
         Array.Fill<float>(counter, 0);
+        if (attackActivated == null) {
+            attackActivated = new bool[attackList.Length];
+            attackActivated[0] = true;
+            for (int i = 1; i < attackList.Length; i++) {
+                attackActivated[i] = false;
+            }
+        }
         energyHPCur = energyHP;
         if (hp == 0) {
             hp = maxHP;
@@ -86,18 +101,13 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         healthTriangle.transform.localPosition = new Vector3(triPos.x - (maxHP - hp) / (float)maxHP * healthBar.GetComponent<RectTransform>().sizeDelta.x, triPos.y, 0);
         this.gameObject.GetComponent<Renderer>().sortingOrder = 1;
         SceneManager.sceneLoaded += GameSceneLoaded;
-        if (attackActivated.Count == 0) {
-            attackActivated.Add(true);
-            for(int i = 1; i < attack.Length; i++) {
-                attackActivated.Add(false);
-            }
-        }
         if (restartStage == "") {
             restartStage = SceneManager.GetActiveScene().name;
         }
         energyBarColor = currentEnergyBar.GetComponent<Image>().color;
         Menu = GameObject.FindWithTag("Menu");
         Menu.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -116,8 +126,10 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                     speedY = jpSpeed;
                     if (groundJudge.onGround == true) {
                         anim.SetInteger("Jump", 1);
+                        audioSource.PlayOneShot(sounds[0]);
                     } else {
                         anim.SetInteger("Jump", 2);
+                        audioSource.PlayOneShot(sounds[1]);
                     }
                     jpNum--;
                 }
@@ -133,11 +145,12 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             }
 
             // Attack
-            for (int i = 0; i < attack.Length; i++) {
+            for (int i = 0; i < attackList.Length; i++) {
                 if (attackActivated[i]) {
                     if (Input.GetButtonDown("Attack" + i) == true && counter[i] == 0) {
-                        attack[i].gameObject.SetActive(true);
-                        counter[i] = attack[i].GetComponent<Attack>().RecastTime();
+                        attackList[i].gameObject.SetActive(true);
+                        counter[i] = attackList[i].gameObject.GetComponent<Attack>().RecastTime();
+                        audioSource.PlayOneShot(attackList[i].sound);
                         anim.SetTrigger("Attack" + i);
                     } else if (counter[i] != 0) {
                         counter[i] -= Time.deltaTime;
@@ -171,8 +184,10 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         if (guard) {
             if (Input.GetButtonUp("Guard") == true) {
                 guard = false;
-                shieldScript.gameObject.SetActive(false);
                 //justGuardTime = justGuardGrace;
+                if (!shieldScript.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("Just")) {
+                    shieldScript.gameObject.SetActive(false);
+                }
             }
             EnergyBarDec(Time.deltaTime / shieldDecSpeed * energyHP);
         } else {
@@ -210,15 +225,27 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         if (Input.GetButtonDown("Menu")) {
             if (Menu.activeSelf) {
                 Menu.SetActive(false);
-            }else{
+                audioSource.UnPause();
+            } else{
                 Menu.SetActive(true);
+                audioSource.Pause();
             }
+        }
+
+        if (Input.GetKey(KeyCode.Alpha1) && Input.GetKey(KeyCode.Tab) && Input.GetKey(KeyCode.RightShift)) {
+            GetAbility(1);
+            counter[1] = 0;
+        }
+        if (Input.GetKey(KeyCode.Alpha2) && Input.GetKey(KeyCode.Tab) && Input.GetKey(KeyCode.RightShift)) {
+            GetAbility(2);
+            counter[2] = 0;
         }
     }
 
     public void EnergyBarDec(float diff) {
         energyHPCur -= diff;
         if (energyHPCur <= 0) {
+            audioSource.PlayOneShot(sounds[3]);
             energyHPCur = 0;
             shieldRecharge = true;
             guard = false;
@@ -226,6 +253,10 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             remainInvincible = invincibleTime / 10;
             currentEnergyBar.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.4f);
         }
+    }
+
+    public void GetAbility(int kind) {
+        attackActivated[kind] = true;
     }
 
     IEnumerator TimeStop(float time) {
@@ -240,7 +271,10 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public void Damage(int damage) {
         if (remainInvincible == 0) {
             if (justGuardTime > 0) {
-                StartCoroutine(TimeStop(justTimeStop));
+                shieldScript.gameObject.SetActive(true);
+                shieldScript.JustShield(justGuardTimeStop);
+                audioSource.PlayOneShot(sounds[7]);
+                StartCoroutine(TimeStop(justGuardTimeStop));
                 remainInvincible = invincibleTime / 2;
                 if (damage * energyHealing <= energyMaxHealing) {
                     energyHPCur += damage * energyHealing;
@@ -251,8 +285,10 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                     energyHPCur = energyHP;
                 }
             }else if (guard) {
+                audioSource.PlayOneShot(sounds[2]);
                 EnergyBarDec(damage);
             }else {
+                audioSource.PlayOneShot(sounds[5]);
                 hp -= damage;
                 remainInvincible += invincibleTime;
                 anim.SetBool("Damaged", true);
@@ -260,7 +296,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                     Death();
                 } else {
                     afterDamaged = true;
-                    StartCoroutine(TimeStop(justTimeStop));
+                    StartCoroutine(TimeStop(damagedTimeStop));
                 }
                 healthBar.GetComponent<Image>().fillAmount = (float)hp / (float)maxHP;
                 Vector3 triPos = healthTriangle.transform.localPosition;
@@ -275,7 +311,14 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         this.gameObject.layer = 1;
         SceneManager.sceneLoaded -= GameSceneLoaded;
         SceneManager.sceneLoaded += GameOverSceneLoaded;
-        gameOverScript.Death(this, deathTimeStop, deathBeforeCircleTime, deathCircleTime);
+        gameOverScript.Death(this, deathTimeStop, deathBeforeCircleTime, deathCircleTime, sounds[6]);
+    }
+
+    public void Hit() {
+        audioSource.PlayOneShot(sounds[4]);
+    }
+    public void PlayFootstepSE() {
+        audioSource.PlayOneShot(walkSounds[UnityEngine.Random.Range(0, walkSounds.Length)]);
     }
 
     void GameSceneLoaded(Scene next, LoadSceneMode mode) {
@@ -306,6 +349,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         nextPlayerScript.energyHP = energyHP;
         nextPlayerScript.energyRechargeTime = energyRechargeTime;
         nextPlayerScript.restartStage = restartStage;
+        nextPlayerScript.attackList = new AttackClass[attackList.Length];
         nextPlayerScript.attackActivated = attackActivated;
 
         SceneManager.sceneLoaded -= GameOverSceneLoaded;

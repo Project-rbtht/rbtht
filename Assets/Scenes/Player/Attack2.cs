@@ -9,6 +9,8 @@ public class Attack2 : MonoBehaviour, Attack
     public GameObject ironBall;
     public float recastTime = 1;
     public GameObject player;
+    public float speedX = 1.0f;
+    public float speedY = 1.0f;
 
     Animator playerAnim;
 
@@ -18,8 +20,12 @@ public class Attack2 : MonoBehaviour, Attack
     }
 
     void OnEnable() {
-        ironBall.GetComponent<IronBallScript>().direct = player.transform.localScale.x;
-        Instantiate(ironBall, transform.position, transform.rotation);
+        IronBallScript clone = Instantiate(ironBall, transform.position, transform.rotation).GetComponent<IronBallScript>();
+        clone.player = player;
+        clone.damage = damage;
+        clone.speedX = speedX;
+        clone.speedY = speedY;
+        clone.direct = player.transform.localScale.x;
         StartCoroutine(FrameStop());
     }
 

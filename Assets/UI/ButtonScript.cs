@@ -14,8 +14,9 @@ public class ButtonScript : MonoBehaviour
     public float shieldDecSpeed = 5;
     public float energyHP = 1;
     public float energyRechargeTime = 1;
-    public List<bool> attackActivated = new List<bool>();
+    public AttackClass[] attackList;
     public string restartStage;
+    public bool[] attackActivated;
 
     public void RestartButton() {
         SceneManager.sceneLoaded += GameSceneLoaded;

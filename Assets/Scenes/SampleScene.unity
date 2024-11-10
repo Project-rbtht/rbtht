@@ -790,11 +790,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2982357260095820752, guid: c436580f748706a4bb4a3f8e2c68bad6, type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2982357260095820752, guid: c436580f748706a4bb4a3f8e2c68bad6, type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2982357260095820752, guid: c436580f748706a4bb4a3f8e2c68bad6, type: 3}
       propertyPath: m_SizeDelta.x

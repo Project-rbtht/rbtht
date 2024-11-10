@@ -11,6 +11,7 @@ public class Attack1 : MonoBehaviour, Attack
 
     GameObject player;
     Animator playerAnim;
+
     void OnEnable() {
         if (player == null) {
             player = GameObject.FindWithTag("Player");
@@ -41,6 +42,7 @@ public class Attack1 : MonoBehaviour, Attack
             var damageTarget = collision.gameObject.GetComponent<Idamagable>();
             if (damageTarget != null) {
                 damageTarget.Damage(damage);
+                player.GetComponent<PlayerScript>().Hit();
             }
         }
     }

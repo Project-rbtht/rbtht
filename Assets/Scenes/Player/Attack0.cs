@@ -8,10 +8,12 @@ public class Attack0 : MonoBehaviour, Attack
     public int damage = 1;
     public float recastTime = 1;
 
+    GameObject player;
     Animator playerAnim;
 
     void Start() {
-        playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
+        player = GameObject.FindWithTag("Player");
+        playerAnim = player.GetComponent<Animator>();
     }
 
     void Update() {
@@ -21,11 +23,11 @@ public class Attack0 : MonoBehaviour, Attack
     }
 
     void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag == "Enemy") {
             var damageTarget = collision.gameObject.GetComponent<Idamagable>();
             if (damageTarget != null) {
                 damageTarget.Damage(damage);
+                player.GetComponent<PlayerScript>().Hit();
             }
         }
     }

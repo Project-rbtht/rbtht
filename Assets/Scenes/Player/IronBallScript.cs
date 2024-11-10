@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class IronBallScript : MonoBehaviour
 {
-    public float speedX = 1.0f;
-    public float speedY = 1.0f;
+    public float speedX;
+    public float speedY;
     public int damage = 0;
     public float direct = 1;
+    public GameObject player;
 
     private void Start() {
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(speedX*direct, speedY);
@@ -25,6 +26,7 @@ public class IronBallScript : MonoBehaviour
             var damageTarget = collision.gameObject.GetComponent<Idamagable>();
             if (damageTarget != null) {
                 damageTarget.Damage(damage);
+                player.GetComponent<PlayerScript>().Hit();
             }
         }
     }
