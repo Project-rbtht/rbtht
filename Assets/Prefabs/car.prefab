@@ -172,7 +172,7 @@ MonoBehaviour:
   recastTime: 1
   kasoku: 10
   waitTime: 2
-  sensor: {fileID: 3393891170957287295, guid: a6e49729ae2b18644998057925fc09da, type: 3}
+  sensor: {fileID: 1833593689154763574}
   player: {fileID: 440276840742387133, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
   explosion: {fileID: 1756497793705970059, guid: 1fa0e058bf267124fb06b7625e128b35, type: 3}
 --- !u!50 &8690254873533582985
@@ -388,3 +388,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3557108666873718241, guid: a6e49729ae2b18644998057925fc09da, type: 3}
   m_PrefabInstance: {fileID: 3921436494422205513}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1833593689154763574 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3393891170957287295, guid: a6e49729ae2b18644998057925fc09da, type: 3}
+  m_PrefabInstance: {fileID: 3921436494422205513}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af167afdd52d5944a9bb89d3bbe027b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

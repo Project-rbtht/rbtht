@@ -55,7 +55,7 @@ void Start()
 void Update()
 {
   onsensor=sensor.onsensor;
-
+ 
   if(onsensor==true&&onrun==false)
   {
     FlipToPlayer();
@@ -66,15 +66,17 @@ void Update()
   IEnumerator Idle()
   {
     yield return null;
-    
   while (onsensor==false)
   {
+    
     yield return null;
   }
+  
     if(onsensor==true)
     {
+       anim.SetBool("onsensor",onsensor);
     StartCoroutine(Find());
-    Debug.Log("Findstart");
+   
     }
   
   }
@@ -83,7 +85,7 @@ void Update()
    {
     yield return new WaitForSeconds(waitTime);
       onrun = true;
-      Debug.Log("onrun");  
+     
       anim.SetBool("onrun",onrun);
     
     yield return null;
