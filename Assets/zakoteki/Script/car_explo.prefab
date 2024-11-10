@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8405394413992574440}
   m_Layer: 0
   m_Name: car_explo
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -320,6 +320,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77545b8cc5da6604b8a5d697782aeb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
+  recastTime: 1
+  time_explo: 0.5
 --- !u!95 &-8405394413992574440
 Animator:
   serializedVersion: 5

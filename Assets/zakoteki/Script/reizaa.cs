@@ -74,10 +74,10 @@ IEnumerator Chase()
     onmove=true;
     anim.SetBool("onmove",onmove);
     rb.velocity = new Vector3(-transform.right.x*MoveSpeed,rb.velocity.y,0);
-    yield return null;
+    yield return new WaitForSeconds(0.1f*MoveSpeed);
     onmove=false;
     anim.SetBool("onmove",onmove);
-    yield return new WaitForSeconds(waitTime-0.2f);
+    yield return new WaitForSeconds(waitTime-0.2f-0.1f*MoveSpeed);
     onshot=true;
     anim.SetBool("onshot",onshot);
     yield return new WaitForSeconds(0.2f);
@@ -101,10 +101,10 @@ IEnumerator Escape()
     onmove=true;
     anim.SetBool("onmove",onmove);
     rb.velocity = new Vector3(transform.right.x*EscapeSpeed,rb.velocity.y,0);
-    yield return null;
+    yield return new WaitForSeconds(0.1f*EscapeSpeed);
     onmove=false;
     anim.SetBool("onmove",onmove);
-    yield return new WaitForSeconds(waitTime-0.1f);
+    yield return new WaitForSeconds(waitTime-0.1f-0.1f*EscapeSpeed);
     rb.velocity = new Vector3(0,rb.velocity.y,0);
     yield return new WaitForSeconds(0.1f);
     spawnedObject=Instantiate(BeamObj,childTransform.transform.position + laserLength * -transform.right,childTransform.transform.rotation);

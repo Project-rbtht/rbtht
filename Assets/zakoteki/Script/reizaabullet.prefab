@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -4087061045645591564}
   m_Layer: 0
   m_Name: reizaabullet
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
