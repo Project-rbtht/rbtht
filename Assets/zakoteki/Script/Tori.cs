@@ -1,4 +1,3 @@
-/*
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +6,7 @@ public class Tori : MonoBehaviour
 {
     private bool _detect;
     private bool _go;
+    private bool _ready;
     private Animator _anim;
     private Rigidbody2D _rigid;
 
@@ -19,8 +19,8 @@ public class Tori : MonoBehaviour
         _anim.SetBool("detect", _detect);
         _go = false;
         _anim.SetBool("go", _go);
-        
-        
+        _ready = false;
+        _anim.SetBool("ready", _ready);
     }
 
     // Update is called once per frame
@@ -29,4 +29,3 @@ public class Tori : MonoBehaviour
         
     }
 }
-*/

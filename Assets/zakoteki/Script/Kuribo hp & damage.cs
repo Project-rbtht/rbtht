@@ -8,7 +8,7 @@ public class Kuribohpdamageable: MonoBehaviour, Idamagable
     public int damage = 1;
     public float recastTime = 1;
 
-    void OnTriggerEnter2D(Collider2D collision) {
+    void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.tag == "Player") 
         {
             var damageTarget = collision.gameObject.GetComponent<Idamagable>();

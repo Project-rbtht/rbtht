@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
- 
-public class Kuribo : MonoBehaviour
+public class Drown : MonoBehaviour
 {
+public GameObject Bullet;
+
+
+
   public float _moveSpeed;
   private Rigidbody2D _rigid;
   private Vector2 _moveDirection;
      void Start()
      {
+        InvokeRepeating("Shot", 1, 6);
+
         _rigid = GetComponent<Rigidbody2D>();
         _moveDirection = Vector2.left;
      }
@@ -45,8 +49,8 @@ public class Kuribo : MonoBehaviour
     }
 }
 
-
-     
-
+   void Shot()
+   {
+    GameObject Bullets = Instantiate(Bullet.gameObject, transform.position, transform.rotation);
+   }
 }
- 

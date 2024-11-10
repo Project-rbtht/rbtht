@@ -9,13 +9,15 @@ public class zakohpdamageable: MonoBehaviour, Idamagable
     public float recastTime = 1;
 
     void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "Player") {
+        if (collision.gameObject.tag == "Player")
+         {
             var damageTarget = collision.gameObject.GetComponent<Idamagable>();
             if (damageTarget != null) 
             {
                 damageTarget.Damage(damage);
             }
         }
+        
     }
  
     public void Damage(int ukerudamage) 
