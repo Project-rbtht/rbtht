@@ -169,7 +169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 2
-  damage: 1
   recastTime: 1
   kasoku: 10
   waitTime: 2
@@ -273,6 +272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8137348917539584720, guid: 15972064a21c81b49931b3d3956c6d14, type: 3}
+    - {fileID: -7956511158843346271, guid: 15972064a21c81b49931b3d3956c6d14, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -364,15 +364,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6953525958936704594, guid: a6e49729ae2b18644998057925fc09da, type: 3}
       propertyPath: m_Size.y
-      value: 3.671301
+      value: 5.2695365
       objectReference: {fileID: 0}
     - target: {fileID: 6953525958936704594, guid: a6e49729ae2b18644998057925fc09da, type: 3}
       propertyPath: m_Offset.x
-      value: -1.4123378
+      value: -1.4123383
       objectReference: {fileID: 0}
     - target: {fileID: 6953525958936704594, guid: a6e49729ae2b18644998057925fc09da, type: 3}
       propertyPath: m_Offset.y
-      value: -0.22367382
+      value: -1.0227916
       objectReference: {fileID: 0}
     - target: {fileID: 6953525958936704594, guid: a6e49729ae2b18644998057925fc09da, type: 3}
       propertyPath: m_IsTrigger

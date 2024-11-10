@@ -7,7 +7,7 @@ public class car : MonoBehaviour
   public int hp = 2;
   public int recastTime = 1;
  public float kasoku = 10.0f;
- public float waitTime = 5.0f; 
+ public float waitTime = 2.0f; 
  private SpriteRenderer sr = null;
  protected Rigidbody2D rb;
  public Sensor sensor;

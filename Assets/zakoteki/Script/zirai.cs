@@ -13,10 +13,12 @@ public float waitTime = 0.5f;
 bool onexplosion;
 public int hp = 2;
 public int recastTime = 1;
+private Transform childTransform;
 
 void Start()
 {
   //if(sr.isVisible)
+  childTransform = transform.Find("Instantiate_Pos");
     anim = GetComponent<Animator>();
     sr = GetComponent<SpriteRenderer>();
     rb = GetComponent<Rigidbody2D>();
@@ -31,10 +33,7 @@ IEnumerator Idle()
   {
     yield return null;
   }
-    if(onsensor==true)
-    {
     StartCoroutine(Find());
-    }
   }
 
 IEnumerator Find()
@@ -49,8 +48,9 @@ StartCoroutine(Explosion());
 IEnumerator Explosion()
 {
     yield return null;
-    Instantiate(ziraiexplosion,transform.position,transform.rotation);
-    Destroy (this.gameObject) ;
+    Instantiate(ziraiexplosion,childTransform.transform.position,childTransform.transform.rotation);
+    yield return null;
+    Destroy (this.gameObject);
 }
 
 
@@ -62,7 +62,7 @@ IEnumerator Explosion()
            anim.SetBool("onsensor",onsensor);
            StartCoroutine(Find());
         }
-        if(collision.gameObject.tag == "PlayerAttack")
+        if(collision.gameObject.tag == "PlayerAttack" && !onexplosion)
         {
             onexplosion = true;
             anim.SetBool("onexplosion",onexplosion);
@@ -70,12 +70,4 @@ IEnumerator Explosion()
         }
      }
 
-public void Damage(int ukerudamage) 
-    {
-        hp -= ukerudamage;
-        if (hp <= 0) {
-            Debug.Log("hp = " + hp);
-            Destroy(this.gameObject);
-        }
-    }
 }
