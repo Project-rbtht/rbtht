@@ -7,10 +7,9 @@ public class zakoBeam : MonoBehaviour
    public int damage = 1;
     private bool on = false;
     private Animator anim;
-    private Transform ParentTransform;
     private float laserLength = 20.5f;
     public int recastTime = 1;
-    
+
     void Start()
     {
         this.anim = GetComponent<Animator>();

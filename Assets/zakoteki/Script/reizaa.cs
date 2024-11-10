@@ -9,10 +9,11 @@ public class reizaa : MonoBehaviour
     protected Rigidbody2D rb; 
     private Animator anim;
     bool onsensor;
-    public float waitTime = 2.0f;
+    public float waitTime = 1.2f;
     bool onescape;
     public GameObject player;
-    public int damage = 1;
+    public int damage = 1; 
+    public int recastTime = 1;
     public Sensor sensor;
     public Escape_sensor sensor2;
     public GameObject BulletObj;

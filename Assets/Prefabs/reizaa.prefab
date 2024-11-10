@@ -153,9 +153,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752b75bbc609b014991ae4415ae84001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTime: 2
+  waitTime: 1.2
   player: {fileID: 440276840742387133, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
   damage: 1
+  recastTime: 1
   sensor: {fileID: 163421771165901305}
   sensor2: {fileID: 4121759226713262644}
   BulletObj: {fileID: 8779540503993284983, guid: b849518c159c6314b95f060427c74db8, type: 3}
@@ -177,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 2
   recastTime: 1
+  damageEffect: {fileID: 6043908753730526742, guid: 4b498cbcb44ee1448bfb648a791e1bf1, type: 3}
 --- !u!61 &5503389298321134266
 BoxCollider2D:
   m_ObjectHideFlags: 0

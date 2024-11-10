@@ -18,7 +18,6 @@ public class car : MonoBehaviour
 private Transform playerPos;
 public GameObject player;
 public GameObject explosion;
-Vector3 chaseVector;
  float elapsedTime = 0f;
 
 
@@ -34,6 +33,7 @@ Vector3 chaseVector;
         }
   if (collision.gameObject.tag == "Floor") {
   onexplosion=true;
+  StartCoroutine(Explosion());
   }
  }
 
@@ -55,8 +55,11 @@ void Start()
 void Update()
 {
   onsensor=sensor.onsensor;
-  float dist = Vector3.Distance(transform.position, player.transform.position);
-  Vector3 chaseVector = (player.transform.position - transform.position) / dist;
+
+  if(onsensor==true&&onrun==false)
+  {
+    FlipToPlayer();
+  }
 }
 
 
@@ -71,17 +74,14 @@ void Update()
     if(onsensor==true)
     {
     StartCoroutine(Find());
+    Debug.Log("Findstart");
     }
   
   }
 
    IEnumerator Find()
    {
-    yield return null;
-    FlipToPlayer();
     yield return new WaitForSeconds(waitTime);
-   
-     yield return null;
       onrun = true;
       Debug.Log("onrun");  
       anim.SetBool("onrun",onrun);
@@ -117,21 +117,6 @@ void Update()
     Destroy (this.gameObject) ;
    }
 
-void OnTriggerHit2D (Collider2D collision)
-     {
-        if(collision.gameObject.tag == "Floor")
-        {
-            onexplosion=true;
-            anim.SetBool("onexplosion",onexplosion);
-            Debug.Log("hit player");
-        }
-        if(collision.gameObject.tag == "Player"||collision.gameObject.tag == "PlayerAttack")
-        {
-            onexplosion=true;
-            anim.SetBool("onexplosion",onexplosion);
-        }
-      }
-
  void FlipToPlayer()
  {
   if(player.transform.position.x>transform.position.x)
@@ -142,14 +127,5 @@ void OnTriggerHit2D (Collider2D collision)
     transform.rotation = Quaternion.Euler(0,180,0);
   }
  }
-
-  public void Damage(int ukerudamage) 
-    {
-        hp -= ukerudamage;
-        if (hp <= 0) {
-            Debug.Log("hp = " + hp);
-            Destroy(this.gameObject);
-        }
-    }
 
 }
