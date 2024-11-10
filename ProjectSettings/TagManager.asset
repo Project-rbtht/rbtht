@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - PlayerAttack
   - Shield
+  - Menu
   - PlayerFoot
   layers:
   - Default
@@ -21,6 +22,8 @@ TagManager:
   - 
   - 
   - 
+  - Player
+  - PlayerAttack
   - 
   - 
   - 

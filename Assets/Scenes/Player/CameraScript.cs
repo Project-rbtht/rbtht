@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    GameObject playerObj;
-
-    float y;
+    public GameObject targetObj = null;
 
     //PlayerController player;
-    Transform playerTrans;
+    Transform targetTrans;
     void Start() {
-        playerObj = GameObject.FindGameObjectWithTag("Player");
-        playerTrans = playerObj.transform;
-        y = playerTrans.position.y;
+        if (targetObj == null)
+        {
+            targetObj = GameObject.FindGameObjectWithTag("Player");
+        }
+        targetTrans = targetObj.transform;
     }
 
     void LateUpdate() {
-        y = transform.position.y;
-        if (playerObj.GetComponent<PlayerScript>().gameOver) {
-            transform.position = new Vector3(playerTrans.position.x, transform.position.y, transform.position.z);
+        if (targetObj.GetComponent<PlayerScript>().gameOver) {
+            transform.position = new Vector3(targetTrans.position.x, transform.position.y, transform.position.z);
         } else {
-            transform.position = new Vector3(playerTrans.position.x, playerTrans.position.y, transform.position.z);
+            transform.position = new Vector3(targetTrans.position.x, targetTrans.position.y, transform.position.z);
         }
     }
 }

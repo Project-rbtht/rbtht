@@ -1,0 +1,9 @@
+diff a/Assets/Scenes/Player/PlayerScript.cs b/Assets/Scenes/Player/PlayerScript.cs	(rejected hunks)
+@@ -83,6 +83,7 @@
+ 
+     // Update is called once per frame
+     void Update() {
++        //????
+         float x = Input.GetAxisRaw("Horizontal");
+         float speedY = rb.velocity.y;
+ 

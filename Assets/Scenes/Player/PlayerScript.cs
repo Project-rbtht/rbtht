@@ -6,17 +6,26 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Unity.VisualScripting.Member;
 
 public class PlayerScript : MonoBehaviour, Idamagable {
 
+    public string restartStage;
+
     //dont change in gaming
     public GroundJudge groundJudge;
-    public GameObject[] attack = new GameObject[1];
+    //public GameObject[] attack = new GameObject[1];
+    //public AudioClip sound;
+    public AttackClass[] attackList = new AttackClass[1];
+    public bool[] attackActivated = null;
+    public AudioClip[] sounds;
+    public AudioClip[] walkSounds;
     public ShieldScript shieldScript;
     public GameOver gameOverScript;
     public float jpSpeed = 9.8f;
     public float invincibleTime = 2.5f;
-    public float justTimeStop = 0.2f;
+    public float damagedTimeStop = 0.2f;
+    public float justGuardTimeStop = 0.2f;
     public float energyHealing = 0.5f; // energyHP / damage
     public float energyMaxHealing = 2f;
     public float deathTimeStop = 0.5f;
@@ -29,10 +38,13 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     //can enhance
     public int maxHP = 1;
     public int jpNumMax = 1;
-    public float justGuardTiming = 0.2f;
-    public float shieldDecTime = 5;
+    public float justGuardGrace = 0.2f;
+    public float shieldDecSpeed = 5;
     public float energyHP = 1;
     public float energyRechargeTime = 1;
+    //public List<bool> attackActivated = new List<bool>();
+
+    public bool canMove = true;
 
     //can only see from other scripts
     public int jpNum;
@@ -56,6 +68,9 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     //GameObject damagedTriangle;
     GameObject currentEnergyBar;
     GameObject currentEnergyTriangle;
+    Color energyBarColor;
+    GameObject Menu;
+    AudioSource audioSource;
 
 
     void Start () {
@@ -63,13 +78,20 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         healthTriangle = GameObject.Find("Canvas/HPBar/HPBackground/HealthTriangle").gameObject;
         //damagedBar = GameObject.Find("Canvas/HPBar/HPBackground/DamagedBar").gameObject;
         //damagedTriangle = GameObject.Find("Canvas/HPBar/HPBackground/DamagedTriangle").gameObject;
-        currentEnergyBar = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyBar").gameObject;
-        currentEnergyTriangle = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyTriangle").gameObject;
+        currentEnergyBar = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyBar");
+        currentEnergyTriangle = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyTriangle");
         rb = this.GetComponent<Rigidbody2D>();
         jpNum = jpNumMax;
         anim = GetComponent<Animator>();
-        counter = new float[attack.Length];
+        counter = new float[attackList.Length];
         Array.Fill<float>(counter, 0);
+        if (attackActivated == null) {
+            attackActivated = new bool[attackList.Length];
+            attackActivated[0] = true;
+            for (int i = 1; i < attackList.Length; i++) {
+                attackActivated[i] = false;
+            }
+        }
         energyHPCur = energyHP;
         if (hp == 0) {
             hp = maxHP;
@@ -79,51 +101,66 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         healthTriangle.transform.localPosition = new Vector3(triPos.x - (maxHP - hp) / (float)maxHP * healthBar.GetComponent<RectTransform>().sizeDelta.x, triPos.y, 0);
         this.gameObject.GetComponent<Renderer>().sortingOrder = 1;
         SceneManager.sceneLoaded += GameSceneLoaded;
+        if (restartStage == "") {
+            restartStage = SceneManager.GetActiveScene().name;
+        }
+        energyBarColor = currentEnergyBar.GetComponent<Image>().color;
+        Menu = GameObject.FindWithTag("Menu");
+        Menu.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update() {
-        //????
-        float x = Input.GetAxisRaw("Horizontal");
-        float speedY = rb.velocity.y;
+        // Move
+        if (canMove) {
+            float x = Input.GetAxisRaw("Horizontal");
+            float speedY = rb.velocity.y;
 
-        if (speedY < 0 && anim.GetInteger("Jump") > 0) {
-            anim.SetInteger("Jump", -1);
-        }
+            if (speedY < 0 && anim.GetInteger("Jump") > 0) {
+                anim.SetInteger("Jump", -1);
+            }
 
-        if (Input.GetButtonDown("Jump") == true) {
-            if (jpNum > 0) {
-                speedY = jpSpeed;
-                if (groundJudge.onGround == true) {
-                    anim.SetInteger("Jump", 1);
-                }else{
-                    anim.SetInteger("Jump", 2);
+            if (Input.GetButtonDown("Jump") == true) {
+                if (jpNum > 0) {
+                    speedY = jpSpeed;
+                    if (groundJudge.onGround == true) {
+                        anim.SetInteger("Jump", 1);
+                        audioSource.PlayOneShot(sounds[0]);
+                    } else {
+                        anim.SetInteger("Jump", 2);
+                        audioSource.PlayOneShot(sounds[1]);
+                    }
+                    jpNum--;
                 }
-                jpNum--;
+            }
+
+            rb.velocity = new Vector2(x * speed, speedY);
+
+            // Direction
+            anim.SetInteger("Speed", (int)Mathf.Abs(x * 2));
+
+            if (x != 0) {
+                transform.localScale = new Vector3(x / Mathf.Abs(x), 1, 1);
+            }
+
+            // Attack
+            for (int i = 0; i < attackList.Length; i++) {
+                if (attackActivated[i]) {
+                    if (Input.GetButtonDown("Attack" + i) == true && counter[i] == 0) {
+                        attackList[i].gameObject.SetActive(true);
+                        counter[i] = attackList[i].gameObject.GetComponent<Attack>().RecastTime();
+                        audioSource.PlayOneShot(attackList[i].sound);
+                        anim.SetTrigger("Attack" + i);
+                    } else if (counter[i] != 0) {
+                        counter[i] -= Time.deltaTime;
+                        if (counter[i] < 0) { counter[i] = 0; }
+                    }
+                }
             }
         }
 
-        rb.velocity = new Vector2(x * speed, speedY);
-
-        //?L?????N?^?[??????
-        anim.SetInteger("Speed", (int)Mathf.Abs(x * 2));
-
-        if (x != 0) {
-            transform.localScale = new Vector3(x/Mathf.Abs(x), 1, 1);
-        }
-
-        //?U??
-        for (int i = 0; i < attack.Length; i++) {
-            if (Input.GetButtonDown("Attack" + i) == true && counter[i] == 0) {
-                anim.SetTrigger("Attack" + i);
-                counter[i] = attack[i].GetComponent<Attack>().recastTime;
-            } else {
-                counter[i] -= Time.deltaTime;
-                if (counter[i] < 0) { counter[i] = 0; }
-            }
-        }
-
-        //???G????
+        // Invincible
         if (remainInvincible > 0) {
             remainInvincible -= Time.deltaTime;
             if (remainInvincible <= 0) {
@@ -143,26 +180,21 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             }
         }
 
-        //?K?[?h
+        // Guard
         if (guard) {
             if (Input.GetButtonUp("Guard") == true) {
                 guard = false;
-                shieldScript.gameObject.SetActive(false);
-                //justGuardTime = justGuardTiming;
+                //justGuardTime = justGuardGrace;
+                if (!shieldScript.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsTag("Just")) {
+                    shieldScript.gameObject.SetActive(false);
+                }
             }
-            energyHPCur -= Time.deltaTime / shieldDecTime * energyHP;
-            if (energyHPCur <= 0) {
-                energyHPCur = 0;
-                guard = false;
-                shieldScript.gameObject.SetActive(false);
-                shieldRecharge = true;
-                remainInvincible = invincibleTime / 10;
-            }
+            EnergyBarDec(Time.deltaTime / shieldDecSpeed * energyHP);
         } else {
-            if (Input.GetButton("Guard") == true && !shieldRecharge) {
+            if (Input.GetButton("Guard") == true && !shieldRecharge && canMove) {
                 guard = true;
                 shieldScript.gameObject.SetActive(true);
-                justGuardTime = justGuardTiming;
+                justGuardTime = justGuardGrace;
             }
             //if (Input.GetButton("Guard") == true && justGuardTime == 0 && !shieldRecharge) {
             //    guard = true;
@@ -174,6 +206,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                     energyHPCur = energyHP;
                     if (shieldRecharge) {
                         shieldRecharge = false;
+                        currentEnergyBar.GetComponent<Image>().color = energyBarColor;
                     }
                 }
             }
@@ -188,6 +221,42 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         Vector3 eneTriPos = currentEnergyTriangle.transform.localPosition;
         currentEnergyTriangle.transform.localPosition = new Vector3((energyHPCur / energyHP - 0.5f) * currentEnergyBar.GetComponent<RectTransform>().sizeDelta.x - currentEnergyTriangle.GetComponent<RectTransform>().sizeDelta.x / 2, eneTriPos.y, 0);
 
+        //Menu
+        if (Input.GetButtonDown("Menu")) {
+            if (Menu.activeSelf) {
+                Menu.SetActive(false);
+                audioSource.UnPause();
+            } else{
+                Menu.SetActive(true);
+                audioSource.Pause();
+            }
+        }
+
+        if (Input.GetKey(KeyCode.Alpha1) && Input.GetKey(KeyCode.Tab) && Input.GetKey(KeyCode.RightShift)) {
+            GetAbility(1);
+            counter[1] = 0;
+        }
+        if (Input.GetKey(KeyCode.Alpha2) && Input.GetKey(KeyCode.Tab) && Input.GetKey(KeyCode.RightShift)) {
+            GetAbility(2);
+            counter[2] = 0;
+        }
+    }
+
+    public void EnergyBarDec(float diff) {
+        energyHPCur -= diff;
+        if (energyHPCur <= 0) {
+            audioSource.PlayOneShot(sounds[3]);
+            energyHPCur = 0;
+            shieldRecharge = true;
+            guard = false;
+            shieldScript.gameObject.SetActive(false);
+            remainInvincible = invincibleTime / 10;
+            currentEnergyBar.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0.4f);
+        }
+    }
+
+    public void GetAbility(int kind) {
+        attackActivated[kind] = true;
     }
 
     IEnumerator TimeStop(float time) {
@@ -202,7 +271,10 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public void Damage(int damage) {
         if (remainInvincible == 0) {
             if (justGuardTime > 0) {
-                StartCoroutine(TimeStop(justTimeStop));
+                shieldScript.gameObject.SetActive(true);
+                shieldScript.JustShield(justGuardTimeStop);
+                audioSource.PlayOneShot(sounds[7]);
+                StartCoroutine(TimeStop(justGuardTimeStop));
                 remainInvincible = invincibleTime / 2;
                 if (damage * energyHealing <= energyMaxHealing) {
                     energyHPCur += damage * energyHealing;
@@ -213,26 +285,18 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                     energyHPCur = energyHP;
                 }
             }else if (guard) {
-                energyHPCur -= damage;
-                if (energyHPCur <= 0) {
-                    energyHPCur = 0;
-                    shieldRecharge = true;
-                    guard = false;
-                    shieldScript.gameObject.SetActive(false);
-                    remainInvincible = invincibleTime / 10;
-                }
+                audioSource.PlayOneShot(sounds[2]);
+                EnergyBarDec(damage);
             }else {
+                audioSource.PlayOneShot(sounds[5]);
                 hp -= damage;
                 remainInvincible += invincibleTime;
                 anim.SetBool("Damaged", true);
                 if (hp <= 0) {
-                    gameOver = true;
-                    this.gameObject.layer = 1;
-                    SceneManager.sceneLoaded -= GameSceneLoaded;
-                    gameOverScript.Death(this, deathTimeStop, deathBeforeCircleTime, deathCircleTime);
+                    Death();
                 } else {
                     afterDamaged = true;
-                    StartCoroutine(TimeStop(justTimeStop));
+                    StartCoroutine(TimeStop(damagedTimeStop));
                 }
                 healthBar.GetComponent<Image>().fillAmount = (float)hp / (float)maxHP;
                 Vector3 triPos = healthTriangle.transform.localPosition;
@@ -241,19 +305,54 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         }
     }
 
+    public void Death() {
+        anim.SetBool("Damaged", true);
+        gameOver = true;
+        this.gameObject.layer = 1;
+        SceneManager.sceneLoaded -= GameSceneLoaded;
+        SceneManager.sceneLoaded += GameOverSceneLoaded;
+        gameOverScript.Death(this, deathTimeStop, deathBeforeCircleTime, deathCircleTime, sounds[6]);
+    }
+
+    public void Hit() {
+        audioSource.PlayOneShot(sounds[4]);
+    }
+    public void PlayFootstepSE() {
+        audioSource.PlayOneShot(walkSounds[UnityEngine.Random.Range(0, walkSounds.Length)]);
+    }
+
     void GameSceneLoaded(Scene next, LoadSceneMode mode) {
         var nextPlayerScript = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
-        
+        if (nextPlayerScript != null) {
+            nextPlayerScript.maxHP = maxHP;
+            nextPlayerScript.jpNumMax = jpNumMax;
+            nextPlayerScript.justGuardGrace = justGuardGrace;
+            nextPlayerScript.shieldDecSpeed = shieldDecSpeed;
+            nextPlayerScript.energyHP = energyHP;
+            nextPlayerScript.energyRechargeTime = energyRechargeTime;
+            nextPlayerScript.restartStage = restartStage;
+            nextPlayerScript.attackActivated = attackActivated;
+
+            nextPlayerScript.hp = hp;
+
+            SceneManager.sceneLoaded -= GameSceneLoaded;
+        }
+    }
+
+    void GameOverSceneLoaded(Scene next, LoadSceneMode mode) {
+        var nextPlayerScript = GameObject.FindWithTag("Respawn").GetComponent<ButtonScript>();
+
         nextPlayerScript.maxHP = maxHP;
         nextPlayerScript.jpNumMax = jpNumMax;
-        nextPlayerScript.justGuardTiming = justGuardTiming;
-        nextPlayerScript.shieldDecTime = shieldDecTime;
+        nextPlayerScript.justGuardGrace = justGuardGrace;
+        nextPlayerScript.shieldDecSpeed = shieldDecSpeed;
         nextPlayerScript.energyHP = energyHP;
         nextPlayerScript.energyRechargeTime = energyRechargeTime;
+        nextPlayerScript.restartStage = restartStage;
+        nextPlayerScript.attackList = new AttackClass[attackList.Length];
+        nextPlayerScript.attackActivated = attackActivated;
 
-        nextPlayerScript.hp = hp;
-
-        SceneManager.sceneLoaded -= GameSceneLoaded;
+        SceneManager.sceneLoaded -= GameOverSceneLoaded;
 
     }
 
