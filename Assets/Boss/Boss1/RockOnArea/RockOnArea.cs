@@ -7,8 +7,9 @@ public class RockOnArea : MonoBehaviour
     private GameObject player;
     public float damageRadius = 5.0f; // ダメージを与える範囲の半径
     public float damageInterval = 1.0f; // ダメージを与える間隔（秒）
-    public int attack = 10; // 与えるダメージ量
+    public int attack = 1; // 与えるダメージ量
     private bool applyDamage = false;
+    public Collider2D col;
 
     void Start()
     {
@@ -27,7 +28,7 @@ public class RockOnArea : MonoBehaviour
     IEnumerator ApplyDamage()
     {
         yield return new WaitForSeconds(1.5f);
-        applyDamage = true;
+        col.enabled = true;
         yield return new WaitForSeconds(0.5f);
         Destroy(this.gameObject);
     }
