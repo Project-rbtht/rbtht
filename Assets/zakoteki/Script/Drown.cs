@@ -7,13 +7,13 @@ public class Drown : MonoBehaviour
 public GameObject Bullet;
 
 
-
+  public float _shotTime;
   public float _moveSpeed;
   private Rigidbody2D _rigid;
   private Vector2 _moveDirection;
      void Start()
      {
-        InvokeRepeating("Shot", 1, 6);
+        InvokeRepeating("Shot", 1, _shotTime);
 
         _rigid = GetComponent<Rigidbody2D>();
         _moveDirection = Vector2.left;

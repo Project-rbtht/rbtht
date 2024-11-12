@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class KuriboHead : MonoBehaviour
 {
+    private GameObject player;
+    private PlayerScript playerScript;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("PlayerObject");
+        playerScript = player.GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
@@ -20,8 +23,11 @@ public class KuriboHead : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerFoot")
         {
+            Debug.Log("befor");
+            playerScript.Hit();
+            Debug.Log("after");
             Destroy(this.gameObject.transform.parent.gameObject);
-
+            
         }
     }
 
