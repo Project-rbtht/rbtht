@@ -13,6 +13,8 @@ public class SnakeHead_right : BossBase
     private Vector3 movePoint;//移動先の指定
     public float speed = 10;//速度
     private Transform playerPos;//プレイヤーの位置
+    private int action = 0;//現在どの行動パターンか
+    public GameObject damageArea;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +58,18 @@ public class SnakeHead_right : BossBase
         StartCoroutine(LaserSpawn());
     }
 
-   
+   private IEnumerator SpawnRockOnArea()
+    {
+        open = true;
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(damageArea, playerPos.position, transform.rotation);
+        yield return new WaitForSeconds(1.5f);
+        open = false;
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(ChooseAction());
+    }
+
+
     /*
     private IEnumerator PlayerHightLaser()
     {
@@ -68,7 +81,14 @@ public class SnakeHead_right : BossBase
     private IEnumerator ChooseAction()
     {
         //LaserSpawn();
-        StartCoroutine(MovePlayerHight());
+        action = Random.Range(1, 3);
+        if (action <= 1)
+        {
+            StartCoroutine(MovePlayerHight());
+        }else if(action <= 2)
+        {
+            StartCoroutine(SpawnRockOnArea());
+        }
         //StartCoroutine(LaserSpawn());
         yield return new WaitForSeconds(0);
     }

@@ -13,6 +13,7 @@ public class SnakeHead : BossBase
     private Vector3 movePoint;//移動先の指定
     public float speed = 10;//速度
     private Transform playerPos;//プレイヤーの位置
+    private PlayerScript playerScript;
     // Start is called before the first frame update
     void Start()
     {

@@ -10,6 +10,7 @@ public class Homing : MonoBehaviour
     protected Rigidbody2D rigidbody2d;
     public float lifetime = 5.0f; // 弾の寿命
     public float firstForce = 10;//弾に最初に加える力
+    public int damageValue = 1;
 
     void Start()
     {
@@ -42,7 +43,7 @@ public class Homing : MonoBehaviour
             Idamagable damageable = player.GetComponent<Idamagable>();
             if (damageable != null)
             {
-                damageable.Damage(10); // ダメージ量は10に設定（必要に応じて変更）
+                damageable.Damage(damageValue);
             }
 
             // 弾を消滅させる
