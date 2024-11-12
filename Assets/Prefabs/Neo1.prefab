@@ -162,7 +162,7 @@ MonoBehaviour:
   BulletObj: {fileID: 4131865129007929357, guid: 7266dcc5b664163438fa0c5d8eff4f90, type: 3}
   BeamObj: {fileID: 4384495905951873225, guid: 971a288056e8bfe4b8a017477f5d144d, type: 3}
   MoveSpeed: 5
-  EscapeSpeed: 10
+  EscapeSpeed: 15
   onshot: 0
 --- !u!114 &1332677969058834689
 MonoBehaviour:
