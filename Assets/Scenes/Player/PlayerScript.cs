@@ -271,6 +271,12 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         attackActivated[kind] = true;
     }
 
+    public void Heal(int amount) {
+        hp += amount;
+        if(hp > maxHP) hp = maxHP;
+        audioSource.PlayOneShot(sounds[5]);
+    }
+
     IEnumerator TimeStop(float time) {
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(time);

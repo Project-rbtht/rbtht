@@ -107,8 +107,8 @@ GameObject:
   - component: {fileID: 4840194263092446767}
   - component: {fileID: 8259963980278048793}
   - component: {fileID: 4281058676851201874}
-  m_Layer: 11
   - component: {fileID: 6109111485514996181}
+  m_Layer: 11
   m_Name: PlayerObject
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -219,6 +219,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: abd5d48a75d2edf4887f188b93d35f3a, type: 3}
   - {fileID: 8300000, guid: 1f55102f60d23d64480b99e4688388ab, type: 3}
   - {fileID: 8300000, guid: 89ea0dfb2580fe540abe74a3dfe77f36, type: 3}
+  - {fileID: 8300000, guid: 8924873f51aca3545b4d1b0701a38847, type: 3}
   walkSounds:
   - {fileID: 8300000, guid: 2dfbf457ede981c4f9ff0ed609592123, type: 3}
   - {fileID: 8300000, guid: 20a2293a30742014fbc34bdd39256081, type: 3}
