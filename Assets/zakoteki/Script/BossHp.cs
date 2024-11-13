@@ -4,13 +4,31 @@ public class BossHp : MonoBehaviour, Idamagable
 {
     public int hp = 1;
     public int attackDamage = 2;
+    private Animator anim;
 
     // シーン遷移時に移動するターゲットシーンの名前を指定
     public string targetScene = "afterScene"; // 遷移先シーンの名前（適宜変更）
 
+    void Start()
+    {
+        this.anim = GetComponent<Animator>();
+        
+
+    }
+
+    public void crack()
+    {
+        if (hp <= 2)
+        {
+           anim.SetBool("crack", true);
+           
+        }
+    }
+
     public void Damage(int damage)
     {
         hp -= damage;
+        crack();
         if (hp <= 0)
         {
             Debug.Log("hp = " + hp);

@@ -75,7 +75,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
     void Start () {
         healthBar = GameObject.Find("Canvas/HPBar/HPBackground/HealthBar");
-        healthTriangle = GameObject.Find("Canvas/HPBar/HPBackground/HealthTriangle").gameObject;
+        healthTriangle = GameObject.Find("Canvas/HPBar/HPBackground/HealthTriangle");
         //damagedBar = GameObject.Find("Canvas/HPBar/HPBackground/DamagedBar").gameObject;
         //damagedTriangle = GameObject.Find("Canvas/HPBar/HPBackground/DamagedTriangle").gameObject;
         currentEnergyBar = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyBar");
