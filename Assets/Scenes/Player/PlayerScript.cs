@@ -10,7 +10,7 @@ using static Unity.VisualScripting.Member;
 
 public class PlayerScript : MonoBehaviour, Idamagable {
 
-    public string restartStage;
+    public string restartStage = "";
 
     //dont change in gaming
     public GroundJudge groundJudge;
@@ -74,6 +74,12 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
 
     void Start () {
+        if (restartStage == "") {
+            restartStage = SceneManager.GetActiveScene().name;
+            ReStart();
+        } else if (SceneManager.GetActiveScene().name == "scene0") {
+            restartStage = "";
+        }
         healthBar = GameObject.Find("Canvas/HPBar/HPBackground/HealthBar");
         healthTriangle = GameObject.Find("Canvas/HPBar/HPBackground/HealthTriangle").gameObject;
         //damagedBar = GameObject.Find("Canvas/HPBar/HPBackground/DamagedBar").gameObject;
@@ -101,9 +107,6 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         healthTriangle.transform.localPosition = new Vector3(triPos.x - (maxHP - hp) / (float)maxHP * healthBar.GetComponent<RectTransform>().sizeDelta.x, triPos.y, 0);
         this.gameObject.GetComponent<Renderer>().sortingOrder = 1;
         SceneManager.sceneLoaded += GameSceneLoaded;
-        if (restartStage == "") {
-            restartStage = SceneManager.GetActiveScene().name;
-        }
         energyBarColor = currentEnergyBar.GetComponent<Image>().color;
         Menu = GameObject.FindWithTag("Menu");
         Menu.SetActive(false);
@@ -226,9 +229,11 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             if (Menu.activeSelf) {
                 Menu.SetActive(false);
                 audioSource.UnPause();
+                SceneManager.sceneLoaded += GameSceneLoaded;
             } else{
                 Menu.SetActive(true);
                 audioSource.Pause();
+                SceneManager.sceneLoaded -= GameSceneLoaded;
             }
         }
 
@@ -239,6 +244,13 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         if (Input.GetKey(KeyCode.Alpha2) && Input.GetKey(KeyCode.Tab) && Input.GetKey(KeyCode.RightShift)) {
             GetAbility(2);
             counter[2] = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5)){
+            Save();
+        }
+        if (Input.GetKeyDown(KeyCode.Delete)) {
+            SaveDelete();
         }
     }
 
@@ -257,6 +269,12 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
     public void GetAbility(int kind) {
         attackActivated[kind] = true;
+    }
+
+    public void Heal(int amount) {
+        hp += amount;
+        if(hp > maxHP) hp = maxHP;
+        audioSource.PlayOneShot(sounds[5]);
     }
 
     IEnumerator TimeStop(float time) {
@@ -349,11 +367,57 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         nextPlayerScript.energyHP = energyHP;
         nextPlayerScript.energyRechargeTime = energyRechargeTime;
         nextPlayerScript.restartStage = restartStage;
-        nextPlayerScript.attackList = new AttackClass[attackList.Length];
         nextPlayerScript.attackActivated = attackActivated;
+
+        Save();
 
         SceneManager.sceneLoaded -= GameOverSceneLoaded;
 
+    }
+
+    class SaveData {
+        public int maxHP;
+        public int jpNumMax;
+        public float justGuardGrace;
+        public float shieldDecSpeed;
+        public float energyHP;
+        public float energyRechargeTime;
+        public bool[] attackActivated;
+    }
+
+    public void Save() {
+        SaveData data = new();
+        data.maxHP = maxHP;
+        data.jpNumMax = jpNumMax;
+        data.justGuardGrace = justGuardGrace;
+        data.shieldDecSpeed = shieldDecSpeed;
+        data.energyHP = energyHP;
+        data.energyRechargeTime = energyRechargeTime;
+        data.attackActivated = attackActivated;
+        string saveData = JsonUtility.ToJson(data);
+        PlayerPrefs.SetString("data", saveData);
+        PlayerPrefs.Save();
+        Debug.Log("saved");
+        Debug.Log(saveData);
+    }
+
+    public void SaveDelete() {
+        PlayerPrefs.DeleteKey("data");
+    }
+
+    public void ReStart() {
+        if (PlayerPrefs.HasKey("data")) {
+            SaveData data = JsonUtility.FromJson<SaveData>(PlayerPrefs.GetString("data", null));
+            maxHP = data.maxHP;
+            jpNumMax = data.jpNumMax;
+            justGuardGrace = data.justGuardGrace;
+            shieldDecSpeed = data.shieldDecSpeed;
+            energyHP = data.energyHP;
+            energyRechargeTime = data.energyRechargeTime;
+            attackActivated = data.attackActivated;
+            Debug.Log("Reloaded");
+            Debug.Log(PlayerPrefs.GetString("data", null));
+        }
     }
 
 }

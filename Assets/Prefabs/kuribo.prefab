@@ -388,6 +388,7 @@ MonoBehaviour:
   hp: 1
   damage: 1
   recastTime: 1
+  damageEffect: {fileID: 6043908753730526742, guid: 4b498cbcb44ee1448bfb648a791e1bf1, type: 3}
 --- !u!114 &301943181543810022
 MonoBehaviour:
   m_ObjectHideFlags: 0

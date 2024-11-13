@@ -19,7 +19,8 @@ private Transform playerPos;
 public GameObject player;
 public GameObject explosion;
  float elapsedTime = 0f;
-
+AudioSource audioSource;
+public AudioClip[] sounds;
 
  public void BodyDamage(Collider2D collision)
  {
@@ -49,6 +50,7 @@ void Start()
    onrun=false;
    player = GameObject.Find("PlayerObject");
    playerPos = player.transform;
+   audioSource = GetComponent<AudioSource>();
    StartCoroutine(Idle());
 }
 
@@ -83,6 +85,8 @@ void Update()
 
    IEnumerator Find()
    {
+    yield return null;
+    audioSource.PlayOneShot(sounds[0]);
     yield return new WaitForSeconds(waitTime);
       onrun = true;
      

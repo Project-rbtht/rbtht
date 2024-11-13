@@ -8,15 +8,20 @@ public class zakoBeam : MonoBehaviour
     private bool on = false;
     private Animator anim;
     public int recastTime = 1;
+    AudioSource audioSource;
+    public AudioClip[] sounds;
 
     void Start()
     {
         this.anim = GetComponent<Animator>();
         StartCoroutine(DelayCoroutine());
+        audioSource = GetComponent<AudioSource>();
     }
 
     private IEnumerator DelayCoroutine()
     {
+        yield return null;
+        audioSource.PlayOneShot(sounds[0]);
         yield return new WaitForSeconds(2);
         on = true;
         yield return new WaitForSeconds(2);

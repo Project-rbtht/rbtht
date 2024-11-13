@@ -7,6 +7,7 @@ public class Kuribohpdamageable: MonoBehaviour, Idamagable
     public int hp = 2;
     public int damage = 1;
     public float recastTime = 1;
+    public GameObject damageEffect;
 
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "Player") 
@@ -27,6 +28,7 @@ public class Kuribohpdamageable: MonoBehaviour, Idamagable
             Debug.Log("hp = " + hp);
             Destroy(this.gameObject);
         }
+        GameObject instantiatedObject =Instantiate(damageEffect,transform.position,transform.rotation);
     }
    
 }

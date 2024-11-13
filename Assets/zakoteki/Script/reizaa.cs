@@ -26,6 +26,8 @@ public class reizaa : MonoBehaviour
     private Transform childTransform;
     private float laserLength = 19.5f;
     GameObject spawnedObject;
+    AudioSource audioSource;
+    public AudioClip[] sounds;
 
     void Start()
     {
@@ -34,6 +36,7 @@ public class reizaa : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
      rb = this.GetComponent<Rigidbody2D>();
      anim = GetComponent<Animator>();
+     audioSource = GetComponent<AudioSource>();
     StartCoroutine(Idle());
     }
 
@@ -82,6 +85,7 @@ IEnumerator Chase()
     onshot=true;
     anim.SetBool("onshot",onshot);
     yield return new WaitForSeconds(0.2f);
+    audioSource.PlayOneShot(sounds[0]);
     Instantiate(BulletObj,childTransform.transform.position,childTransform.transform.rotation);
     onshot=false;
     anim.SetBool("onshot",onshot);
