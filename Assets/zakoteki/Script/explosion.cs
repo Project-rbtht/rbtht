@@ -7,14 +7,19 @@ public class explosion : MonoBehaviour
     public int damage = 1;
     public int recastTime = 1;
     public float time_explo = 0.5f;
+    AudioSource audioSource;
+    public AudioClip[] sounds;
+
   void  Start()
     {
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(Explosion());
     }
 
 IEnumerator Explosion()
 {
     yield return null;
+    audioSource.PlayOneShot(sounds[0]);
     yield return new WaitForSeconds(time_explo);
     Destroy(this.gameObject);
 }

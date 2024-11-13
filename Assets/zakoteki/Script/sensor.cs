@@ -26,5 +26,12 @@ public class Sensor : MonoBehaviour
         }
     }
 
-    
+    void OnTriggerExit2D (Collider2D collision)
+     {
+        if(collision.gameObject.tag == "Player")
+        {
+           onsensor = false;
+           anim.SetBool("onsensor",onsensor);
+        }
+    }
 }
