@@ -5,6 +5,7 @@ using UnityEngine;
 public class SnakeHead_right : BossBase
 {
     public GameObject bullet;
+    public GameObject rockonbullet;
     private float mouthPos = 2;
     private bool open = false;
     private Animator anim;//アニメーター
@@ -52,10 +53,16 @@ public class SnakeHead_right : BossBase
         movePoint = new Vector3(transform.position.x, playerPos.position.y, transform.position.z);//y座標だけplayerの位置に移動
         moveBool = true;
         yield return new WaitForSeconds(1.5f);
+
         moveBool = false;
         StartCoroutine(LaserSpawn());
     }
 
+    private IEnumerator LockOn()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+    }
    
     /*
     private IEnumerator PlayerHightLaser()
@@ -68,7 +75,13 @@ public class SnakeHead_right : BossBase
     private IEnumerator ChooseAction()
     {
         //LaserSpawn();
-        StartCoroutine(MovePlayerHight());
+        int rand = Random.Range(0, 2);
+        if (/* == 0*/ true) {
+            StartCoroutine(MovePlayerHight());
+        }else if(rand == 1)
+        {
+            StartCoroutine(LockOn());
+        }
         //StartCoroutine(LaserSpawn());
         yield return new WaitForSeconds(0);
     }

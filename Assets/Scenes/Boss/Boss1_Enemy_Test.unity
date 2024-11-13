@@ -676,6 +676,7 @@ GameObject:
   - component: {fileID: 1356568141}
   - component: {fileID: 1356568140}
   - component: {fileID: 1356568142}
+  - component: {fileID: 1356568143}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -763,6 +764,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  lifetime: 5
+  firstForce: 10
+--- !u!50 &1356568143
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1356568139}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1928892554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1195,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyAndChase
       objectReference: {fileID: 0}
+    - target: {fileID: 1510519772782336020, guid: c1d586af0068f044dae1a4258278a7b0, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3052255772426106437, guid: c1d586af0068f044dae1a4258278a7b0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.29
@@ -1262,6 +1296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyAndChase_Strait
       objectReference: {fileID: 0}
+    - target: {fileID: 7197351043628360254, guid: 4765344182f8ec045bd70ff614966767, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1350,6 +1388,10 @@ PrefabInstance:
     - target: {fileID: 2609376474072035342, guid: d7a73987be9fe3c4b85e8c6f1544d623, type: 3}
       propertyPath: m_Name
       value: Snake_Small
+      objectReference: {fileID: 0}
+    - target: {fileID: 2609376474072035342, guid: d7a73987be9fe3c4b85e8c6f1544d623, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3920597532762929920, guid: d7a73987be9fe3c4b85e8c6f1544d623, type: 3}
       propertyPath: m_LocalPosition.x

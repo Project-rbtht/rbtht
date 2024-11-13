@@ -7,6 +7,7 @@ public class Laser : MonoBehaviour
     // Start is called before the first frame update
 
     public int attack = 1;
+    private bool before;
     private bool on = false;
     private Animator anim;
     void Start()
@@ -30,6 +31,25 @@ public class Laser : MonoBehaviour
     {
         anim.SetBool("on", on);
     }
+
+    public void BeforeLaser()
+    {
+        before = true;
+    }
+
+    public void OnLaser()
+    {
+
+        before = false;
+        on = true;
+    }
+
+    public void EndLaser()
+    {
+        before = false;
+        on = false;
+    }
+
 
     void OnTriggerStay2D(Collider2D collision)
     {
