@@ -7,21 +7,35 @@ using UnityEngine.SceneManagement;
 public class MenuBottunScript : MonoBehaviour {
     public AudioClip[] sounds;
     AudioSource audioSource;
+    public GameObject stageButton;
+    public AudioManager audioManager;
 
     bool canMove = true;
 
     PlayerScript playerObj;
     void Awake() {
+        if(SceneManager.GetActiveScene().name == "scene0") {
+            stageButton.SetActive(false);
+        }
         playerObj = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
     }
 
     public void BackTitle() {
-        audioSource.PlayOneShot(sounds[1]);
-        SceneManager.LoadScene("menu");
+        playerObj.Save();
+        audioManager.buttonSound = true;
+        audioManager.sound = sounds[1];
+        SceneManager.LoadScene("TitleScene");
+    }
+
+    public void Stage() {
+        playerObj.Save();
+        audioManager.buttonSound = true;
+        audioManager.sound = sounds[1];
+        SceneManager.LoadScene("scene0");
     }
 
     public void Continue() {
-        audioSource.PlayOneShot(sounds[1]);
+        playerObj.gameObject.GetComponent<AudioSource>().PlayOneShot(sounds[1]);
         this.gameObject.SetActive(false);
     }
 

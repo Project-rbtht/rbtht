@@ -14,17 +14,31 @@ public class ButtonScript : MonoBehaviour
     public float shieldDecSpeed = 5;
     public float energyHP = 1;
     public float energyRechargeTime = 1;
-    public AttackClass[] attackList;
     public string restartStage;
     public bool[] attackActivated;
 
+    public AudioClip sound;
+    AudioSource audioSource;
+    public AudioManager audioManager;
+
     public void RestartButton() {
+        audioManager.buttonSound = true;
+        audioManager.sound = sound;
         SceneManager.sceneLoaded += GameSceneLoaded;
         SceneManager.LoadScene(preStage);
     }
 
-    public void MenuButton() {
-        SceneManager.LoadScene("menu");
+    public void StageButton() {
+        audioManager.buttonSound = true;
+        audioManager.sound = sound;
+        SceneManager.sceneLoaded += BackStageSelect;
+        SceneManager.LoadScene("scene0");
+    }
+
+    public void TitleButton() {
+        audioManager.buttonSound = true;
+        audioManager.sound = sound;
+        SceneManager.LoadScene("TitleScene");
     }
 
     void GameSceneLoaded(Scene next, LoadSceneMode mode) {
@@ -40,6 +54,20 @@ public class ButtonScript : MonoBehaviour
         nextPlayerScript.attackActivated = attackActivated;
 
         SceneManager.sceneLoaded -= GameSceneLoaded;
+    }
 
+    void BackStageSelect(Scene next, LoadSceneMode mode) {
+        var nextPlayerScript = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
+
+        nextPlayerScript.maxHP = maxHP;
+        nextPlayerScript.jpNumMax = jpNumMax;
+        nextPlayerScript.justGuardGrace = justGuardGrace;
+        nextPlayerScript.shieldDecSpeed = shieldDecSpeed;
+        nextPlayerScript.energyHP = energyHP;
+        nextPlayerScript.energyRechargeTime = energyRechargeTime;
+        nextPlayerScript.restartStage = "";
+        nextPlayerScript.attackActivated = attackActivated;
+
+        SceneManager.sceneLoaded -= GameSceneLoaded;
     }
 }
