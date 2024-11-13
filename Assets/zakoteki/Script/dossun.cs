@@ -23,7 +23,7 @@ public class Dossun : MonoBehaviour
         _anim.SetBool("falled", _falled);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && !_detect)
         {

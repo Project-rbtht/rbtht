@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1057683453617782657}
   - component: {fileID: 953995356614412559}
   - component: {fileID: 1133235463338616807}
-  - component: {fileID: 2944769291426931746}
   - component: {fileID: -2525306928461343546}
   - component: {fileID: -3754919368570487898}
   - component: {fileID: 7937411255213297039}
+  - component: {fileID: 7478582653679936896}
   m_Layer: 0
   m_Name: kuribo
   m_TagString: Untagged
@@ -110,20 +110,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2944769291426931746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173891630327393934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 542b221369620c248b1928ac8913120d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hanntenn: -1
-  moveX: -1
 --- !u!50 &-2525306928461343546
 Rigidbody2D:
   serializedVersion: 4
@@ -241,3 +227,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1486509, y: 1.3233557}
   m_EdgeRadius: 0
+--- !u!114 &7478582653679936896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173891630327393934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb0d4980a98bd44981a25bbe8ee342e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: -2
