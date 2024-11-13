@@ -166,7 +166,7 @@ MonoBehaviour:
   EscapeSpeed: 15
   onshot: 0
   sounds:
-  - {fileID: 8300000, guid: ddc62b36eb5845d45ae3858850d51f3a, type: 3}
+  - {fileID: 8300000, guid: 536af36b7fcf120449442dbd157ae478, type: 3}
 --- !u!114 &1332677969058834689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +312,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.1
-  m_Pitch: 1
+  m_Pitch: 3
   Loop: 0
   Mute: 0
   Spatialize: 0
