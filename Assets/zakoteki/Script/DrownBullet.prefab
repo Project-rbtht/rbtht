@@ -131,6 +131,7 @@ MonoBehaviour:
   hp: 100
   damage: 1
   recastTime: 1
+  damageEffect: {fileID: 0}
 --- !u!114 &3261181726590657238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d271d51e92539284b91909eb58ec15bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 8635330964157307914, guid: 2d1e1da2e25b86141bc17bfb09f6269b, type: 3}
+  explosion: {fileID: 1756497793705970059, guid: dabce6756ceec7c469c4625553b4cf27, type: 3}
 --- !u!60 &3104637366918157265
 PolygonCollider2D:
   m_ObjectHideFlags: 0
