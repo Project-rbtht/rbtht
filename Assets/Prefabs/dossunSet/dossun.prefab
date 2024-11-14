@@ -28,8 +28,8 @@ Transform:
   m_GameObject: {fileID: 4153186255111666758}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0099, y: -0.1815, z: 0}
-  m_LocalScale: {x: 2.0031, y: 1.3912387, z: 1}
+  m_LocalPosition: {x: 0.0055, y: -0.1725, z: 0}
+  m_LocalScale: {x: 2.043103, y: 1.3732628, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2990447110529828598}
@@ -146,6 +146,7 @@ MonoBehaviour:
   hp: 999
   damage: 2
   recastTime: 1
+  damageEffect: {fileID: 0}
 --- !u!1 &5612268607460767717
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +161,7 @@ GameObject:
   - component: {fileID: 6588562403476183786}
   - component: {fileID: 8131991673586436296}
   - component: {fileID: 3276100785275807040}
+  - component: {fileID: 4717221886004154942}
   m_Layer: 7
   m_Name: dossun
   m_TagString: Enemy
@@ -248,7 +250,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1000000
+  m_Mass: 100000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -295,7 +297,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -5}
+  m_Offset: {x: 0, y: -4.9947176}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -306,7 +308,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 8}
+  m_Size: {x: 4, y: 8.010565}
   m_EdgeRadius: 0
 --- !u!114 &8131991673586436296
 MonoBehaviour:
@@ -323,6 +325,10 @@ MonoBehaviour:
   _fallSpeed: 10
   _riseSpeed: 5
   _upTime: 3
+  sounds:
+  - {fileID: 8300000, guid: 2d4d3922b65279f4198ba5fb5e2cd6fa, type: 3}
+  - {fileID: 8300000, guid: 57420ed32c4d1be4a9803f9b42ca711e, type: 3}
+  - {fileID: 8300000, guid: b98d3728c5efe474a9cde1f2b6cf3c80, type: 3}
 --- !u!95 &3276100785275807040
 Animator:
   serializedVersion: 5
@@ -344,6 +350,102 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &4717221886004154942
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5612268607460767717}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5796933629344310023
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,5 +536,5 @@ PolygonCollider2D:
       - {x: -3.4242444, y: 8.409046}
       - {x: -4.4994173, y: 7.637848}
       - {x: -2.8461204, y: 7.656516}
-      - {x: -2.702801, y: 7.6724305}
+      - {x: -2.809469, y: 7.6724305}
   m_UseDelaunayMesh: 0

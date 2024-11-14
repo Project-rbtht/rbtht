@@ -7,6 +7,7 @@ public class fordamageObject : MonoBehaviour, Idamagable
     public int hp = 2;
     public int damage = 1;
     public float recastTime = 1;
+    public GameObject damageEffect;
 
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "Player")
@@ -26,7 +27,9 @@ public class fordamageObject : MonoBehaviour, Idamagable
         if (hp <= 0) {
             Debug.Log("hp = " + hp);
             Destroy(this.gameObject.transform.parent.gameObject);
+            
         }
+        GameObject instantiatedObject =Instantiate(damageEffect,transform.position,transform.rotation);
     }
 
 

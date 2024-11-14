@@ -6,6 +6,7 @@ public class KuriboHead : MonoBehaviour
 {
     private GameObject player;
     private PlayerScript playerScript;
+    public GameObject damageEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class KuriboHead : MonoBehaviour
         if (collision.gameObject.tag == "PlayerFoot")
         {
             playerScript.Hit();
+            GameObject instantiatedObject =Instantiate(damageEffect,transform.position,transform.rotation);
             Destroy(this.gameObject.transform.parent.gameObject);
             
         }

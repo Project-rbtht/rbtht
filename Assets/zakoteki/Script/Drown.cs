@@ -9,14 +9,15 @@ public GameObject Bullet;
 
   public float _shotTime;
   public float _moveSpeed;
+  private bool _detect;
   private Rigidbody2D _rigid;
   private Vector2 _moveDirection;
      void Start()
      {
-        InvokeRepeating("Shot", 1, _shotTime);
-
+        _detect = false;
         _rigid = GetComponent<Rigidbody2D>();
         _moveDirection = Vector2.left;
+        StartCoroutine(Shot());
      }
      void Update()
      {
@@ -36,9 +37,14 @@ public GameObject Bullet;
          {
           _moveDirection = -_moveDirection;
          }
+         if(collision.CompareTag("Player"))
+        {
+         _detect = true;
+        }
+
      }   
          private void _LookMoveDirection()
-{
+    {
     if (_moveDirection.x < 0.0f)
     {
         transform.localScale = new Vector3(-1, 1, 1);
@@ -48,9 +54,28 @@ public GameObject Bullet;
         transform.localScale = new Vector3(1, 1, 1);
     }
 }
-
-   void Shot()
+   
+   IEnumerator Shot()
    {
-    GameObject Bullets = Instantiate(Bullet.gameObject, transform.position, transform.rotation);
+    while(!_detect)
+    {
+        yield return null;
+    }
+    while(_detect)
+    {
+   Instantiate(Bullet, transform.position, transform.rotation);
+   yield return new WaitForSeconds(_shotTime);
+   yield return null;
+    }
+    StartCoroutine(Shot());
    }
+
+   void OnTriggerExit2D(Collider2D collision)
+     {
+         if (collision.CompareTag("Player"))
+         {
+          _detect = false;
+         }
+     }
+
 }
