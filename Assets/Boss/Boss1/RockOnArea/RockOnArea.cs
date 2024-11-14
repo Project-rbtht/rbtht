@@ -7,11 +7,16 @@ public class RockOnArea : MonoBehaviour
     private GameObject player;
     public float damageRadius = 5.0f; // ダメージを与える範囲の半径
     public float damageInterval = 1.0f; // ダメージを与える間隔（秒）
-    public int attack = 10; // 与えるダメージ量
-    private bool applyDamage = false;
+    public int damageAmount = 10; // 与えるダメージ量
+    private bool playerInZone = false; // プレイヤーが範囲内にいるかどうか
+    public int damageValue = 1;
+    public Collider2D col;
+    private Animator anim;//アニメーター
+    private int state = 0;
 
     void Start()
     {
+        anim = GetComponent<Animator>();
         player = GameObject.Find("PlayerObject");
         if (player == null)
         {
@@ -19,30 +24,37 @@ public class RockOnArea : MonoBehaviour
         }
         else
         {
-            // プレイヤーが範囲内にいるかどうかを定期的に確認
-            StartCoroutine(ApplyDamage());
+            StartCoroutine(EnableDamage());
         }
     }
 
-    IEnumerator ApplyDamage()
+    void Update()
     {
-        yield return new WaitForSeconds(1.5f);
-        applyDamage = true;
-        yield return new WaitForSeconds(0.5f);
-        Destroy(this.gameObject);
+        anim.SetInteger("state", state);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+        private IEnumerator EnableDamage()
     {
-        if (applyDamage && (collision.gameObject.tag == "Player"))
+        yield return new WaitForSeconds(0.9f);
+        state = 1;
+        anim.SetInteger("state", 1);
+        yield return new WaitForSeconds(0.1f);
+        col.enabled = true;
+        state = 2;
+        anim.SetInteger("state", 2);
+        yield return new WaitForSeconds(0.7f);
+        Destroy(gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
             var damageTarget = collision.gameObject.GetComponent<Idamagable>();
             if (damageTarget != null)
             {
-                damageTarget.Damage(attack);
-                applyDamage = false;
+                damageTarget.Damage(damageValue);
             }
         }
     }
-
 }

@@ -13,6 +13,8 @@ public class SnakeHead : BossBase
     private Vector3 movePoint;//移動先の指定
     public float speed = 10;//速度
     private Transform playerPos;//プレイヤーの位置
+    private PlayerScript playerScript;
+    public GameManager_Boss1 gameManager_Boss1;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,5 +73,11 @@ public class SnakeHead : BossBase
         StartCoroutine(MovePlayerHight());
         //StartCoroutine(LaserSpawn());
         yield return new WaitForSeconds(0);
+    }
+   public override void Death()
+    {
+        gameManager_Boss1.LeftSnakeDead();
+        Destroy(this.gameObject);
+        UnityEngine.Debug.Log("Left Death");
     }
 }

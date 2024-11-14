@@ -5,7 +5,6 @@ using UnityEngine;
 public class SnakeHead_right : BossBase
 {
     public GameObject bullet;
-    public GameObject rockonbullet;
     private float mouthPos = 2;
     private bool open = false;
     private Animator anim;//アニメーター
@@ -14,6 +13,9 @@ public class SnakeHead_right : BossBase
     private Vector3 movePoint;//移動先の指定
     public float speed = 10;//速度
     private Transform playerPos;//プレイヤーの位置
+    private int action = 0;//現在どの行動パターンか
+    public GameObject damageArea;
+    public GameManager_Boss1 gameManager_Boss1;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,17 +55,22 @@ public class SnakeHead_right : BossBase
         movePoint = new Vector3(transform.position.x, playerPos.position.y, transform.position.z);//y座標だけplayerの位置に移動
         moveBool = true;
         yield return new WaitForSeconds(1.5f);
-
         moveBool = false;
         StartCoroutine(LaserSpawn());
     }
 
-    private IEnumerator LockOn()
+   private IEnumerator SpawnRockOnArea()
     {
+        open = true;
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(damageArea, playerPos.position, transform.rotation);
         yield return new WaitForSeconds(1.5f);
-
+        open = false;
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(ChooseAction());
     }
-   
+
+
     /*
     private IEnumerator PlayerHightLaser()
     {
@@ -75,14 +82,21 @@ public class SnakeHead_right : BossBase
     private IEnumerator ChooseAction()
     {
         //LaserSpawn();
-        int rand = Random.Range(0, 2);
-        if (/* == 0*/ true) {
-            StartCoroutine(MovePlayerHight());
-        }else if(rand == 1)
+        action = Random.Range(1, 3);
+        if (action <= 1)
         {
-            StartCoroutine(LockOn());
+            StartCoroutine(MovePlayerHight());
+        }else if(action <= 2)
+        {
+            StartCoroutine(SpawnRockOnArea());
         }
         //StartCoroutine(LaserSpawn());
         yield return new WaitForSeconds(0);
+    }
+    public override void Death()
+    {
+        gameManager_Boss1.RightSnakeDead();
+        Destroy(this.gameObject);
+        UnityEngine.Debug.Log("Right Death");
     }
 }

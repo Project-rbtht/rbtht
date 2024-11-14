@@ -12,6 +12,7 @@ public class BossBase : MonoBehaviour, Idamagable
     public int flashCount = 4; // 点滅回数
     public float flashInterval = 0.5f; // 点滅の間隔（白から元の色に戻る間隔）
     private Color originalColor;
+    public GameObject damageEffect;
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -28,6 +29,7 @@ public class BossBase : MonoBehaviour, Idamagable
     {
         UnityEngine.Debug.Log("on Damage");
         healthPoint -= value;//HPをvalueのぶんだけ減らす
+        Instantiate(damageEffect, transform.position, transform.rotation);
         Debug.Log("hp = " + healthPoint);
         if (healthPoint <= 0)
         {//HPが0以下になったら死
@@ -57,7 +59,7 @@ public class BossBase : MonoBehaviour, Idamagable
         }
     }
 
-    public void Death()
+    public virtual void Death()
     {
         Destroy(this.gameObject);
         UnityEngine.Debug.Log("on Death");
