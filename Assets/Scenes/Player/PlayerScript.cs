@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,6 +32,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public float deathTimeStop = 0.5f;
     public float deathBeforeCircleTime = 2f;
     public float deathCircleTime = 2f;
+    public float waitTimeDamaged = 1f;
 
     //can temp buff
     public float speed = 0.1f;
@@ -64,8 +66,8 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
     GameObject healthBar;
     GameObject healthTriangle;
-    //GameObject damagedBar;
-    //GameObject damagedTriangle;
+    GameObject damagedBar;
+    GameObject damagedTriangle;
     GameObject currentEnergyBar;
     GameObject currentEnergyTriangle;
     Color energyBarColor;
@@ -82,8 +84,8 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         }
         healthBar = GameObject.Find("Canvas/HPBar/HPBackground/HealthBar");
         healthTriangle = GameObject.Find("Canvas/HPBar/HPBackground/HealthTriangle").gameObject;
-        //damagedBar = GameObject.Find("Canvas/HPBar/HPBackground/DamagedBar").gameObject;
-        //damagedTriangle = GameObject.Find("Canvas/HPBar/HPBackground/DamagedTriangle").gameObject;
+        damagedBar = GameObject.Find("Canvas/HPBar/HPBackground/DamagedBar").gameObject;
+        damagedTriangle = GameObject.Find("Canvas/HPBar/HPBackground/DamagedTriangle").gameObject;
         currentEnergyBar = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyBar");
         currentEnergyTriangle = GameObject.Find("Canvas/EnergyBar/EnergyBackground/CurrentEnergyTriangle");
         rb = this.GetComponent<Rigidbody2D>();
@@ -105,7 +107,6 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         healthBar.GetComponent<Image>().fillAmount = (float)hp / (float)maxHP;
         Vector3 triPos = healthTriangle.transform.localPosition;
         healthTriangle.transform.localPosition = new Vector3(triPos.x - (maxHP - hp) / (float)maxHP * healthBar.GetComponent<RectTransform>().sizeDelta.x, triPos.y, 0);
-        Debug.Log(healthTriangle.transform.localPosition.x);
         this.gameObject.GetComponent<Renderer>().sortingOrder = 1;
         SceneManager.sceneLoaded += GameSceneLoaded;
         energyBarColor = currentEnergyBar.GetComponent<Image>().color;
@@ -114,7 +115,6 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update() {
         // Move
         if (canMove) {
@@ -317,11 +317,18 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                     afterDamaged = true;
                     StartCoroutine(TimeStop(damagedTimeStop));
                 }
+                StartCoroutine(DamagedUI());
                 healthBar.GetComponent<Image>().fillAmount = (float)hp / (float)maxHP;
                 Vector3 triPos = healthTriangle.transform.localPosition;
                 healthTriangle.transform.localPosition = new Vector3(triPos.x - damage / (float)maxHP * healthBar.GetComponent<RectTransform>().sizeDelta.x , triPos.y, 0);
             }
         }
+    }
+
+    IEnumerator DamagedUI() {
+        yield return new WaitForSeconds(waitTimeDamaged);
+        damagedBar.GetComponent<DamagedBarScript>().enabled = true;
+        damagedTriangle.GetComponent<DamagedTriangleScript>().enabled = true;
     }
 
     public void Death() {
