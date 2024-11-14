@@ -107,6 +107,10 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         healthBar.GetComponent<Image>().fillAmount = (float)hp / (float)maxHP;
         Vector3 triPos = healthTriangle.transform.localPosition;
         healthTriangle.transform.localPosition = new Vector3(triPos.x - (maxHP - hp) / (float)maxHP * healthBar.GetComponent<RectTransform>().sizeDelta.x, triPos.y, 0);
+        if (maxHP > hp) {
+            damagedBar.GetComponent<DamagedBarScript>().enabled = true;
+            damagedTriangle.GetComponent<DamagedTriangleScript>().enabled = true;
+        }
         this.gameObject.GetComponent<Renderer>().sortingOrder = 1;
         SceneManager.sceneLoaded += GameSceneLoaded;
         energyBarColor = currentEnergyBar.GetComponent<Image>().color;

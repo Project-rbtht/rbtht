@@ -206,7 +206,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 62ae3ebb0b9ef6d48a5f638b409ed41b, type: 2}
-  m_Tag: 
+  m_Tag: Air
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -335,7 +335,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 653b6b960b72c964ea4e1aaf1a4b0d3d, type: 2}
-  m_Tag: 
+  m_Tag: Air
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -781,7 +781,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: fed93cb3abd05f049845538e09144bdd, type: 2}
-  m_Tag: 
+  m_Tag: Air
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
@@ -803,32 +803,6 @@ AnimatorTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 1
---- !u!1102 &5637202557005955854
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerAttack2 0
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 36ab1f7f43b8c594c9455ed88af1b296, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1101 &6502083738365576621
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1021,9 +995,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 7899218693810957363}
     m_Position: {x: 150, y: 80, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 5637202557005955854}
-    m_Position: {x: 185, y: 145, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 8829812712512253442}

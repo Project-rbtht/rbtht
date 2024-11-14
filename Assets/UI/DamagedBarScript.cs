@@ -11,6 +11,10 @@ public class DamagedBarScript : MonoBehaviour {
 
     private void Start() {
         image = GetComponent<Image>();
+        if (healthBar.GetComponent<Image>().fillAmount < image.fillAmount) {
+            image.fillAmount = healthBar.GetComponent<Image>().fillAmount;
+        }
+        this.enabled = false;
     }
 
     void Update() {
