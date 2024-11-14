@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BossHp : MonoBehaviour, Idamagable
 {
-    public int hp = 1;
+    public int hp = 5;
     public int attackDamage = 2;
     private Animator anim;
 
