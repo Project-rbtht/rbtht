@@ -27,6 +27,10 @@ public class GroundJudge : MonoBehaviour
         if (collision.gameObject.tag == "Floor") {
             onGround = true;
             PlayerScript.jpNum = PlayerScript.jpNumMax;
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Air")) {
+                anim.SetInteger("Jump", 0);
+                anim.SetTrigger("Ground");
+            }
         }
     }
 
