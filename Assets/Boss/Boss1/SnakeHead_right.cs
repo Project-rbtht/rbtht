@@ -15,6 +15,7 @@ public class SnakeHead_right : BossBase
     private Transform playerPos;//プレイヤーの位置
     private int action = 0;//現在どの行動パターンか
     public GameObject damageArea;
+    public GameManager_Boss1 gameManager_Boss1;
     // Start is called before the first frame update
     void Start()
     {
@@ -91,5 +92,11 @@ public class SnakeHead_right : BossBase
         }
         //StartCoroutine(LaserSpawn());
         yield return new WaitForSeconds(0);
+    }
+    public override void Death()
+    {
+        gameManager_Boss1.RightSnakeDead();
+        Destroy(this.gameObject);
+        UnityEngine.Debug.Log("Right Death");
     }
 }
