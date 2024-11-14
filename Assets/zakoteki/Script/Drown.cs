@@ -12,11 +12,14 @@ public GameObject Bullet;
   private bool _detect;
   private Rigidbody2D _rigid;
   private Vector2 _moveDirection;
+  private Vector2 _spawnPosition;
+
      void Start()
      {
         _detect = false;
         _rigid = GetComponent<Rigidbody2D>();
         _moveDirection = Vector2.left;
+        
         StartCoroutine(Shot());
      }
      void Update()
@@ -63,7 +66,9 @@ public GameObject Bullet;
     }
     while(_detect)
     {
-   Instantiate(Bullet, transform.position, transform.rotation);
+        _spawnPosition = transform.position;
+        _spawnPosition.y -= 0.5f;
+   Instantiate(Bullet, _spawnPosition, transform.rotation);
    yield return new WaitForSeconds(_shotTime);
    yield return null;
     }
