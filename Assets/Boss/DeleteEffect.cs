@@ -15,4 +15,9 @@ public class DeleteEffect : MonoBehaviour
     {
         
     }
+
+    public void Delete()
+    {
+        Destroy(gameObject);
+    }
 }
