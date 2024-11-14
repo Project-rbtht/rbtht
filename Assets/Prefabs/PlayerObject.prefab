@@ -237,6 +237,7 @@ MonoBehaviour:
   deathTimeStop: 0.5
   deathBeforeCircleTime: 2.5
   deathCircleTime: 0.5
+  waitTimeDamaged: 0.3
   speed: 8
   maxHP: 5
   jpNumMax: 2
