@@ -398,7 +398,6 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         PlayerPrefs.SetString("data", saveData);
         PlayerPrefs.Save();
         Debug.Log("saved");
-        Debug.Log(saveData);
     }
 
     public void SaveDelete() {
@@ -416,7 +415,6 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             energyRechargeTime = data.energyRechargeTime;
             attackActivated = data.attackActivated;
             Debug.Log("Reloaded");
-            Debug.Log(PlayerPrefs.GetString("data", null));
         }
     }
 
