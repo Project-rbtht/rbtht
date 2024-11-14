@@ -9,9 +9,12 @@ public class GameManager_Boss1 : MonoBehaviour
 
     private bool leftSnake = true;
     private bool rightSnake = true;
+    private GameObject player;
+    private PlayerScript playerScript;
     void Start()
     {
-        
+        player = GameObject.Find("PlayerObject");
+        playerScript = player.GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
@@ -38,6 +41,7 @@ public class GameManager_Boss1 : MonoBehaviour
         if(!leftSnake && !rightSnake)
         {
             Debug.Log("GameClear");
+            playerScript.GetAbility(1);
             SceneManager.LoadScene("ClearScene");
         }
     }

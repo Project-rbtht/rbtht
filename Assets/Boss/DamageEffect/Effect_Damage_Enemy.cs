@@ -7,7 +7,6 @@ public class Effect_Damage_Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -15,8 +14,14 @@ public class Effect_Damage_Enemy : MonoBehaviour
     {
         
     }
+   
+    IEnumerator DeleteTime()
+    {
+        yield return new WaitForSeconds(0.2f);
+        Destroy(gameObject);
+    }
 
-    public void DestroyEffect()
+    public void DeleteEffect()
     {
         Destroy(gameObject);
     }

@@ -42,7 +42,7 @@ public class SnakeHead_right : BossBase
     private IEnumerator LaserSpawn()//頭の向き（transform.right）にレーザーを放つ
     {
         open = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         Instantiate(bullet, transform.position + mouthPos * transform.right, transform.rotation);
         yield return new WaitForSeconds(4.5f);
         open = false;
