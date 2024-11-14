@@ -23,9 +23,7 @@ public class KuriboHead : MonoBehaviour
     {
         if (collision.gameObject.tag == "PlayerFoot")
         {
-            Debug.Log("befor");
             playerScript.Hit();
-            Debug.Log("after");
             Destroy(this.gameObject.transform.parent.gameObject);
             
         }

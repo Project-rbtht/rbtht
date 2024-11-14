@@ -8,6 +8,7 @@ public class Tori : MonoBehaviour
     private bool _go;
     private bool _ready;
     private bool _tired;
+    private bool _onFloor;
     public float _readySpeed;
     public float _readyTime;
     public float _byGoTime;
@@ -15,6 +16,7 @@ public class Tori : MonoBehaviour
     public float _chaseSpeed2;
     public float _goSpeed;
     public float _tiredTime;
+    public float _gondoraSpeed;
     private Animator _anim;
     private Rigidbody2D _rigid;
     private Transform playerPos;
@@ -34,10 +36,20 @@ public class Tori : MonoBehaviour
         _anim.SetBool("ready", _ready);
         _tired = false;
         _anim.SetBool("tired", _tired);
+        _onFloor = false;
 
         player = GameObject.Find("PlayerObject");
         playerPos = player.transform;
         _moveDirection = Vector2.left;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Floor"))
+        {
+            _onFloor = true;
+            _Move();
+        }
     }
 
     void OnTriggerStay2D(Collider2D collision)
@@ -57,7 +69,7 @@ public class Tori : MonoBehaviour
         float elapsedTime = 0f;
         while (elapsedTime < _readyTime)
         {
-            _rigid.velocity = new Vector2(_moveDirection.x * _chaseSpeed1, -_readySpeed); //斜めに突っ込む
+            _rigid.velocity = new Vector2(_moveDirection.x * _chaseSpeed1, -_readySpeed + _gondoraSpeed); //斜めに突っ込む
             elapsedTime += Time.deltaTime; // 経過時間を加算
             yield return null; // 次のフレームを待つ
         }
@@ -68,7 +80,7 @@ public class Tori : MonoBehaviour
         float elapsedTime2 = 0f;
         while (elapsedTime2 < _byGoTime)
         {
-            _rigid.velocity = new Vector2(_moveDirection.x * _chaseSpeed2, 0); //追いかける
+            _rigid.velocity = new Vector2(_moveDirection.x * _chaseSpeed2, _gondoraSpeed); //追いかける
             elapsedTime2 += Time.deltaTime; // 経過時間を加算
             yield return null; // 次のフレームを待つ
         }
@@ -78,14 +90,14 @@ public class Tori : MonoBehaviour
         float elapsedTime3 = 0f;
         while (elapsedTime3 < 0.5f)
         {
-            _rigid.velocity = new Vector2(0, -1); // 下に移動
+            _rigid.velocity = new Vector2(0, -1 + _gondoraSpeed); // 下に移動(突っ込む前隙)
             elapsedTime3 += Time.deltaTime; // 経過時間を加算
             yield return null; // 次のフレームを待つ
         } 
         float elapsedTime4 = 0f;
         while (elapsedTime4 < 1.0f)
         {
-            _rigid.velocity = new Vector2(0, _goSpeed); // 上に突っ込む
+            _rigid.velocity = new Vector2(0, _goSpeed + _gondoraSpeed); // 上に突っ込む
             elapsedTime4 += Time.deltaTime; // 経過時間を加算
             yield return null; // 次のフレームを待つ
         }
@@ -95,7 +107,7 @@ public class Tori : MonoBehaviour
         float elapsedTime5 = 0f;
         while (elapsedTime5 < (-_readySpeed * _readyTime - 0.5f + _goSpeed)/3f)
         {
-            _rigid.velocity = new Vector2(0, -3); // 上に移動
+            _rigid.velocity = new Vector2(0, -3 + _gondoraSpeed); // 元の位置に移動
             elapsedTime5 += Time.deltaTime; // 経過時間を加算
             yield return null; // 次のフレームを待つ
         }
@@ -104,7 +116,7 @@ public class Tori : MonoBehaviour
           float elapsedTime6 = 0f;
         while (elapsedTime6 < _tiredTime)
         {
-            _rigid.velocity = new Vector2(0, 0); // 後隙
+            _rigid.velocity = new Vector2(0, _gondoraSpeed); // 後隙
             elapsedTime6 += Time.deltaTime; // 経過時間を加算
             yield return null; // 次のフレームを待つ
         }
@@ -124,6 +136,7 @@ public class Tori : MonoBehaviour
     void Update()
     {
          FlipToPlayer();  
+         
         
     }
     
@@ -144,6 +157,13 @@ public class Tori : MonoBehaviour
     _moveDirection = Vector2.zero;
   }
  }
+
+  void _Move()
+     { if(_onFloor)
+     {
+       _rigid.velocity = new Vector2(_rigid.velocity.x, _rigid.velocity.y  + _gondoraSpeed);
+     }
+     }
 
 
     
