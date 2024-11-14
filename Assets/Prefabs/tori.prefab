@@ -146,6 +146,7 @@ MonoBehaviour:
   hp: 2
   damage: 1
   recastTime: 1
+  damageEffect: {fileID: 6043908753730526742, guid: 4b498cbcb44ee1448bfb648a791e1bf1, type: 3}
 --- !u!1 &8806812215797980922
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +277,7 @@ MonoBehaviour:
   _chaseSpeed2: 9
   _goSpeed: 27
   _tiredTime: 4
+  _gondoraSpeed: 0
   player: {fileID: 0}
 --- !u!61 &7190918380840905225
 BoxCollider2D:

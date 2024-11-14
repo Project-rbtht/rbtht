@@ -9,12 +9,16 @@ public class Dossun : MonoBehaviour
     public float _upTime = 3f;  //上昇時間
     private Rigidbody2D _rigid;
     private Animator _anim;
+    AudioSource audioSource;
+    public AudioClip[] sounds;
 
     private bool _detect;
     private bool _falled;
-
+    
+    
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         _rigid = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _detect = false;
@@ -27,6 +31,7 @@ public class Dossun : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !_detect)
         {
+            audioSource.PlayOneShot(sounds[1]);
             _rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
             _rigid.velocity = new Vector2(0, -_fallSpeed); // 落下開始
            // Debug.Log("detect");
@@ -40,12 +45,14 @@ public class Dossun : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor") && _detect && !_falled)
         {
+            audioSource.PlayOneShot(sounds[0]);
             StartCoroutine(HandleFalling());
         }
     }
 
     private IEnumerator HandleFalling()
     {
+
         // 床に衝突した時にのみ_falledをtrueにする
         _falled = true;
         _anim.SetBool("falled", _falled);
