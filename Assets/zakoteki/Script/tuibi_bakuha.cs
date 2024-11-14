@@ -43,7 +43,7 @@ public class tuibi_bakuha : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player"||collision.gameObject.tag == "Floor")
+        if(collision.gameObject.tag == "Player"||collision.gameObject.tag == "Floor"||collision.gameObject.tag == "PlayerAttack")
         {
             Instantiate(explosion,transform.position,transform.rotation);
             Destroy(this.gameObject);
