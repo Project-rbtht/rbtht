@@ -18,12 +18,10 @@ public class CameraScript : MonoBehaviour {
     }
 
     void LateUpdate() {
-        if (!isGondora) {
-            if (targetObj.GetComponent<PlayerScript>().gameOver) {
-                transform.position = new Vector3(targetTrans.position.x, transform.position.y, transform.position.z);
-            } else {
-                transform.position = new Vector3(targetTrans.position.x, targetTrans.position.y, transform.position.z);
-            }
+        if (!isGondora && targetObj.GetComponent<PlayerScript>().gameOver) {
+            transform.position = new Vector3(targetTrans.position.x, transform.position.y, transform.position.z);
+        } else {
+            transform.position = new Vector3(targetTrans.position.x, targetTrans.position.y, transform.position.z);
         }
     }
 }
