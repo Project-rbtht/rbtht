@@ -38,7 +38,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public float speed = 0.1f;
 
     //can enhance
-    public int maxHP = 20;
+    public int maxHP = 1;
     public int jpNumMax = 1;
     public float justGuardGrace = 0.2f;
     public float shieldDecSpeed = 5;
@@ -79,7 +79,8 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         if (restartStage == "") {
             restartStage = SceneManager.GetActiveScene().name;
             ReStart();
-        } else if (SceneManager.GetActiveScene().name == "scene0") {
+        }
+        if (SceneManager.GetActiveScene().name == "scene0") {
             restartStage = "";
         }
         healthBar = GameObject.Find("Canvas/HPBar/HPBackground/HealthBar");
@@ -110,6 +111,8 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         if (maxHP > hp) {
             damagedBar.GetComponent<DamagedBarScript>().enabled = true;
             damagedTriangle.GetComponent<DamagedTriangleScript>().enabled = true;
+            damagedBar.GetComponent<DamagedBarScript>().set = true;
+            damagedTriangle.GetComponent<DamagedTriangleScript>().set = true;
         }
         this.gameObject.GetComponent<Renderer>().sortingOrder = 1;
         SceneManager.sceneLoaded += GameSceneLoaded;

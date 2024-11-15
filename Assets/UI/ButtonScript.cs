@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour
 {
-    public string preStage;
         
     public int maxHP = 1;
     public int jpNumMax = 1;
@@ -25,7 +24,7 @@ public class ButtonScript : MonoBehaviour
         audioManager.buttonSound = true;
         audioManager.sound = sound;
         SceneManager.sceneLoaded += GameSceneLoaded;
-        SceneManager.LoadScene(preStage);
+        SceneManager.LoadScene(restartStage);
     }
 
     public void StageButton() {

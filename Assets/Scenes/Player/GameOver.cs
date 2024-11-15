@@ -9,10 +9,10 @@ public class GameOver : MonoBehaviour
     GameObject circle;
     GameObject HPBar;
     GameObject EnergyBar;
-    string preStage;
+    // string preStage;
     
     public void Death(PlayerScript player, float timeStop, float beforeCircle, float changeTime, AudioClip sound) {
-        preStage = player.restartStage;
+        // preStage = player.restartStage;
         player.enabled = false;
         SceneManager.sceneLoaded += GameOverSceneLoad;
         circle = GameObject.Find("Canvas/Circle");
@@ -50,7 +50,7 @@ public class GameOver : MonoBehaviour
 
     void GameOverSceneLoad(Scene next, LoadSceneMode mode) {
         var nextButtonScript = GameObject.FindWithTag("Respawn").GetComponent<ButtonScript>();
-        nextButtonScript.preStage = preStage;
+        // nextButtonScript.preStage = preStage;
         SceneManager.sceneLoaded -= GameOverSceneLoad;
     }
 }
