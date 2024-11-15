@@ -38,7 +38,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public float speed = 0.1f;
 
     //can enhance
-    public int maxHP = 1;
+    public int maxHP = 20;
     public int jpNumMax = 1;
     public float justGuardGrace = 0.2f;
     public float shieldDecSpeed = 5;
