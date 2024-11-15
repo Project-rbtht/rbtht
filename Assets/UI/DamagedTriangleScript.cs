@@ -7,15 +7,18 @@ public class DamagedTriangleScript : MonoBehaviour
 {
     public GameObject healthTriangle;
     public GameObject damagedBar;
+    public bool set = false;
 
     float decSpeed;
 
     private void Start() {
         decSpeed = damagedBar.GetComponent<DamagedBarScript>().decSpeed;
-        if (healthTriangle.transform.localPosition.x < transform.localPosition.x) {
-            transform.localPosition = new Vector3(healthTriangle.transform.localPosition.x, transform.localPosition.y, 0);
+        if(set){
+            if (healthTriangle.transform.localPosition.x < transform.localPosition.x) {
+                transform.localPosition = new Vector3(healthTriangle.transform.localPosition.x, transform.localPosition.y, 0);
+            }
+            this.enabled = false;
         }
-        this.enabled = false;
     }
 
     void Update() {
