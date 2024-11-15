@@ -2069,7 +2069,7 @@ PrefabInstance:
       objectReference: {fileID: 2079358744}
     - target: {fileID: 2738630127138982917, guid: e1dfd6896819ac14db3be1d50883a7c1, type: 3}
       propertyPath: _gondoraSpeed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8806812215797980922, guid: e1dfd6896819ac14db3be1d50883a7c1, type: 3}
       propertyPath: m_Name
