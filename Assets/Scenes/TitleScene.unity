@@ -494,7 +494,8 @@ MonoBehaviour:
   onImage: {fileID: 21300000, guid: d4343a44f9983486aab2e9e3401f13b6, type: 3}
   pushImage: {fileID: 21300000, guid: 47e4dc3d57b5e45b9afdf56364d6dd5b, type: 3}
   audioManager: {fileID: 11400000, guid: c3e71a8e1a5836043be4fe91d63fb45c, type: 2}
-  sound: {fileID: 8300000, guid: 4a6c03cc2bd00a64696ac21827f7a5f0, type: 3}
+  selectSound: {fileID: 8300000, guid: 4a6c03cc2bd00a64696ac21827f7a5f0, type: 3}
+  hoverSound: {fileID: 8300000, guid: 13ce55ea060ff48ca96ae4edb75acb3f, type: 3}
 --- !u!114 &209929234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,7 +866,8 @@ MonoBehaviour:
   onImage: {fileID: 21300000, guid: eec7311d021c44cffb588d9fed3f3851, type: 3}
   pushImage: {fileID: 21300000, guid: 345d7bb568b364dd580d7a7ca7fb6161, type: 3}
   audioManager: {fileID: 11400000, guid: c3e71a8e1a5836043be4fe91d63fb45c, type: 2}
-  sound: {fileID: 8300000, guid: 4a6c03cc2bd00a64696ac21827f7a5f0, type: 3}
+  selectSound: {fileID: 8300000, guid: 4a6c03cc2bd00a64696ac21827f7a5f0, type: 3}
+  hoverSound: {fileID: 8300000, guid: 13ce55ea060ff48ca96ae4edb75acb3f, type: 3}
 --- !u!114 &1798449154
 MonoBehaviour:
   m_ObjectHideFlags: 0
