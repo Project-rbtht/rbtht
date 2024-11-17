@@ -33,6 +33,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public float deathBeforeCircleTime = 2f;
     public float deathCircleTime = 2f;
     public float waitTimeDamaged = 1f;
+    public float gravityScale = 2f;
 
     //can temp buff
     public float speed = 0.1f;
@@ -54,6 +55,9 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public bool gameOver = false;
     public int hp = 0;
 
+    public FootScript foot;
+    public bool justJump = false;
+
     Rigidbody2D rb;
     Animator anim = null;
     float remainInvincible = 0;
@@ -63,6 +67,10 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     bool shieldRecharge = false;
     bool afterDamaged = false;
     float blinkingCycle = 0.14f;
+    public bool collide = false;
+    public bool sakamichi = false;
+
+    Vector2 normalVector = Vector2.zero;
 
     GameObject healthBar;
     GameObject healthTriangle;
@@ -72,7 +80,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     GameObject currentEnergyTriangle;
     Color energyBarColor;
     GameObject Menu;
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
 
     void Start () {
@@ -122,38 +130,86 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         audioSource = GetComponent<AudioSource>();
     }
 
+    void OnCollisionEnter2D(Collision2D collision) {
+        //if (collision.gameObject.tag == "Floor") {
+            collide = true;
+            normalVector = collision.contacts[0].normal;
+        //}
+    }
+
+    void OnCollisionStay2D(Collision2D collision) {
+        //if (collision.gameObject.tag == "Floor") {
+            collide = true;
+            normalVector = collision.contacts[0].normal;
+        //}
+    }
+    void OnCollisionExit2D(Collision2D collision) {
+        //if (collision.gameObject.tag == "Floor") {
+            collide = false;
+        //}
+    }
+
+    //void LateUpdate() {
+    //    Debug.Log("late v" + rb.velocity);
+    //}
+
     void Update() {
         // Move
         if (canMove) {
-            float x = Input.GetAxisRaw("Horizontal");
-            float speedY = rb.velocity.y;
+            //float x = Input.GetAxisRaw("Horizontal");
+            //float speedY = rb.velocity.y;
 
-            if (speedY < 0 && anim.GetInteger("Jump") > 0) {
-                anim.SetInteger("Jump", -1);
-            }
+            
+            //if (speedY < 0 && anim.GetInteger("Jump") > 0) {
+            //    anim.SetInteger("Jump", -1);
+            //}
 
-            if (Input.GetButtonDown("Jump") == true) {
-                if (jpNum > 0) {
-                    speedY = jpSpeed;
-                    if (groundJudge.onGround == true) {
-                        anim.SetInteger("Jump", 1);
-                        audioSource.PlayOneShot(sounds[0]);
-                    } else {
-                        anim.SetInteger("Jump", 2);
-                        audioSource.PlayOneShot(sounds[1]);
-                    }
-                    jpNum--;
-                }
-            }
+            //if (Input.GetButtonDown("Jump") == true) {
+            //    if (jpNum > 0) {
+            //        speedY = jpSpeed;
+            //        if (foot.onGround == true) {
+            //            //if (groundJudge.onGround == true) {
+            //            justJump = true;
+            //            anim.SetInteger("Jump", 1);
+            //            audioSource.PlayOneShot(sounds[0]);
+            //            foot.onGround = false;
+            //            sakamichi = false;
+            //        } else {
+            //            anim.SetInteger("Jump", 2);
+            //            audioSource.PlayOneShot(sounds[1]);
+            //        }
+            //        jpNum--;
+            //    }
+            //}
 
-            rb.velocity = new Vector2(x * speed, speedY);
+            //if (!foot.onGround && sakamichi) {
+            //    speedY = 0;
+            //    sakamichi = false;
+            //}
 
-            // Direction
-            anim.SetInteger("Speed", (int)Mathf.Abs(x * 2));
 
-            if (x != 0) {
-                transform.localScale = new Vector3(x / Mathf.Abs(x), 1, 1);
-            }
+            //if (jpNum == jpNumMax && foot.onGround) {
+            //    //if (jpNum == jpNumMax && foot.onGround) {
+            //    rb.gravityScale = 0;
+            //    rb.velocity = speed * foot.groundVector * Mathf.Sign(foot.groundVector.x) * x;
+            //    //rb.velocity = speed * foot.groundVector * x / foot.groundVector.x;
+            //    //rb.velocity = speed * normalVector * Mathf.Sign(normalVector.x) * x;
+            //    sakamichi = true;
+            //} else {
+            //    rb.gravityScale = gravityScale;
+            //    if ((foot.onWall && Mathf.Sign(foot.normalVector.x) != x) || (collide && Mathf.Sign(normalVector.x) != x)) {
+            //        rb.velocity = new Vector2(0, speedY);
+            //    } else {
+            //        rb.velocity = new Vector2(x * speed, speedY);
+            //    }
+            //}
+
+            //anim.SetInteger("Speed", (int)Mathf.Abs(x * 2));
+
+            //// Direction
+            //if (x != 0) {
+            //    transform.localScale = new Vector3(x / Mathf.Abs(x), 1, 1);
+            //}
 
             // Attack
             for (int i = 0; i < attackList.Length; i++) {
@@ -342,6 +398,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         anim.SetBool("Damaged", true);
         gameOver = true;
         this.gameObject.layer = 1;
+        foot.gameObject.layer = 1;
         SceneManager.sceneLoaded -= GameSceneLoaded;
         SceneManager.sceneLoaded += GameOverSceneLoaded;
         gameOverScript.Death(this, deathTimeStop, deathBeforeCircleTime, deathCircleTime, sounds[6]);
@@ -417,6 +474,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
     public void SaveDelete() {
         PlayerPrefs.DeleteKey("data");
+        Debug.Log("Deleted");
     }
 
     public void ReStart() {

@@ -24,6 +24,7 @@ public class GroundJudge : MonoBehaviour
     }
 
     void OnTriggerStay2D(Collider2D collision) {
+        Debug.Log("fire");
         if (collision.gameObject.tag == "Floor") {
             onGround = true;
             PlayerScript.jpNum = PlayerScript.jpNumMax;
