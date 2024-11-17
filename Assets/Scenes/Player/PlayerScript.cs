@@ -34,6 +34,8 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public float deathCircleTime = 2f;
     public float waitTimeDamaged = 1f;
 
+    [SerializeField] string[] bossScenes;
+
     //can temp buff
     public float speed = 0.1f;
 
@@ -82,6 +84,13 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         }
         if (SceneManager.GetActiveScene().name == "scene0") {
             restartStage = "";
+        } else if (bossScenes.Length != 0) {
+            for (int i = 0; i < bossScenes.Length; i++) {
+                if(SceneManager.GetActiveScene().name == bossScenes[i]) {
+                    restartStage = bossScenes[i];
+                    break;
+                }
+            }
         }
         healthBar = GameObject.Find("Canvas/HPBar/HPBackground/HealthBar");
         healthTriangle = GameObject.Find("Canvas/HPBar/HPBackground/HealthTriangle").gameObject;
