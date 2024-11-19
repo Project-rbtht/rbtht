@@ -267,6 +267,7 @@ public class FootScript : MonoBehaviour{
                 rb.MovePosition(rb.position + (playerScript.speed * groundVector * Mathf.Sign(groundVector.x) * x)*Time.deltaTime);
                 playerScript.sakamichi = true;
             } else {
+                vectorA = GroundVector(rb.position, new Vector2(0, -1), 10);
                 // rb.gravityScale = playerScript.gravityScale;
                 speedY -= 9.8f * playerScript.gravityScale * Time.deltaTime;
                 if ((onWall && Mathf.Sign(normalVector.x) != x) || (playerScript.collide && Mathf.Sign(normalVector.x) != x)) {
@@ -293,7 +294,7 @@ public class FootScript : MonoBehaviour{
         groundVector = Vector2.zero;
     }
 
-    Vector2 GroundVec(Vector2 pos, Vector2 dir, float dis){
+    Vector2 GroundVector(Vector2 pos, Vector2 dir, float dis){
         Vector2 slopeVector = Vector2.zero;
         RaycastHit2D hit = Physics2D.Raycast(pos, dir, dis);
         if(hit != null){
