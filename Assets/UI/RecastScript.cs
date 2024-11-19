@@ -26,9 +26,9 @@ public class RecastScript : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (!playerScript.attackActivated[attackNum]) {
-            this.gameObject.SetActive(false);
-        }
+        //if (!playerScript.attackActivated[attackNum]) {
+        //    this.gameObject.SetActive(false);
+        //}
         float time = player.GetComponent<PlayerScript>().counter[attackNum];
         fader.GetComponent<Image>().fillAmount = time / attack.GetComponent<Attack>().RecastTime();
         if (time == recastTime) {
