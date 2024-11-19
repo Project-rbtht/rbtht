@@ -7,8 +7,7 @@ class Colliders {
     public Collision2D collision;
 }
 
-public class FootScript : MonoBehaviour
-{
+public class FootScript : MonoBehaviour{
     public bool onGround = false;
     public Vector2 groundVector = Vector2.zero;
     public Vector2 normalVector = Vector2.zero;
@@ -157,7 +156,7 @@ public class FootScript : MonoBehaviour
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         x = Input.GetAxisRaw("Horizontal");
-        speedY = rb.velocity.y;
+        // speedY = rb.velocity.y;
 
         if(playerScript.canMove){
             if (speedY < 0 && !onGround) {
@@ -263,23 +262,27 @@ public class FootScript : MonoBehaviour
 
 
             if (playerScript.jpNum == playerScript.jpNumMax && onGround) {
-                rb.gravityScale = 0;
-                rb.velocity = playerScript.speed * groundVector * Mathf.Sign(groundVector.x) * x;
+                // rb.gravityScale = 0;
+                // rb.velocity = playerScript.speed * groundVector * Mathf.Sign(groundVector.x) * x;
+                rb.MovePosition(rb.position + (playerScript.speed * groundVector * Mathf.Sign(groundVector.x) * x)*Time.deltaTime);
                 playerScript.sakamichi = true;
             } else {
-                rb.gravityScale = playerScript.gravityScale;
+                // rb.gravityScale = playerScript.gravityScale;
+                speedY -= 9.8f * playerScript.gravityScale * Time.deltaTime;
                 if ((onWall && Mathf.Sign(normalVector.x) != x) || (playerScript.collide && Mathf.Sign(normalVector.x) != x)) {
-                    if(speedY == 0){
-                        rb.velocity = new Vector2(0, playerScript.speed / 100);
-                    } else {
-                        rb.velocity = new Vector2(0, speedY);
-                    }
+                    // if(speedY == 0){
+                    //     // rb.velocity = new Vector2(0, playerScript.speed / 100);
+                    // } else {
+                        // rb.velocity = new Vector2(0, speedY);
+                        rb.MovePosition(rb.position + (new Vector2(0, speedY))*Time.deltaTime);
+                    // }
                     Debug.Log("jpNum:" + playerScript.jpNum + "onGround:" + onGround);
                     Debug.Log("onWall & isWall" + onWall + isWallScript.isWall);
                     Debug.Log("Sign" + (Mathf.Sign(normalVector.x) != x));
                     Debug.Log("collide" + (playerScript.collide));
                 } else { //jump
-                    rb.velocity = new Vector2(x * playerScript.speed, speedY);
+                    // rb.velocity = new Vector2(x * playerScript.speed, speedY);
+                    rb.MovePosition(rb.position + (new Vector2(x * playerScript.speed, speedY))*Time.deltaTime);
                 }
             }
         }
@@ -288,5 +291,15 @@ public class FootScript : MonoBehaviour
         normals.Clear();
         normalVector = Vector2.zero;
         groundVector = Vector2.zero;
+    }
+
+    Vector2 GroundVec(Vector2 pos, Vector2 dir, float dis){
+        Vector2 slopeVector = Vector2.zero;
+        RaycastHit2D hit = Physics2D.Raycast(pos, dir, dis);
+        if(hit != null){
+            Vector2 normal = hit.normal;
+            slopeVector = Vector2.Perpendicular(normal);
+        }
+        return slopeVector.normalized;
     }
 }

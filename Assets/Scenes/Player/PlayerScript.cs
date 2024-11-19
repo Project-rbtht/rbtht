@@ -398,6 +398,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         anim.SetBool("Damaged", true);
         gameOver = true;
         foot.enabled = false;
+        rb.gravityScale = gravityScale;
         this.gameObject.layer = 1;
         foot.gameObject.layer = 1;
         SceneManager.sceneLoaded -= GameSceneLoaded;
