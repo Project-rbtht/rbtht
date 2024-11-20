@@ -93,6 +93,9 @@ public class PlayerScript : MonoBehaviour, Idamagable {
                 }
             }
         }
+        if(hp <= 0){
+            hp = maxHP;
+        }
         healthBar = GameObject.Find("Canvas/HPBar/HPBackground/HealthBar");
         healthTriangle = GameObject.Find("Canvas/HPBar/HPBackground/HealthTriangle").gameObject;
         damagedBar = GameObject.Find("Canvas/HPBar/HPBackground/DamagedBar").gameObject;
