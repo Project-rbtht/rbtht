@@ -30,11 +30,18 @@ public class FootScript : MonoBehaviour{
     //List<Colliders> collisions = new List<Colliders>();
     List<Collision2D> collisions = new List<Collision2D>();
     List<Vector2> normals = new List<Vector2>();
+    float radius;
+    float offsetx;
+    float offsety;
 
 
     void Start() {
         anim = playerScript.gameObject.GetComponent<Animator>();
         rb = playerScript.gameObject.GetComponent<Rigidbody2D>();
+        CircleCollider2D col = GetComponent<CircleCollider2D>();
+        radius = col.radius;
+        offsetx = col.offset.x;
+        offsety = col.offset.y;
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
@@ -275,15 +282,15 @@ public class FootScript : MonoBehaviour{
                 playerScript.sakamichi = true;
                 if(!isSlopeScript.isWall && isWallScript.isWall){
                     rb.gravityScale = 0.1f;
-                    Vector2 vectorA = GroundVector(rb.position + new Vector2(GetComponent<CircleCollider2D>().radius,0), new Vector2(0, -1), 10);
+                    Vector2 vectorA = GroundVector(rb.position + new Vector2(x*(radius+offsetx),offsety-0.1f), new Vector2(0, -1), 10);
                     rb.MovePosition(rb.position + playerScript.speed * vectorA * Mathf.Sign(vectorA.x) * x * Time.deltaTime);
-                    Debug.Log(0);
+                    Debug.Log(playerScript.speed * vectorA * Mathf.Sign(vectorA.x) * x);
                 }else{
                     if(groundVector == Vector2.zero){
                         groundVector = preGroundVector;
                     }
                     rb.MovePosition(rb.position + playerScript.speed * groundVector * Mathf.Sign(groundVector.x) * x * Time.deltaTime);
-                    Debug.Log(1);
+                    //Debug.Log(1);
                 }
             } else {
                 // rb.gravityScale = playerScript.gravityScale;
@@ -302,7 +309,7 @@ public class FootScript : MonoBehaviour{
                 } else { //jump
                     // rb.velocity = new Vector2(x * playerScript.speed, speedY);
                     rb.MovePosition(rb.position + (new Vector2(x * playerScript.speed, speedY))*Time.deltaTime);
-                    Debug.Log(2);
+                    //Debug.Log(2);
                 }
             }
         }
@@ -318,8 +325,11 @@ public class FootScript : MonoBehaviour{
         Vector2 slopeVector = Vector2.zero;
         RaycastHit2D hit = Physics2D.Raycast(pos, dir, dis);
         if(hit.collider != null){
+            Debug.Log("collider:"+hit.collider.name);
             Vector2 normal = hit.normal;
             slopeVector = Vector2.Perpendicular(normal).normalized;
+            Debug.Log("normal:" + normal);
+            Debug.Log("slope:" + slopeVector);
         }
         return slopeVector.normalized;
     }

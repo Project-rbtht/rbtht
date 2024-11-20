@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundJudge : MonoBehaviour
 {
-    public bool onGround;
+    public bool onGround;/*
     public GameObject Player;
     public PlayerScript PlayerScript;
 
@@ -41,5 +41,5 @@ public class GroundJudge : MonoBehaviour
             PlayerScript.jpNum = PlayerScript.jpNumMax - 1;
             anim.SetInteger("Jump", 1);
         }
-    }
+    }*/
 }

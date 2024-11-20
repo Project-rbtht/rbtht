@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3504208501850198027}
   - component: {fileID: 627206865770058259}
   - component: {fileID: 8785344943729539219}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Attack0
   m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 5371914486074778913}
   - component: {fileID: 3248070290618839780}
   - component: {fileID: 5299412237030131047}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Shield
   m_TagString: Shield
   m_Icon: {fileID: 0}
@@ -705,13 +705,13 @@ GameObject:
   - component: {fileID: 5571184318317025134}
   - component: {fileID: 8922759472675317867}
   - component: {fileID: 8835931583514056943}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: OnGround
   m_TagString: PlayerFoot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5571184318317025134
 Transform:
   m_ObjectHideFlags: 0
@@ -779,14 +779,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448489166103020429}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b44cbfc78401b104782eeba9827c5c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onGround: 0
-  Player: {fileID: 440276840742387133}
-  PlayerScript: {fileID: 9140224016454320283}
 --- !u!1 &1976540443334941964
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +796,7 @@ GameObject:
   - component: {fileID: 3952797400515905430}
   - component: {fileID: 1583915970185824480}
   - component: {fileID: 4289805421518563741}
-  m_Layer: 11
+  m_Layer: 2
   m_Name: IsSlope
   m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
@@ -889,7 +887,7 @@ GameObject:
   - component: {fileID: 2024742977956762626}
   - component: {fileID: 130609760985836719}
   - component: {fileID: 2941378809189460654}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: OnGround
   m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
@@ -905,7 +903,7 @@ Transform:
   m_GameObject: {fileID: 2935333708728702139}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.8510001, z: 0}
+  m_LocalPosition: {x: 0, y: -0.85099983, z: 0}
   m_LocalScale: {x: 0.3, y: 0.1508203, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -943,7 +941,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.32167798}
+  m_Offset: {x: 0.1667375, y: 0.027603269}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -954,7 +952,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.19184981}
+  m_Size: {x: 1.6094462, y: 0.77999926}
   m_EdgeRadius: 0
 --- !u!114 &2941378809189460654
 MonoBehaviour:
@@ -979,7 +977,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5213027922697760488}
   - component: {fileID: 4000582778211728103}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Attack2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1031,7 +1029,7 @@ GameObject:
   - component: {fileID: 7761629215681953539}
   - component: {fileID: 6805039448142555947}
   - component: {fileID: 2983745336064478071}
-  m_Layer: 11
+  m_Layer: 2
   m_Name: Foot
   m_TagString: PlayerFoot
   m_Icon: {fileID: 0}
@@ -1172,7 +1170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9163669460236438212}
   - component: {fileID: 8408306932956630439}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1218,7 +1216,7 @@ GameObject:
   - component: {fileID: 9181209337966805022}
   - component: {fileID: 6689452948712234568}
   - component: {fileID: 6475781841214585568}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Attack1
   m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
@@ -1363,7 +1361,7 @@ GameObject:
   - component: {fileID: 3352933840170232635}
   - component: {fileID: 4506383315366799453}
   - component: {fileID: 1925367969522128130}
-  m_Layer: 11
+  m_Layer: 2
   m_Name: IsWall
   m_TagString: PlayerAttack
   m_Icon: {fileID: 0}
