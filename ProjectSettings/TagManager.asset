@@ -10,6 +10,8 @@ TagManager:
   - Shield
   - Menu
   - PlayerFoot
+  - D_Wall
+  - GonFloor
   layers:
   - Default
   - TransparentFX
