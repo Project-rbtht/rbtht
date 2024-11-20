@@ -2698,13 +2698,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 214075236884615989, guid: 49f73129ef5b6154c97c0ca1e725a584, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1514365259704628162, guid: 49f73129ef5b6154c97c0ca1e725a584, type: 3}
       propertyPath: m_Name
       value: car
       objectReference: {fileID: 0}
     - target: {fileID: 4519447226548759804, guid: 49f73129ef5b6154c97c0ca1e725a584, type: 3}
       propertyPath: m_LocalScale.x
-      value: -0.9182
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4519447226548759804, guid: 49f73129ef5b6154c97c0ca1e725a584, type: 3}
       propertyPath: m_LocalPosition.x
