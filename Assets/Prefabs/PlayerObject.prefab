@@ -238,6 +238,9 @@ MonoBehaviour:
   deathBeforeCircleTime: 2.5
   deathCircleTime: 0.5
   waitTimeDamaged: 0.3
+  bossScenes:
+  - Boss1
+  - scene24
   speed: 8
   maxHP: 5
   jpNumMax: 2
