@@ -490,9 +490,10 @@ GameObject:
   m_Component:
   - component: {fileID: 315889811}
   - component: {fileID: 315889810}
+  - component: {fileID: 315889812}
   m_Layer: 0
   m_Name: March_for__delightful_future
-  m_TagString: Untagged
+  m_TagString: BGM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -608,6 +609,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &315889812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315889809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14eb33c4d7173a4e918f7bd2d7efbca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &440875355
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,6 +801,26 @@ PrefabInstance:
     - target: {fileID: 3929425184539262341, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259963980278048793, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: e7e8db9f713012941a005263723208e0, type: 2}
+    - target: {fileID: 8922759472675317867, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5717857
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922759472675317867, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
+      propertyPath: m_Size.y
+      value: 0.75350654
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922759472675317867, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0035288036
+      objectReference: {fileID: 0}
+    - target: {fileID: 8922759472675317867, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.040849626
       objectReference: {fileID: 0}
     - target: {fileID: 9140224016454320283, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
       propertyPath: maxHP

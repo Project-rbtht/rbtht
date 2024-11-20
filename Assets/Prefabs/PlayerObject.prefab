@@ -242,7 +242,7 @@ MonoBehaviour:
   - Boss1
   - scene24
   speed: 8
-  maxHP: 5
+  maxHP: 12
   jpNumMax: 2
   justGuardGrace: 0.1
   shieldDecSpeed: 5
@@ -683,7 +683,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.32167798}
+  m_Offset: {x: -0.02318132, y: 0.09694356}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -694,7 +694,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.19184981}
+  m_Size: {x: 1.2665305, y: 0.6413187}
   m_EdgeRadius: 0
 --- !u!114 &8835931583514056943
 MonoBehaviour:

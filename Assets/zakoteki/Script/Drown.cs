@@ -9,7 +9,9 @@ public GameObject Bullet;
 
   public float _shotTime;
   public float _moveSpeed;
+  public float _gondoraSpeed;
   private bool _detect;
+  private bool _onFloor;
   private Rigidbody2D _rigid;
   private Vector2 _moveDirection;
   private Vector2 _spawnPosition;
@@ -17,6 +19,7 @@ public GameObject Bullet;
      void Start()
      {
         _detect = false;
+        _onFloor = false;
         _rigid = GetComponent<Rigidbody2D>();
         _moveDirection = Vector2.left;
         
@@ -31,14 +34,25 @@ public GameObject Bullet;
       
        private void _Move()
      {
+      if (!_onFloor)
+      {
        _rigid.velocity = new Vector2(_moveDirection.x * _moveSpeed, _rigid.velocity.y);
+      }
+      if (_onFloor)
+      {
+        _rigid.velocity = new Vector2(_moveDirection.x * _moveSpeed, _gondoraSpeed);
+      }
      }
        void OnTriggerEnter2D(Collider2D collision)
      {
         
-         if (collision.CompareTag("Floor"))
+         if (collision.CompareTag("D_Wall"))
          {
           _moveDirection = -_moveDirection;
+         }
+         if (collision.CompareTag("GonFloor"))
+         {
+           _onFloor = true;
          }
          if(collision.CompareTag("Player"))
         {
