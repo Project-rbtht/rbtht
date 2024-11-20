@@ -36,7 +36,7 @@ public GameObject Bullet;
      {
       if (!_onFloor)
       {
-       _rigid.velocity = new Vector2(_moveDirection.x * _moveSpeed, _rigid.velocity.y);
+       _rigid.velocity = new Vector2(_moveDirection.x * _moveSpeed, 0f);
       }
       if (_onFloor)
       {
@@ -94,6 +94,10 @@ public GameObject Bullet;
          if (collision.CompareTag("Player"))
          {
           _detect = false;
+         }
+         if (collision.CompareTag("GonFloor"))
+         {
+          _onFloor = false;
          }
      }
 
