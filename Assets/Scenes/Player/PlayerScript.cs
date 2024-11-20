@@ -82,6 +82,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     GameObject Menu;
     public AudioSource audioSource;
 
+    BGMControler bgm;
 
     void Start () {
         if (restartStage == "") {
@@ -128,6 +129,12 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         Menu = GameObject.FindWithTag("Menu");
         Menu.SetActive(false);
         audioSource = GetComponent<AudioSource>();
+        Debug.Log("mae");
+        GameObject bgmObj = GameObject.FindWithTag("BGM");
+        if (bgmObj != null) {
+            bgm = bgmObj.GetComponent<BGMControler>();
+        }
+        Debug.Log("ato");
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
@@ -293,10 +300,12 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             if (Menu.activeSelf) {
                 Menu.SetActive(false);
                 audioSource.UnPause();
+                bgm.UnPause();
                 SceneManager.sceneLoaded += GameSceneLoaded;
             } else{
                 Menu.SetActive(true);
                 audioSource.Pause();
+                bgm.Pause();
                 SceneManager.sceneLoaded -= GameSceneLoaded;
             }
         }
@@ -395,6 +404,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     }
 
     public void Death() {
+        bgm.Pause();
         anim.SetBool("Damaged", true);
         gameOver = true;
         foot.enabled = false;
