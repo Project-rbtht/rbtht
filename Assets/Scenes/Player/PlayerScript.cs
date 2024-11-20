@@ -34,6 +34,8 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public float deathCircleTime = 2f;
     public float waitTimeDamaged = 1f;
 
+    [SerializeField] string[] bossScenes;
+
     //can temp buff
     public float speed = 0.1f;
 
@@ -56,7 +58,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
     Rigidbody2D rb;
     Animator anim = null;
-    float remainInvincible = 0;
+    public float remainInvincible = 0;
     bool guard = false;
     float energyHPCur = 0;
     float justGuardTime = 0;
@@ -82,6 +84,17 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         }
         if (SceneManager.GetActiveScene().name == "scene0") {
             restartStage = "";
+            hp = maxHP;
+        } else if (bossScenes.Length != 0) {
+            for (int i = 0; i < bossScenes.Length; i++) {
+                if(SceneManager.GetActiveScene().name == bossScenes[i]) {
+                    restartStage = bossScenes[i];
+                    break;
+                }
+            }
+        }
+        if(hp <= 0){
+            hp = maxHP;
         }
         healthBar = GameObject.Find("Canvas/HPBar/HPBackground/HealthBar");
         healthTriangle = GameObject.Find("Canvas/HPBar/HPBackground/HealthTriangle").gameObject;
@@ -102,9 +115,6 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             }
         }
         energyHPCur = energyHP;
-        if (hp == 0) {
-            hp = maxHP;
-        }
         healthBar.GetComponent<Image>().fillAmount = (float)hp / (float)maxHP;
         Vector3 triPos = healthTriangle.transform.localPosition;
         healthTriangle.transform.localPosition = new Vector3(triPos.x - (maxHP - hp) / (float)maxHP * healthBar.GetComponent<RectTransform>().sizeDelta.x, triPos.y, 0);
@@ -355,8 +365,9 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     }
 
     void GameSceneLoaded(Scene next, LoadSceneMode mode) {
-        var nextPlayerScript = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
-        if (nextPlayerScript != null) {
+        var nextPlayer = GameObject.FindWithTag("Player");
+        if (nextPlayer != null) {
+            var nextPlayerScript = nextPlayer.GetComponent<PlayerScript>();
             nextPlayerScript.maxHP = maxHP;
             nextPlayerScript.jpNumMax = jpNumMax;
             nextPlayerScript.justGuardGrace = justGuardGrace;
@@ -369,6 +380,9 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             nextPlayerScript.hp = hp;
 
             SceneManager.sceneLoaded -= GameSceneLoaded;
+        } else {
+            Save();
+            Debug.Log("clear");
         }
     }
 
@@ -417,6 +431,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
     public void SaveDelete() {
         PlayerPrefs.DeleteKey("data");
+        Debug.Log("deleted");
     }
 
     public void ReStart() {
@@ -431,6 +446,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             attackActivated = data.attackActivated;
             Debug.Log("Reloaded");
         }
+        hp = maxHP;
     }
 
 }

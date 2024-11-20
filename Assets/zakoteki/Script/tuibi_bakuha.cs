@@ -29,7 +29,7 @@ public class tuibi_bakuha : MonoBehaviour
 
         if(onchase==true)
         {
-            rb.velocity=(chaseVector * speed);
+           rb.AddForce(chaseVector * speed);
         }
     }
 

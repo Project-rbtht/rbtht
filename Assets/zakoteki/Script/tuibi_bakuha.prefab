@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affb71025006a3b48a7ba17092dc4b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 1
   explosion: {fileID: 8663106665143082007, guid: 7121931fc27306941ae3cecf42d645ac, type: 3}
   player: {fileID: 440276840742387133, guid: e7b5e5259288c9643b36d530d2594c9a, type: 3}
   chaseTime: 3
