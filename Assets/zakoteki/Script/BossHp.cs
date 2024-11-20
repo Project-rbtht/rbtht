@@ -9,25 +9,41 @@ public class BossHp : MonoBehaviour, Idamagable
     // シーン遷移時に移動するターゲットシーンの名前を指定
     public string targetScene = "afterScene"; // 遷移先シーンの名前（適宜変更）
 
+    // ダメージ音の設定
+    public AudioClip damageSound; // ダメージ音を指定
+    private AudioSource audioSource; // オーディオソースコンポーネント
+    [Range(0f, 1f)] public float damageSoundVolume = 1.0f; // 音量を調整するためのプロパティ（0.0～1.0）
+
     void Start()
     {
         this.anim = GetComponent<Animator>();
-        
 
+        // オーディオソースの初期化
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     public void crack()
     {
         if (hp <= 2)
         {
-           anim.SetBool("crack", true);
-           
+            anim.SetBool("crack", true);
         }
     }
 
     public void Damage(int damage)
     {
         hp -= damage;
+
+        // ダメージ音を再生
+        if (damageSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(damageSound, damageSoundVolume);
+        }
+
         crack();
         if (hp <= 0)
         {

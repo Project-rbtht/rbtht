@@ -8,14 +8,26 @@ public class BossHp2 : MonoBehaviour, Idamagable
     public string targetScene = "afterScene"; // 遷移先シーンの名前
     private PlayerScript playerScript; // PlayerScriptへの参照
 
+    // ダメージ音の設定
+    public AudioClip damageSound; // ダメージ音を指定
+    private AudioSource audioSource; // オーディオソースコンポーネント
+
     void Start()
     {
         anim = GetComponent<Animator>();
+
         // "Player" タグが付いたGameObjectからPlayerScriptを取得
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             playerScript = player.GetComponent<PlayerScript>();
+        }
+
+        // オーディオソースの初期化
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
         }
     }
 
@@ -30,6 +42,13 @@ public class BossHp2 : MonoBehaviour, Idamagable
     public void Damage(int damage)
     {
         hp -= damage;
+
+        // ダメージ音を再生
+        if (damageSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(damageSound);
+        }
+
         crack();
         if (hp <= 0)
         {
@@ -38,8 +57,7 @@ public class BossHp2 : MonoBehaviour, Idamagable
             // ボスが倒れたときにプレイヤーにアビリティを付与
             if (playerScript != null)
             {
-                playerScript.GetAbility(2); // 例として1（レーザーのアビリティ）を付与
-                // もし複数のアビリティを同時に付与したい場合は、GetAbility(2)なども呼び出せます
+                playerScript.GetAbility(2); // 例として2（特定のアビリティ）を付与
             }
 
             // 指定したシーンに遷移

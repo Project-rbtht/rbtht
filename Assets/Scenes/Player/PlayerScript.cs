@@ -60,7 +60,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
 
     Rigidbody2D rb;
     Animator anim = null;
-    float remainInvincible = 0;
+    public float remainInvincible = 0;
     bool guard = false;
     float energyHPCur = 0;
     float justGuardTime = 0;

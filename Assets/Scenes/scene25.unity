@@ -48300,6 +48300,7 @@ GameObject:
   - component: {fileID: 211922960}
   - component: {fileID: 211922959}
   - component: {fileID: 211922961}
+  - component: {fileID: 211922962}
   m_Layer: 0
   m_Name: GameObject (2)
   m_TagString: Floor
@@ -48333,7 +48334,7 @@ Transform:
   m_GameObject: {fileID: 211922958}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.99, y: 9.6, z: 0.00440484}
+  m_LocalPosition: {x: -10.04, y: 9.6, z: 0.00440484}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48371,7 +48372,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.2075024, y: -0.31179428}
+  m_Offset: {x: 4.2496114, y: -0.31179428}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -48382,8 +48383,25 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.8594704, y: 1.074831}
+  m_Size: {x: 9.350539, y: 1.074831}
   m_EdgeRadius: 0
+--- !u!114 &211922962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211922958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8e91b9692caf94e9d3d07830e9e292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8053221991848811320, guid: 981051918d58a3d4590ecd5a25345cb8, type: 3}
+  bulletSpeed: 0
+  bulletLifeTime: 0.5
+  spawnInterval: 1
+  bulletDirection: {x: 0, y: 0}
 --- !u!1001 &278899575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48574,6 +48592,7 @@ GameObject:
   - component: {fileID: 620579982}
   - component: {fileID: 620579981}
   - component: {fileID: 620579984}
+  - component: {fileID: 620579985}
   m_Layer: 0
   m_Name: GameObject (6)
   m_TagString: Untagged
@@ -48638,7 +48657,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seClip: {fileID: 8300000, guid: dd9dd3fb3500925418dfb0d6f88ffd98, type: 3}
-  interval: 3
+  interval: 0.2
+--- !u!114 &620579985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620579980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8e91b9692caf94e9d3d07830e9e292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8053221991848811320, guid: 981051918d58a3d4590ecd5a25345cb8, type: 3}
+  bulletSpeed: 0
+  bulletLifeTime: 0.5
+  spawnInterval: 0.2
+  bulletDirection: {x: 0, y: 0}
 --- !u!1 &745460969
 GameObject:
   m_ObjectHideFlags: 0
@@ -48651,6 +48687,7 @@ GameObject:
   - component: {fileID: 745460971}
   - component: {fileID: 745460970}
   - component: {fileID: 745460973}
+  - component: {fileID: 745460974}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -48715,7 +48752,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seClip: {fileID: 8300000, guid: 04a732a1ed426ac43a566411d0d4e8b0, type: 3}
-  interval: 4
+  interval: 2
+--- !u!114 &745460974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745460969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8e91b9692caf94e9d3d07830e9e292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8053221991848811320, guid: 981051918d58a3d4590ecd5a25345cb8, type: 3}
+  bulletSpeed: 0
+  bulletLifeTime: 0.5
+  spawnInterval: 2
+  bulletDirection: {x: 0, y: 0}
 --- !u!1 &745651476
 GameObject:
   m_ObjectHideFlags: 0
@@ -48796,7 +48850,7 @@ Transform:
   m_GameObject: {fileID: 745651476}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.86, y: 10.59, z: -1}
+  m_LocalPosition: {x: -8.86, y: 10.59, z: 11}
   m_LocalScale: {x: 1.0409424, y: 1.006342, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48889,7 +48943,7 @@ Transform:
   m_GameObject: {fileID: 871286575}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52443,6 +52497,7 @@ GameObject:
   - component: {fileID: 890646018}
   - component: {fileID: 890646017}
   - component: {fileID: 890646019}
+  - component: {fileID: 890646020}
   m_Layer: 0
   m_Name: GameObject (4)
   m_TagString: Floor
@@ -52527,6 +52582,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.9365606, y: 0.7565775}
   m_EdgeRadius: 0
+--- !u!114 &890646020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890646016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8e91b9692caf94e9d3d07830e9e292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8053221991848811320, guid: 981051918d58a3d4590ecd5a25345cb8, type: 3}
+  bulletSpeed: 0
+  bulletLifeTime: 0.5
+  spawnInterval: 1
+  bulletDirection: {x: 0, y: 0}
 --- !u!1001 &1092365924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52780,6 +52852,7 @@ GameObject:
   - component: {fileID: 1343125045}
   - component: {fileID: 1343125044}
   - component: {fileID: 1343125047}
+  - component: {fileID: 1343125048}
   m_Layer: 0
   m_Name: GameObject (5)
   m_TagString: Untagged
@@ -52845,6 +52918,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seClip: {fileID: 8300000, guid: 9df7d70a202a9ed479d8e74535fc9832, type: 3}
   interval: 2
+--- !u!114 &1343125048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343125043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8e91b9692caf94e9d3d07830e9e292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8053221991848811320, guid: 981051918d58a3d4590ecd5a25345cb8, type: 3}
+  bulletSpeed: 0
+  bulletLifeTime: 0.5
+  spawnInterval: 0.5
+  bulletDirection: {x: 0, y: 0}
 --- !u!1 &1370394108
 GameObject:
   m_ObjectHideFlags: 0
@@ -52856,6 +52946,7 @@ GameObject:
   - component: {fileID: 1370394110}
   - component: {fileID: 1370394109}
   - component: {fileID: 1370394111}
+  - component: {fileID: 1370394112}
   m_Layer: 0
   m_Name: GameObject (3)
   m_TagString: Floor
@@ -52940,6 +53031,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.89119, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1370394112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370394108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e8e91b9692caf94e9d3d07830e9e292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8053221991848811320, guid: 981051918d58a3d4590ecd5a25345cb8, type: 3}
+  bulletSpeed: 0
+  bulletLifeTime: 0.5
+  spawnInterval: 0.3
+  bulletDirection: {x: 0, y: 0}
 --- !u!1 &1450746688
 GameObject:
   m_ObjectHideFlags: 0
@@ -53161,7 +53269,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3cfd5ef43b03eb04aa7b0cad06e4876b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.821
   m_Pitch: 1.2
   Loop: 1
   Mute: 0
@@ -53404,6 +53512,7 @@ MonoBehaviour:
   hp: 5
   attackDamage: 2
   targetScene: ClearScene2
+  damageSound: {fileID: 8300000, guid: 4e4d07cf745b06a4d92000c428838694, type: 3}
 --- !u!1 &1946064380
 GameObject:
   m_ObjectHideFlags: 0
