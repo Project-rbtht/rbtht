@@ -36,7 +36,7 @@ public GameObject Bullet;
        void OnTriggerEnter2D(Collider2D collision)
      {
         
-         if (collision.CompareTag("Floor"))
+         if (collision.CompareTag("D_Wall"))
          {
           _moveDirection = -_moveDirection;
          }

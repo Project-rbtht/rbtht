@@ -10,6 +10,7 @@ TagManager:
   - Shield
   - Menu
   - PlayerFoot
+  - D_Wall
   layers:
   - Default
   - TransparentFX
