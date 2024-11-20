@@ -10,6 +10,7 @@ class Colliders {
 public class FootScript : MonoBehaviour{
     public bool onGround = false;
     public Vector2 groundVector = Vector2.zero;
+    public Vector2 preGroundVector = Vector2.zero;
     public Vector2 normalVector = Vector2.zero;
     public bool contactFloor = false;
     public bool onWall = false;
@@ -21,6 +22,8 @@ public class FootScript : MonoBehaviour{
     bool jp = false;
     bool justJp = false;
     public IsWallScript isWallScript;
+    public IsWallScript isSlopeScript;
+    public IsWallScript onGroundScript;
 
     public PlayerScript playerScript;
     Animator anim = null;
@@ -199,6 +202,9 @@ public class FootScript : MonoBehaviour{
     }
 
     private void FixedUpdate() {
+        if(rb.gravityScale != 0){
+            rb.gravityScale = 0;
+        }
         if(justJp){
             collisions.Clear();
             normals.Clear();
@@ -207,7 +213,9 @@ public class FootScript : MonoBehaviour{
         if(!isWallScript.isWall){
             onWall = false;
         }
-        onGround = false;
+        if(!onGroundScript.isWall){
+            onGround = false;
+        }
 
         for (int i = 0; i < normals.Count; i++) {
             //if (collisions[i].gameObject.CompareTag("Floor")) {
@@ -264,10 +272,20 @@ public class FootScript : MonoBehaviour{
             if (playerScript.jpNum == playerScript.jpNumMax && onGround) {
                 // rb.gravityScale = 0;
                 // rb.velocity = playerScript.speed * groundVector * Mathf.Sign(groundVector.x) * x;
-                rb.MovePosition(rb.position + (playerScript.speed * groundVector * Mathf.Sign(groundVector.x) * x)*Time.deltaTime);
                 playerScript.sakamichi = true;
+                if(!isSlopeScript.isWall && isWallScript.isWall){
+                    rb.gravityScale = 0.1f;
+                    Vector2 vectorA = GroundVector(rb.position + new Vector2(GetComponent<CircleCollider2D>().radius,0), new Vector2(0, -1), 10);
+                    rb.MovePosition(rb.position + playerScript.speed * vectorA * Mathf.Sign(vectorA.x) * x * Time.deltaTime);
+                    Debug.Log(0);
+                }else{
+                    if(groundVector == Vector2.zero){
+                        groundVector = preGroundVector;
+                    }
+                    rb.MovePosition(rb.position + playerScript.speed * groundVector * Mathf.Sign(groundVector.x) * x * Time.deltaTime);
+                    Debug.Log(1);
+                }
             } else {
-                vectorA = GroundVector(rb.position, new Vector2(0, -1), 10);
                 // rb.gravityScale = playerScript.gravityScale;
                 speedY -= 9.8f * playerScript.gravityScale * Time.deltaTime;
                 if ((onWall && Mathf.Sign(normalVector.x) != x) || (playerScript.collide && Mathf.Sign(normalVector.x) != x)) {
@@ -277,13 +295,14 @@ public class FootScript : MonoBehaviour{
                         // rb.velocity = new Vector2(0, speedY);
                         rb.MovePosition(rb.position + (new Vector2(0, speedY))*Time.deltaTime);
                     // }
-                    Debug.Log("jpNum:" + playerScript.jpNum + "onGround:" + onGround);
-                    Debug.Log("onWall & isWall" + onWall + isWallScript.isWall);
-                    Debug.Log("Sign" + (Mathf.Sign(normalVector.x) != x));
-                    Debug.Log("collide" + (playerScript.collide));
+                    // Debug.Log("jpNum:" + playerScript.jpNum + "onGround:" + onGround);
+                    // Debug.Log("onWall & isWall" + onWall + isWallScript.isWall);
+                    // Debug.Log("Sign" + (Mathf.Sign(normalVector.x) != x));
+                    // Debug.Log("collide" + (playerScript.collide));
                 } else { //jump
                     // rb.velocity = new Vector2(x * playerScript.speed, speedY);
                     rb.MovePosition(rb.position + (new Vector2(x * playerScript.speed, speedY))*Time.deltaTime);
+                    Debug.Log(2);
                 }
             }
         }
@@ -291,15 +310,16 @@ public class FootScript : MonoBehaviour{
         collisions.Clear();
         normals.Clear();
         normalVector = Vector2.zero;
+        preGroundVector = groundVector;
         groundVector = Vector2.zero;
     }
 
     Vector2 GroundVector(Vector2 pos, Vector2 dir, float dis){
         Vector2 slopeVector = Vector2.zero;
         RaycastHit2D hit = Physics2D.Raycast(pos, dir, dis);
-        if(hit != null){
+        if(hit.collider != null){
             Vector2 normal = hit.normal;
-            slopeVector = Vector2.Perpendicular(normal);
+            slopeVector = Vector2.Perpendicular(normal).normalized;
         }
         return slopeVector.normalized;
     }

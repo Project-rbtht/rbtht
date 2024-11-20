@@ -7,11 +7,15 @@ public class IsWallScript : MonoBehaviour
     public bool isWall = false;
     Collider2D collision = null;
     void OnTriggerEnter2D(Collider2D other) {
-        collision = other;
+        if(!other.isTrigger){
+            collision = other;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other) {
-        collision = other;
+        if(!other.isTrigger){
+            collision = other;
+        }
     }
 
     private void FixedUpdate() {
