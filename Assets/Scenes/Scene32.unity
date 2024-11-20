@@ -23035,7 +23035,7 @@ GameObject:
   - component: {fileID: 914629697}
   - component: {fileID: 914629696}
   - component: {fileID: 914629695}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AreaExit (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
