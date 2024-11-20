@@ -45,7 +45,7 @@ public class Tori : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Floor"))
+        if (collision.CompareTag("GonFloor"))
         {
             _onFloor = true;
             _Move();
