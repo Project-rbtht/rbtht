@@ -10,6 +10,7 @@ TagManager:
   - Shield
   - Menu
   - PlayerFoot
+  - BGM
   layers:
   - Default
   - TransparentFX
