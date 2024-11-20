@@ -161,7 +161,7 @@ public class Tori : MonoBehaviour
   void _Move()
      { if(_onFloor)
      {
-       _rigid.velocity = new Vector2(_rigid.velocity.x, _rigid.velocity.y  + _gondoraSpeed);
+       _rigid.velocity = new Vector2(_rigid.velocity.x, _gondoraSpeed);
      }
      }
 
