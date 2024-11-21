@@ -1,0 +1,9 @@
+diff a/ProjectSettings/TagManager.asset b/ProjectSettings/TagManager.asset	(rejected hunks)
+@@ -12,6 +12,7 @@
+   - PlayerFoot
+   - D_Wall
+   - GonFloor
++  - BGM
+   layers:
+   - Default
+   - TransparentFX
