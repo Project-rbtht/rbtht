@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundJudge : MonoBehaviour
 {
-    public bool onGround;/*
+    public bool onGround;
     public GameObject Player;
     public PlayerScript PlayerScript;
 
@@ -24,7 +24,6 @@ public class GroundJudge : MonoBehaviour
     }
 
     void OnTriggerStay2D(Collider2D collision) {
-        Debug.Log("fire");
         if (collision.gameObject.tag == "Floor") {
             onGround = true;
             PlayerScript.jpNum = PlayerScript.jpNumMax;
@@ -41,5 +40,5 @@ public class GroundJudge : MonoBehaviour
             PlayerScript.jpNum = PlayerScript.jpNumMax - 1;
             anim.SetInteger("Jump", 1);
         }
-    }*/
+    }
 }
