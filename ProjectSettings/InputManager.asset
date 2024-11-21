@@ -124,7 +124,7 @@ InputManager:
     negativeButton: 
     positiveButton: escape
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: joystick button 7
     gravity: 0
     dead: 0
     sensitivity: 1
@@ -182,11 +182,11 @@ InputManager:
     axis: 1
     joyNum: 7
   - serializedVersion: 3
-    m_Name: Fire1
+    m_Name: Guard
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: joystick button 0
+    positiveButton: joystick button 5
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
