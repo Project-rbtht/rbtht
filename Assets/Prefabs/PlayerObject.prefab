@@ -242,8 +242,11 @@ MonoBehaviour:
   deathCircleTime: 0.5
   waitTimeDamaged: 0.3
   gravityScale: 2
+  bossScenes:
+  - Boss1
+  - scene24
   speed: 8
-  maxHP: 1
+  maxHP: 12
   jpNumMax: 2
   justGuardGrace: 0.1
   shieldDecSpeed: 5

@@ -35,6 +35,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     public float waitTimeDamaged = 1f;
     public float gravityScale = 2f;
 
+    [SerializeField] string[] bossScenes;
     //can temp buff
     public float speed = 0.1f;
 
@@ -91,6 +92,17 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         }
         if (SceneManager.GetActiveScene().name == "scene0") {
             restartStage = "";
+            hp = maxHP;
+        } else if (bossScenes.Length != 0) {
+            for (int i = 0; i < bossScenes.Length; i++) {
+                if(SceneManager.GetActiveScene().name == bossScenes[i]) {
+                    restartStage = bossScenes[i];
+                    break;
+                }
+            }
+        }
+        if(hp <= 0){
+            hp = maxHP;
         }
         healthBar = GameObject.Find("Canvas/HPBar/HPBackground/HealthBar");
         healthTriangle = GameObject.Find("Canvas/HPBar/HPBackground/HealthTriangle").gameObject;
@@ -424,8 +436,9 @@ public class PlayerScript : MonoBehaviour, Idamagable {
     }
 
     void GameSceneLoaded(Scene next, LoadSceneMode mode) {
-        var nextPlayerScript = GameObject.FindWithTag("Player").GetComponent<PlayerScript>();
-        if (nextPlayerScript != null) {
+        var nextPlayer = GameObject.FindWithTag("Player");
+        if (nextPlayer != null) {
+            var nextPlayerScript = nextPlayer.GetComponent<PlayerScript>();
             nextPlayerScript.maxHP = maxHP;
             nextPlayerScript.jpNumMax = jpNumMax;
             nextPlayerScript.justGuardGrace = justGuardGrace;
@@ -438,6 +451,9 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             nextPlayerScript.hp = hp;
 
             SceneManager.sceneLoaded -= GameSceneLoaded;
+        } else {
+            Save();
+            Debug.Log("clear");
         }
     }
 
@@ -501,6 +517,7 @@ public class PlayerScript : MonoBehaviour, Idamagable {
             attackActivated = data.attackActivated;
             Debug.Log("Reloaded");
         }
+        hp = maxHP;
     }
 
 }
