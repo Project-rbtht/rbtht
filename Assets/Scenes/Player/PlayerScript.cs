@@ -108,12 +108,11 @@ public class PlayerScript : MonoBehaviour, Idamagable {
         anim = GetComponent<Animator>();
         counter = new float[attackList.Length];
         Array.Fill<float>(counter, 0);
-        if (attackActivated == null) {
+        if (!PlayerPrefs.HasKey("data")) {
             attackActivated = new bool[attackList.Length];
             attackActivated[0] = true;
-            for (int i = 1; i < attackList.Length; i++) {
-                attackActivated[i] = false;
-            }
+            attackActivated[1] = false;
+            attackActivated[1] = false;
         }
         energyHPCur = energyHP;
         healthBar.GetComponent<Image>().fillAmount = (float)hp / (float)maxHP;
