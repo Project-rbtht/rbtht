@@ -42,6 +42,7 @@ public class DamageJumpFloor : MonoBehaviour
                 if (playerRigidbody != null)
                 {
                     // è„ï˚å¸Ç…óÕÇâ¡Ç¶ÇÈ
+                    Debug.Log("AddForcePlayer");
                     playerRigidbody.AddForce(playerRigidbody.transform.up * bounceForce, ForceMode2D.Impulse);
                 }
                 else
