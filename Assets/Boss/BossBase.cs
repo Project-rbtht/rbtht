@@ -37,7 +37,7 @@ public class BossBase : MonoBehaviour, Idamagable
         }
         else
         {
-            StartCoroutine(FlashWhiteMultipleTimes());
+           // StartCoroutine(FlashWhiteMultipleTimes());
         }
     }
 
